@@ -42,7 +42,7 @@ library(htmlwidgets)
 ```
 
 ```{r parse-data, include=FALSE}
-ttl_file <- "02-recreation-ontology.ttl"
+ttl_file <- "data/02-recreation-ontology.ttl"
 rdf <- rdf_parse(ttl_file, format = "turtle")
 
 nt_text <- rdf_serialize(rdf, format = "ntriples")

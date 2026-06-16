@@ -15,7 +15,6 @@ book:
     - rec-vis.qmd
     - 07-recreation-spatial-diagrams.qmd
     - 12-recreation-sdsfie-crosswalk.qmd
-    - review-notes.qmd
 
 format:
   html:
@@ -23,3 +22,7 @@ format:
     css: styles.css
     toc: true
     embed-resources: true
+
+execute:
+  warning: false
+  message: false
