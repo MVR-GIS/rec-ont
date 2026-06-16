@@ -1,0 +1,25 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "USACE Recreation Ontology Review"
+  author: "EGIS Modernization"
+  sidebar:
+    style: docked
+    search: true
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - ontology-overview.qmd
+    - rec-vis.qmd
+    - 07-recreation-spatial-diagrams.qmd
+    - 12-recreation-sdsfie-crosswalk.qmd
+    - review-notes.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    embed-resources: true

@@ -1,10 +1,6 @@
 ---
 title: "Ontology Module Review"
 subtitle: "Ontology Structure and Property Relationships for USACE Recreation"
-format:
-  html:
-    toc: true
-    embed-resources: true
 execute:
   warning: false
   message: false
