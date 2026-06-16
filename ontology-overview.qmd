@@ -1,0 +1,88 @@
+---
+title: "Ontology Overview"
+---
+
+## Scope
+
+The recreation ontology models core recreation business entities, managed places, facilities, amenities, services, programs, fees, and related operational concepts relevant to USACE recreation management.
+
+The primary ontology source for this chapter is:
+
+- `data/02-recreation-ontology.ttl`
+
+## High-level structure
+
+At a high level, the ontology is organized around several major concept areas:
+
+- **Domain entities** that represent the broad recreation business space
+- **Physical and managed assets** such as recreation areas, facilities, and amenities
+- **Water-access and linear assets** for specialized physical features
+- **Visitor services and programs** representing operational and service concepts
+- **Fees, agreements, incidents, and activities** representing supporting business concepts
+
+## Class hierarchy patterns
+
+The ontology uses `rdfs:subClassOf` to establish class hierarchies. These hierarchies help distinguish:
+
+- general versus specialized recreation concepts
+- managed places versus supporting amenities
+- physical assets versus operational/service concepts
+
+Examples of expected hierarchy patterns include:
+
+- broad domain classes that act as abstract parents
+- facility subclasses for more specialized recreation facilities
+- amenity subclasses for supporting infrastructure
+- specialized trail, campground, and aquatic-use concepts
+
+## Property model
+
+The ontology includes both **object properties** and **datatype properties**.
+
+### Object properties
+
+Object properties connect one resource to another resource. In this ontology, they are used to express relationships such as:
+
+- an area having a facility
+- a facility having an amenity
+- an asset supporting an activity
+- an entity being managed under a program
+
+These relationships are especially important for understanding how the model expresses operational structure rather than just classification.
+
+### Datatype properties
+
+Datatype properties connect a resource to a literal value such as text, number, date, or decimal. In this ontology, they are used for values such as:
+
+- local identifiers
+- facility names
+- counts of sites or slips
+- trail length
+- operating dates
+
+## External references
+
+The ontology also connects to external namespaces and concepts, including:
+
+- SKOS concepts
+- XML Schema datatypes
+- OWL classes such as `owl:Thing`
+
+These references help the ontology align with supporting vocabularies and standard semantic web constructs.
+
+## How to review this ontology
+
+A useful way to review the ontology is to separate the work into three passes:
+
+### 1. Hierarchy pass
+Check whether classes are arranged appropriately and whether subclassing is intuitive.
+
+### 2. Relationship pass
+Review object properties and verify that domains, ranges, and property names make sense.
+
+### 3. Attribute pass
+Review datatype properties and confirm that literal-valued attributes are assigned to the right classes with the right datatypes.
+
+## Next step
+
+The next chapter provides an interactive graph-based visualization of the ontology to support structural review.

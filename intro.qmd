@@ -1,0 +1,72 @@
+---
+title: "Introduction"
+---
+
+## Review objective
+
+This book presents the current draft of the **USACE Recreation Ontology** in a format that is easier to review than raw Turtle files alone. The goal is to support discussion of structure, naming, hierarchy, and relationship design before the ontology is finalized or expanded.
+
+## What is being reviewed
+
+The review focuses primarily on the ontology content in:
+
+- `data/02-recreation-ontology.ttl`
+
+This ontology defines:
+
+- core recreation domain classes
+- class hierarchies
+- object properties connecting domain entities
+- datatype properties describing operational attributes
+
+Additional files in this repository provide vocabulary, spatial context, and crosswalk material that support interpretation of the ontology.
+
+## Review perspective
+
+This site is intended for a mixed audience, including:
+
+- ontology reviewers
+- GIS practitioners
+- program/domain subject matter experts
+- stakeholders validating terminology and structure
+
+Because of that, the materials are organized to support both:
+
+- **conceptual review**, such as whether a class belongs in the model
+- **implementation review**, such as whether relationships and data properties are structured appropriately
+
+## What to look for
+
+As you move through the book, consider the following:
+
+### Class model
+- Are the major classes appropriate for the recreation domain?
+- Are subclass relationships correct and understandable?
+- Are any classes missing, redundant, or overly broad?
+
+### Object properties
+- Do relationships connect the correct domain and range classes?
+- Are any relationship names unclear or inconsistent?
+- Are inverse-style relationships necessary and well named?
+
+### Datatype properties
+- Do the datatype properties reflect realistic operational attributes?
+- Are domains and ranges appropriately assigned?
+- Should any datatype properties instead be modeled differently?
+
+### Integration readiness
+- Does the model appear suitable for alignment with GIS, SDSFIE, and source vocabularies?
+- Are external concepts and references used in a clear and manageable way?
+
+## Site organization
+
+This book is organized into the following sections:
+
+- **Ontology Overview** — conceptual summary of the ontology structure
+- **Ontology Visualization** — interactive graph views of class and property relationships
+- **Spatial Diagrams** — supporting spatial context
+- **SDSFIE Crosswalk** — comparison artifact for review and traceability
+
+## Expected use
+
+This site is meant to support iterative review. It should be easy to update as ontology files and supporting materials evolve.

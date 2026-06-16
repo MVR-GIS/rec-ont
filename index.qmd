@@ -1,0 +1,53 @@
+---
+title: "USACE Recreation Ontology Review"
+---
+
+# Welcome
+
+This Quarto book is a review workspace for the **USACE Recreation Ontology** and its related artifacts. It is designed to help subject matter experts, GIS staff, and ontology reviewers inspect the model structure, visualize relationships, and compare the ontology against supporting spatial and crosswalk materials.
+
+## Purpose
+
+This site supports team review of the recreation ontology by organizing the core materials into a single navigable website.
+
+The review package includes:
+
+- an overview of the ontology scope and modeling intent
+- an interactive visualization of ontology classes and properties
+- supporting spatial diagrams
+- the SDSFIE crosswalk material used for comparison and traceability
+
+## How to use this site
+
+Recommended review flow:
+
+1. Start with the **Introduction** for context and review goals.
+2. Read the **Ontology Overview** to understand the model structure and intended interpretation.
+3. Open **Ontology Visualization** to inspect class hierarchies and property relationships interactively.
+4. Review the **Spatial Diagrams** for GIS-oriented context.
+5. Review the **SDSFIE Crosswalk** to compare ontology terms with external structures.
+
+## Included source artifacts
+
+This site is built from the following repository assets:
+
+- `data/01-recreation-vocabulary.ttl`
+- `data/02-recreation-ontology.ttl`
+- `data/06-recreation-spatial.ttl`
+- `data/12-recreation-sdsfie-crosswalk.ttl`
+
+## Reviewer guidance
+
+When reviewing the ontology, focus on questions such as:
+
+- Are the class hierarchies intuitive and complete?
+- Do object properties connect the right kinds of entities?
+- Do datatype properties capture the operational attributes needed by users?
+- Are any labels, definitions, or modeling boundaries unclear?
+- Do the ontology and supporting diagrams align with expected recreation business concepts?
+
+## Notes
+
+This website is intended for collaborative review and discussion. It emphasizes readability and navigation over exhaustive RDF inspection.
+
+Continue to the next chapter to begin the review.

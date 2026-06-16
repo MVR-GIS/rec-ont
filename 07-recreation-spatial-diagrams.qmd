@@ -1,4 +1,6 @@
-# Recreation Spatial Diagrams
+---
+title: Recreation Spatial Diagrams
+---
 
 These diagrams describe the active spatial extension in `06-recreation-spatial.ttl`. The spatial ontology models GIS-recordable feature representations; it does not replace recreation business entities, source vocabulary concepts, or geometry instances.
 

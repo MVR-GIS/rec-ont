@@ -1,9 +1,6 @@
 ---
 title: "Ontology Module Review"
 subtitle: "Ontology Structure and Property Relationships for USACE Recreation"
-execute:
-  warning: false
-  message: false
 ---
 
 ## Executive Summary
@@ -378,7 +375,7 @@ make_network <- function(nodes, edges, height = "980px", show_edge_labels = FALS
 }
 ```
 
-```{r render-graphs, results='asis'}
+```{r render-graphs, echo=FALSE, results='asis'}
 full_graph <- make_network(
   full_nodes,
   full_edges,
