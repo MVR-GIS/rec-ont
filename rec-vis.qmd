@@ -59,9 +59,9 @@ triple_match <- stringr::str_match(
 )
 
 df <- data.frame(
-  subject = triple_match[, 2],
+  subject   = triple_match[, 2],
   predicate = triple_match[, 3],
-  object = triple_match[, 4],
+  object    = triple_match[, 4],
   stringsAsFactors = FALSE
 ) %>%
   filter(!is.na(subject), !is.na(predicate), !is.na(object))
@@ -97,19 +97,19 @@ df <- df %>%
     object = ifelse(is_uri_token(object), clean_uri_token(object), object)
   )
 
-rdf_type <- "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-rdfs_subclass <- "http://www.w3.org/2000/01/rdf-schema#subClassOf"
-rdfs_domain <- "http://www.w3.org/2000/01/rdf-schema#domain"
-rdfs_range <- "http://www.w3.org/2000/01/rdf-schema#range"
-rdfs_label <- "http://www.w3.org/2000/01/rdf-schema#label"
+rdf_type              <- "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+rdfs_subclass         <- "http://www.w3.org/2000/01/rdf-schema#subClassOf"
+rdfs_domain           <- "http://www.w3.org/2000/01/rdf-schema#domain"
+rdfs_range            <- "http://www.w3.org/2000/01/rdf-schema#range"
+rdfs_label            <- "http://www.w3.org/2000/01/rdf-schema#label"
 
-owl_class <- "http://www.w3.org/2002/07/owl#Class"
-rdfs_class <- "http://www.w3.org/2000/01/rdf-schema#Class"
-owl_object_property <- "http://www.w3.org/2002/07/owl#ObjectProperty"
+owl_class             <- "http://www.w3.org/2002/07/owl#Class"
+rdfs_class            <- "http://www.w3.org/2000/01/rdf-schema#Class"
+owl_object_property   <- "http://www.w3.org/2002/07/owl#ObjectProperty"
 owl_datatype_property <- "http://www.w3.org/2002/07/owl#DatatypeProperty"
-owl_thing <- "http://www.w3.org/2002/07/owl#Thing"
+owl_thing             <- "http://www.w3.org/2002/07/owl#Thing"
 
-xsd_ns <- "http://www.w3.org/2001/XMLSchema#"
+xsd_ns  <- "http://www.w3.org/2001/XMLSchema#"
 skos_ns <- "http://www.w3.org/2004/02/skos/core#"
 
 labels_df <- df %>%
@@ -166,10 +166,8 @@ subclass_edges_raw <- df %>%
 object_property_edges_raw <- property_specs %>%
   filter(
     property_type == "ObjectProperty",
-    !is.na(domain),
-    domain != "",
-    !is.na(range),
-    range != ""
+    !is.na(domain), domain != "",
+    !is.na(range), range != ""
   ) %>%
   transmute(
     from = domain,
@@ -186,10 +184,8 @@ object_property_edges_raw <- property_specs %>%
 datatype_property_edges_raw <- property_specs %>%
   filter(
     property_type == "DatatypeProperty",
-    !is.na(domain),
-    domain != "",
-    !is.na(range),
-    range != ""
+    !is.na(domain), domain != "",
+    !is.na(range), range != ""
   ) %>%
   transmute(
     from = domain,
@@ -232,13 +228,9 @@ build_nodes <- function(edge_df) {
         get_local_name(id)
       ),
       title = paste0(
-        "<b>",
-        display_label,
-        "</b>",
-        "<br/>Group: ",
-        node_group,
-        "<br/>URI: ",
-        id
+        "<b>", display_label, "</b>",
+        "<br/>Group: ", node_group,
+        "<br/>URI: ", id
       )
     ) %>%
     transmute(
@@ -296,13 +288,7 @@ full_edges <- style_edges(full_edges_raw)
 ```
 
 ```{r render-functions, include=FALSE}
-make_network <- function(
-  nodes,
-  edges,
-  height = "980px",
-  show_edge_labels = FALSE,
-  show_legend = TRUE
-) {
+make_network <- function(nodes, edges, height = "980px", show_edge_labels = FALSE, show_legend = TRUE) {
   if (nrow(nodes) == 0 || nrow(edges) == 0) {
     return(tags$div("No data available for this graph view."))
   }
@@ -379,13 +365,7 @@ make_network <- function(
     net <- net %>%
       visLegend(
         addNodes = data.frame(
-          label = c(
-            "Class",
-            "Superclass",
-            "Datatype",
-            "External Concept",
-            "External Class"
-          ),
+          label = c("Class", "Superclass", "Datatype", "External Concept", "External Class"),
           shape = c("box", "ellipse", "triangle", "star", "dot"),
           color = c("#4A7A96", "#1E4620", "#6A3D9A", "#8C6D31", "#7A7A7A")
         ),
@@ -437,11 +417,7 @@ datatype_graph <- make_network(
 
 view_controls <- tags$div(
   style = "margin-bottom: 1rem;",
-  tags$label(
-    `for` = "graph-view-select",
-    style = "font-weight: bold; margin-right: 0.5rem;",
-    "Select graph view:"
-  ),
+  tags$label(`for` = "graph-view-select", style = "font-weight: bold; margin-right: 0.5rem;", "Select graph view:"),
   tags$select(
     id = "graph-view-select",
     style = "padding: 0.35rem; min-width: 260px;",
@@ -454,28 +430,12 @@ view_controls <- tags$div(
 
 graph_panels <- tags$div(
   tags$div(id = "full-graph", class = "graph-panel", full_graph),
-  tags$div(
-    id = "hierarchy-graph",
-    class = "graph-panel",
-    style = "display:none;",
-    hierarchy_graph
-  ),
-  tags$div(
-    id = "object-graph",
-    class = "graph-panel",
-    style = "display:none;",
-    object_graph
-  ),
-  tags$div(
-    id = "datatype-graph",
-    class = "graph-panel",
-    style = "display:none;",
-    datatype_graph
-  )
+  tags$div(id = "hierarchy-graph", class = "graph-panel", style = "display:none;", hierarchy_graph),
+  tags$div(id = "object-graph", class = "graph-panel", style = "display:none;", object_graph),
+  tags$div(id = "datatype-graph", class = "graph-panel", style = "display:none;", datatype_graph)
 )
 
-toggle_script <- tags$script(HTML(
-  "
+toggle_script <- tags$script(HTML("
 document.addEventListener('DOMContentLoaded', function() {
   var select = document.getElementById('graph-view-select');
   var panels = document.querySelectorAll('.graph-panel');
@@ -494,8 +454,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   showPanel('full-graph');
 });
-"
-))
+"))
 
 browsable(tagList(view_controls, graph_panels, toggle_script))
 ```
