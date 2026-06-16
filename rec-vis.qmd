@@ -1,0 +1,90 @@
+---
+title: "Ontology Module Review"
+subtitle: "Structure & Class Hierarchy Audit for USACE Geospatial Systems"
+format: 
+  html:
+    toc: true
+    embed-resources: true
+---
+
+## Executive Summary
+This interactive graph visualizes the proposed ontology module's class hierarchies and object properties. 
+* **Pan/Zoom** to navigate dense clusters.
+* **Hover** over nodes to view full URIs.
+* **Click** a node to highlight its immediate relationships.
+
+```{r setup, include=FALSE}
+# Install missing packages if necessary
+# install.packages(c("rdflib", "dplyr", "visNetwork"))
+
+library(rdflib)
+library(dplyr)
+library(visNetwork)
+```
+
+```{r parse-data, echo=FALSE}
+# 1. Load the Turtle (.ttl) file
+# Replace "ontology.ttl" with your actual file path
+triples <- rdf_parse("01-recreation-vocabulary.ttl", format = "turtle")
+
+# 2. Convert RDF triples to an R data frame
+df <- rdf_serialize(triples, format = "ntriples") %>%
+  read.delim(text = ., sep = " ", header = FALSE, col.names = c("subject", "predicate", "object", "dot")) %>%
+  select(-dot)
+
+# Clean up URI angle brackets for easier processing
+clean_uri <- function(x) gsub("<|>", "", x)
+df <- df %>% mutate(across(everything(), clean_uri))
+
+# 3. Filter for Class Hierarchies and Object Properties
+# Focus strictly on rdfs:subClassOf and owl:ObjectProperty for structure
+structural_relations <- df %>%
+  filter(
+    predicate == "http://w3.org" |
+    predicate == "http://purl.org"
+  )
+
+# Extract local names for cleaner labeling
+get_local_name <- function(uri) {
+  parts <- strsplit(uri, "[# /]")[[1]]
+  return(tail(parts, 1))
+}
+```
+
+```{r build-network, echo=FALSE, message=FALSE}
+# 4. Construct Edges Data Frame
+edges <- structural_relations %>%
+  transmute(
+    from = subject,
+    to = object,
+    label = sapply(predicate, get_local_name),
+    font.size = 10,
+    arrows = "to"
+  )
+
+# 5. Construct Nodes Data Frame
+# Combine all unique subjects (from) and objects (to) into one clean list of nodes
+all_nodes <- unique(c(edges$from, edges$to))
+
+nodes <- data.frame(id = all_nodes, stringsAsFactors = FALSE) %>%
+  mutate(
+    label = sapply(id, get_local_name),
+    title = id, # Hover tooltip displays full URI
+    # Classify nodes to apply specific styles for USACE reviewers
+    group = case_when(
+      id %in% edges\(to[edges\)label == "subClassOf"] ~ "SuperClass",
+      TRUE ~ "Class"
+    )
+  )
+
+# 6. Render the Interactive Visualization
+visNetwork(nodes, edges, width = "100%", height = "700px") %>%
+  visGroups(groupname = "SuperClass", color = "#1E4620", shape = "ellipse", font = list(color = "white")) %>% # USACE Army Green
+  visGroups(groupname = "Class", color = "#4A7A96", shape = "box", font = list(color = "white")) %>%
+  visOptions(
+    highlightNearest = list(enabled = TRUE, degree = 1, hover = TRUE),
+    nodesIdSelection = list(enabled = TRUE, main = "Select a Class to Inspect")
+  ) %>%
+  visPhysics(solver = "forceAtlas2Based", forceAtlas2Based = list(gravitationalConstant = -50)) %>%
+  visInteraction(navigationButtons = TRUE)
+```
