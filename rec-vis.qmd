@@ -1,6 +1,6 @@
 ---
 title: "Ontology Module Review"
-subtitle: "Structure, Class Hierarchy, and Property Relationships for USACE Geospatial Systems"
+subtitle: "Ontology Structure and Property Relationships for USACE Recreation"
 format:
   html:
     toc: true
@@ -12,21 +12,28 @@ execute:
 
 ## Executive Summary
 
-This interactive graph visualizes the ontology structure in `01-recreation-vocabulary.ttl`.
+This interactive page visualizes the ontology structure in `02-recreation-ontology.ttl`.
 
-It includes:
+It provides four separate views:
 
-- **Class hierarchy** via `rdfs:subClassOf`
-- **Object properties** via `owl:ObjectProperty`
-- **Domain relationships** via `rdfs:domain`
-- **Range relationships** via `rdfs:range`
+- **Full Graph**
+- **Hierarchy Only**
+- **Object Properties Only**
+- **Datatype Properties Only**
 
-### How to use this graph
+### Display behavior
 
+- Edge labels are suppressed by default in all views to improve readability
+- Hover over edges to inspect relationship names
+- Hover over nodes to inspect labels, groups, and full URIs
+
+### How to use this page
+
+- Use the **view selector** to switch between graph modes
 - **Pan/Zoom** to navigate dense clusters
-- **Hover** over nodes to view full URIs
-- **Click** a node to highlight its immediate relationships
-- **Use the selector** to jump directly to a resource
+- **Hover** over nodes and edges to inspect labels, URIs, and relationship types
+- **Click** a node to highlight immediate relationships
+- Use the **node selector** within each graph to jump to a resource
 
 ```{r setup, include=FALSE}
 library(rdflib)
@@ -34,10 +41,12 @@ library(dplyr)
 library(stringr)
 library(tibble)
 library(visNetwork)
+library(htmltools)
+library(htmlwidgets)
 ```
 
-```{r parse-data}
-ttl_file <- "01-recreation-ontology.ttl"
+```{r parse-data, include=FALSE}
+ttl_file <- "02-recreation-ontology.ttl"
 rdf <- rdf_parse(ttl_file, format = "turtle")
 
 nt_text <- rdf_serialize(rdf, format = "ntriples")
@@ -65,12 +74,13 @@ is_uri_token <- function(x) {
   grepl("^<[^>]+>$", x)
 }
 
-df <- df %>%
-  mutate(
-    subject = clean_uri_token(subject),
-    predicate = clean_uri_token(predicate),
-    object = ifelse(is_uri_token(object), clean_uri_token(object), object)
-  )
+strip_literal_quotes <- function(x) {
+  x %>%
+    sub("@[A-Za-z0-9_-]+$", "", .) %>%
+    sub("\\^\\^<[^>]+>$", "", .) %>%
+    sub('^"', "", .) %>%
+    sub('"$', "", .)
+}
 
 get_local_name <- function(uri) {
   ifelse(
@@ -80,25 +90,28 @@ get_local_name <- function(uri) {
   )
 }
 
-strip_literal_quotes <- function(x) {
-  ifelse(
-    grepl('^".*"$', x),
-    sub('^"(.*)"$', '\\1', x),
-    x
+df <- df %>%
+  mutate(
+    subject = clean_uri_token(subject),
+    predicate = clean_uri_token(predicate),
+    object = ifelse(is_uri_token(object), clean_uri_token(object), object)
   )
-}
 
-# Core RDF / RDFS / OWL URIs
-rdf_type            <- "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-rdfs_subclass       <- "http://www.w3.org/2000/01/rdf-schema#subClassOf"
-rdfs_domain         <- "http://www.w3.org/2000/01/rdf-schema#domain"
-rdfs_range          <- "http://www.w3.org/2000/01/rdf-schema#range"
-rdfs_label          <- "http://www.w3.org/2000/01/rdf-schema#label"
-rdfs_class          <- "http://www.w3.org/2000/01/rdf-schema#Class"
-owl_class           <- "http://www.w3.org/2002/07/owl#Class"
-owl_object_property <- "http://www.w3.org/2002/07/owl#ObjectProperty"
+rdf_type              <- "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+rdfs_subclass         <- "http://www.w3.org/2000/01/rdf-schema#subClassOf"
+rdfs_domain           <- "http://www.w3.org/2000/01/rdf-schema#domain"
+rdfs_range            <- "http://www.w3.org/2000/01/rdf-schema#range"
+rdfs_label            <- "http://www.w3.org/2000/01/rdf-schema#label"
 
-# Human-friendly labels when present
+owl_class             <- "http://www.w3.org/2002/07/owl#Class"
+rdfs_class            <- "http://www.w3.org/2000/01/rdf-schema#Class"
+owl_object_property   <- "http://www.w3.org/2002/07/owl#ObjectProperty"
+owl_datatype_property <- "http://www.w3.org/2002/07/owl#DatatypeProperty"
+owl_thing             <- "http://www.w3.org/2002/07/owl#Thing"
+
+xsd_ns  <- "http://www.w3.org/2001/XMLSchema#"
+skos_ns <- "http://www.w3.org/2004/02/skos/core#"
+
 labels_df <- df %>%
   filter(predicate == rdfs_label) %>%
   transmute(
@@ -107,130 +120,223 @@ labels_df <- df %>%
   ) %>%
   distinct(id, .keep_all = TRUE)
 
-# Class declarations
 class_nodes <- df %>%
-  filter(predicate == rdf_type, object %in% c(rdfs_class, owl_class)) %>%
-  transmute(id = subject, node_type = "Class") %>%
+  filter(predicate == rdf_type, object %in% c(owl_class, rdfs_class)) %>%
+  transmute(id = subject, declared_type = "Class") %>%
   distinct()
 
-# Object property declarations
-property_nodes <- df %>%
+object_properties <- df %>%
   filter(predicate == rdf_type, object == owl_object_property) %>%
-  transmute(id = subject, node_type = "ObjectProperty") %>%
+  transmute(id = subject, property_type = "ObjectProperty") %>%
   distinct()
 
-# Structural edges
-subclass_edges <- df %>%
+datatype_properties <- df %>%
+  filter(predicate == rdf_type, object == owl_datatype_property) %>%
+  transmute(id = subject, property_type = "DatatypeProperty") %>%
+  distinct()
+
+properties <- bind_rows(object_properties, datatype_properties)
+
+property_labels <- labels_df %>%
+  rename(property_label = label_text)
+
+property_domains <- df %>%
+  filter(predicate == rdfs_domain) %>%
+  transmute(property = subject, domain = object)
+
+property_ranges <- df %>%
+  filter(predicate == rdfs_range) %>%
+  transmute(property = subject, range = object)
+
+property_specs <- properties %>%
+  left_join(property_domains, by = c("id" = "property")) %>%
+  left_join(property_ranges, by = c("id" = "property")) %>%
+  left_join(property_labels, by = c("id" = "id")) %>%
+  rename(property = id)
+
+subclass_edges_raw <- df %>%
   filter(predicate == rdfs_subclass) %>%
   transmute(
     from = subject,
     to = object,
     relation = "subClassOf",
-    color = "#2C7FB8",
-    dashes = FALSE
+    edge_type = "Hierarchy"
   )
 
-domain_edges <- df %>%
-  filter(predicate == rdfs_domain) %>%
-  transmute(
-    from = subject,
-    to = object,
-    relation = "domain",
-    color = "#D95F0E",
-    dashes = TRUE
-  )
-
-range_edges <- df %>%
-  filter(predicate == rdfs_range) %>%
-  transmute(
-    from = subject,
-    to = object,
-    relation = "range",
-    color = "#31A354",
-    dashes = TRUE
-  )
-
-edges <- bind_rows(subclass_edges, domain_edges, range_edges) %>%
-  distinct() %>%
-  transmute(
-    from = from,
-    to = to,
-    label = relation,
-    title = relation,
-    arrows = "to",
-    color = color,
-    dashes = dashes,
-    font =  list(size = 10)
-  )
-
-# Candidate nodes from declarations and edge endpoints
-edge_nodes <- tibble(id = unique(c(edges$from, edges$to)))
-
-superclass_nodes <- subclass_edges %>%
-  transmute(id = to, node_type = "SuperClass") %>%
-  distinct()
-
-all_node_types <- bind_rows(
-  edge_nodes %>% mutate(node_type = "Class"),
-  class_nodes,
-  superclass_nodes,
-  property_nodes
-)
-
-priority_table <- tibble(
-  node_type = c("ObjectProperty", "SuperClass", "Class"),
-  priority = c(1, 2, 3)
-)
-
-nodes <- all_node_types %>%
-  left_join(priority_table, by = "node_type") %>%
-  arrange(priority, id) %>%
-  distinct(id, .keep_all = TRUE) %>%
-  left_join(labels_df, by = "id") %>%
-  mutate(
-    display_label = ifelse(
-      !is.na(label_text) & nzchar(label_text),
-      label_text,
-      get_local_name(id)
-    ),
-    title = paste0(
-      "<b>", display_label, "</b>",
-      "<br/>Type: ", node_type,
-      "<br/>URI: ", id
-    ),
-    shape = case_when(
-      node_type == "ObjectProperty" ~ "diamond",
-      node_type == "SuperClass" ~ "ellipse",
-      TRUE ~ "box"
-    ),
-    color = case_when(
-      node_type == "ObjectProperty" ~ "#B06C00",
-      node_type == "SuperClass" ~ "#1E4620",
-      TRUE ~ "#4A7A96"
-    )
+object_property_edges_raw <- property_specs %>%
+  filter(
+    property_type == "ObjectProperty",
+    !is.na(domain), domain != "",
+    !is.na(range), range != ""
   ) %>%
   transmute(
-    id = id,
-    label = display_label,
-    title = title,
-    group = node_type,
-    shape = shape,
-    color = color
+    from = domain,
+    to = range,
+    relation = ifelse(
+      !is.na(property_label) & nzchar(property_label),
+      property_label,
+      get_local_name(property)
+    ),
+    edge_type = "Object Property",
+    property_uri = property
   )
+
+datatype_property_edges_raw <- property_specs %>%
+  filter(
+    property_type == "DatatypeProperty",
+    !is.na(domain), domain != "",
+    !is.na(range), range != ""
+  ) %>%
+  transmute(
+    from = domain,
+    to = range,
+    relation = ifelse(
+      !is.na(property_label) & nzchar(property_label),
+      property_label,
+      get_local_name(property)
+    ),
+    edge_type = "Datatype Property",
+    property_uri = property
+  )
+
+class_targets <- subclass_edges_raw %>%
+  distinct(to) %>%
+  rename(id = to) %>%
+  mutate(is_superclass = TRUE)
+
+build_nodes <- function(edge_df) {
+  node_ids <- unique(c(edge_df$from, edge_df$to))
+
+  tibble(id = node_ids) %>%
+    left_join(class_nodes, by = "id") %>%
+    left_join(labels_df, by = "id") %>%
+    left_join(class_targets, by = "id") %>%
+    mutate(
+      declared_type = ifelse(is.na(declared_type), "", declared_type),
+      is_superclass = ifelse(is.na(is_superclass), FALSE, is_superclass),
+      node_group = case_when(
+        declared_type == "Class" & is_superclass ~ "SuperClass",
+        declared_type == "Class" ~ "Class",
+        startsWith(id, xsd_ns) ~ "Datatype",
+        startsWith(id, skos_ns) ~ "ExternalConcept",
+        id == owl_thing ~ "ExternalClass",
+        TRUE ~ "ExternalClass"
+      ),
+      display_label = ifelse(
+        !is.na(label_text) & nzchar(label_text),
+        label_text,
+        get_local_name(id)
+      ),
+      title = paste0(
+        "<b>", display_label, "</b>",
+        "<br/>Group: ", node_group,
+        "<br/>URI: ", id
+      )
+    ) %>%
+    transmute(
+      id = id,
+      label = display_label,
+      title = title,
+      group = node_group
+    ) %>%
+    distinct(id, .keep_all = TRUE)
+}
+
+style_edges <- function(edge_df) {
+  edge_df %>%
+    mutate(
+      color = case_when(
+        edge_type == "Hierarchy" ~ "#2C7FB8",
+        edge_type == "Object Property" ~ "#D95F0E",
+        edge_type == "Datatype Property" ~ "#31A354",
+        TRUE ~ "#666666"
+      ),
+      dashes = edge_type != "Hierarchy",
+      width = ifelse(edge_type == "Hierarchy", 2, 1),
+      edge_title = case_when(
+        edge_type == "Hierarchy" ~ "rdfs:subClassOf",
+        TRUE ~ relation
+      )
+    ) %>%
+    transmute(
+      from = from,
+      to = to,
+      label = relation,
+      title = edge_title,
+      arrows = "to",
+      color = color,
+      dashes = dashes,
+      width = width,
+      font = list(size = 9, align = "middle")
+    )
+}
+
+full_edges_raw <- bind_rows(
+  subclass_edges_raw,
+  object_property_edges_raw,
+  datatype_property_edges_raw
+)
+
+hierarchy_nodes <- build_nodes(subclass_edges_raw)
+object_nodes <- build_nodes(object_property_edges_raw)
+datatype_nodes <- build_nodes(datatype_property_edges_raw)
+full_nodes <- build_nodes(full_edges_raw)
+
+hierarchy_edges <- style_edges(subclass_edges_raw)
+object_edges <- style_edges(object_property_edges_raw)
+datatype_edges <- style_edges(datatype_property_edges_raw)
+full_edges <- style_edges(full_edges_raw)
 ```
 
-```{r render-network}
-if (nrow(nodes) == 0 || nrow(edges) == 0) {
-  cat("No ontology relationship data was found in 01-recreation-vocabulary.ttl.")
-} else {
-  visNetwork(nodes, edges, width = "100%", height = "800px") %>%
-    visNodes(
-      font = list(color = "white", size = 16),
-      borderWidth = 1
+```{r render-functions, include=FALSE}
+make_network <- function(nodes, edges, height = "980px", show_edge_labels = FALSE, show_legend = TRUE) {
+  if (nrow(nodes) == 0 || nrow(edges) == 0) {
+    return(tags$div("No data available for this graph view."))
+  }
+
+  if (!show_edge_labels) {
+    edges <- edges %>%
+      mutate(label = "")
+  }
+
+  net <- visNetwork(nodes, edges, width = "100%", height = height) %>%
+    visGroups(
+      groupname = "Class",
+      color = "#4A7A96",
+      shape = "box",
+      font = list(color = "white", size = 14)
+    ) %>%
+    visGroups(
+      groupname = "SuperClass",
+      color = "#1E4620",
+      shape = "ellipse",
+      font = list(color = "white", size = 14)
+    ) %>%
+    visGroups(
+      groupname = "Datatype",
+      color = "#6A3D9A",
+      shape = "triangle",
+      font = list(color = "white", size = 13)
+    ) %>%
+    visGroups(
+      groupname = "ExternalConcept",
+      color = "#8C6D31",
+      shape = "star",
+      font = list(color = "white", size = 13)
+    ) %>%
+    visGroups(
+      groupname = "ExternalClass",
+      color = "#7A7A7A",
+      shape = "dot",
+      font = list(color = "white", size = 12)
     ) %>%
     visEdges(
       smooth = FALSE,
       arrows = list(to = list(enabled = TRUE, scaleFactor = 0.8))
+    ) %>%
+    visNodes(
+      borderWidth = 1,
+      shadow = FALSE
     ) %>%
     visOptions(
       highlightNearest = list(enabled = TRUE, degree = 1, hover = TRUE),
@@ -239,56 +345,137 @@ if (nrow(nodes) == 0 || nrow(edges) == 0) {
         main = "Select a Resource to Inspect"
       )
     ) %>%
-    visLegend(
-      addNodes = data.frame(
-        label = c("Class", "Superclass", "Object Property"),
-        shape = c("box", "ellipse", "diamond"),
-        color = c("#4A7A96", "#1E4620", "#B06C00")
-      ),
-      addEdges = data.frame(
-        label = c("subClassOf", "domain", "range"),
-        color = c("#2C7FB8", "#D95F0E", "#31A354"),
-        dashes = c(FALSE, TRUE, TRUE)
-      ),
-      useGroups = FALSE
-    ) %>%
     visPhysics(
       solver = "forceAtlas2Based",
       forceAtlas2Based = list(
-        gravitationalConstant = -45,
-        centralGravity = 0.01,
-        springLength = 140,
-        springConstant = 0.06
+        gravitationalConstant = -60,
+        centralGravity = 0.008,
+        springLength = 170,
+        springConstant = 0.045
       ),
-      stabilization = list(iterations = 250)
+      stabilization = list(iterations = 350)
     ) %>%
     visInteraction(
       navigationButtons = TRUE,
-      keyboard = TRUE
+      keyboard = TRUE,
+      hover = TRUE
     )
+
+  if (show_legend) {
+    net <- net %>%
+      visLegend(
+        addNodes = data.frame(
+          label = c("Class", "Superclass", "Datatype", "External Concept", "External Class"),
+          shape = c("box", "ellipse", "triangle", "star", "dot"),
+          color = c("#4A7A96", "#1E4620", "#6A3D9A", "#8C6D31", "#7A7A7A")
+        ),
+        addEdges = data.frame(
+          label = c("subClassOf", "object property", "datatype property"),
+          color = c("#2C7FB8", "#D95F0E", "#31A354"),
+          dashes = c(FALSE, TRUE, TRUE)
+        ),
+        useGroups = FALSE
+      )
+  }
+
+  net
 }
+```
+
+```{r render-graphs, results='asis'}
+full_graph <- make_network(
+  full_nodes,
+  full_edges,
+  height = "980px",
+  show_edge_labels = FALSE,
+  show_legend = TRUE
+)
+
+hierarchy_graph <- make_network(
+  hierarchy_nodes,
+  hierarchy_edges,
+  height = "980px",
+  show_edge_labels = FALSE,
+  show_legend = FALSE
+)
+
+object_graph <- make_network(
+  object_nodes,
+  object_edges,
+  height = "980px",
+  show_edge_labels = FALSE,
+  show_legend = FALSE
+)
+
+datatype_graph <- make_network(
+  datatype_nodes,
+  datatype_edges,
+  height = "980px",
+  show_edge_labels = FALSE,
+  show_legend = FALSE
+)
+
+view_controls <- tags$div(
+  style = "margin-bottom: 1rem;",
+  tags$label(`for` = "graph-view-select", style = "font-weight: bold; margin-right: 0.5rem;", "Select graph view:"),
+  tags$select(
+    id = "graph-view-select",
+    style = "padding: 0.35rem; min-width: 260px;",
+    tags$option(value = "full-graph", "Full Graph"),
+    tags$option(value = "hierarchy-graph", "Hierarchy Only"),
+    tags$option(value = "object-graph", "Object Properties Only"),
+    tags$option(value = "datatype-graph", "Datatype Properties Only")
+  )
+)
+
+graph_panels <- tags$div(
+  tags$div(id = "full-graph", class = "graph-panel", full_graph),
+  tags$div(id = "hierarchy-graph", class = "graph-panel", style = "display:none;", hierarchy_graph),
+  tags$div(id = "object-graph", class = "graph-panel", style = "display:none;", object_graph),
+  tags$div(id = "datatype-graph", class = "graph-panel", style = "display:none;", datatype_graph)
+)
+
+toggle_script <- tags$script(HTML("
+document.addEventListener('DOMContentLoaded', function() {
+  var select = document.getElementById('graph-view-select');
+  var panels = document.querySelectorAll('.graph-panel');
+
+  function showPanel(panelId) {
+    panels.forEach(function(panel) {
+      panel.style.display = (panel.id === panelId) ? 'block' : 'none';
+    });
+  }
+
+  if (select) {
+    select.addEventListener('change', function() {
+      showPanel(this.value);
+    });
+  }
+
+  showPanel('full-graph');
+});
+"))
+
+browsable(tagList(view_controls, graph_panels, toggle_script))
 ```
 
 ## Notes
 
-This visualization emphasizes ontology structure, not every RDF triple.
+This page is designed specifically for `02-recreation-ontology.ttl`.
 
-Included relationships:
+### Graph views
 
-- `rdfs:subClassOf`
-- `rdfs:domain`
-- `rdfs:range`
+- **Full Graph** combines hierarchy, object-property, and datatype-property relationships
+- **Hierarchy Only** shows only `rdfs:subClassOf`
+- **Object Properties Only** shows `domain --property--> range`
+- **Datatype Properties Only** shows `domain --property--> datatype`
 
-Included node categories:
+### Node categories
 
-- `owl:Class`
-- `rdfs:Class`
-- `owl:ObjectProperty`
+- ontology classes
+- superclasses
+- XSD datatypes
+- external SKOS concepts
+- external classes such as `owl:Thing`
 
-If needed, this can be expanded further to support:
-
-- `owl:DatatypeProperty`
-- `owl:equivalentClass`
-- `owl:Restriction`
-- `skos:prefLabel`
-- filtering by namespace/module
+This design avoids cross-view leakage by rendering separate graph widgets for each mode.
