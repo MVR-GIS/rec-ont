@@ -1,0 +1,461 @@
+@prefix recs: <https://usace.mil/ontology/recreation/spatial/> .
+@prefix rec: <https://usace.mil/ontology/recreation/> .
+@prefix recv: <https://usace.mil/vocabulary/recreation/> .
+@prefix usf: <https://usace.mil/ontology/spatial/> .
+@prefix upr: <https://usace.mil/ontology/physical-realms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+recs: a owl:Ontology ;
+    rdfs:label "USACE Recreation Spatial Ontology"@en ;
+    dct:title "USACE Recreation Spatial Ontology"@en ;
+    dct:description "Spatial-first extension that separates GIS feature representations from recreation business entities and geometries."@en ;
+    dct:source "EP 1130-2-550; GeoSPARQL; USACE spatial foundation; USACE physical realms"@en ;
+    owl:versionInfo "2.0-draft" ;
+    owl:imports rec: , <https://usace.mil/ontology/spatial/> , <https://usace.mil/ontology/physical-realms/> , <http://www.opengis.net/ont/geosparql> .
+
+recs:DirectFeaturePattern a owl:NamedIndividual ;
+    rdfs:label "Direct Feature Pattern"@en .
+
+recs:RepresentationFeaturePattern a owl:NamedIndividual ;
+    rdfs:label "Representation Feature Pattern"@en .
+
+recs:RecreationSpatialFeature a owl:Class ;
+    rdfs:label "Recreation Spatial Feature"@en ;
+    rdfs:subClassOf geo:Feature ;
+    rdfs:subClassOf usf:SpatialFeature ;
+    rdfs:comment "GIS-recordable representation of a recreation entity, source-layer record, zone, or boundary. This is not automatically identical to the business entity it represents."@en .
+
+recs:representsEntity a owl:ObjectProperty ;
+    rdfs:label "represents entity"@en ;
+    rdfs:domain recs:RecreationSpatialFeature ;
+    rdfs:range rec:RecreationDomainEntity ;
+    rdfs:comment "Links a spatial feature representation to the recreation business entity it represents."@en .
+
+recs:representsConcept a owl:ObjectProperty ;
+    rdfs:label "represents concept"@en ;
+    rdfs:domain recs:RecreationSpatialFeature ;
+    rdfs:range skos:Concept ;
+    rdfs:comment "Links a spatial feature representation to a source-backed classification or vocabulary concept."@en .
+
+rec:hasSpatialRepresentation a owl:ObjectProperty ;
+    rdfs:label "has spatial representation"@en ;
+    rdfs:domain rec:RecreationDomainEntity ;
+    rdfs:range recs:RecreationSpatialFeature ;
+    owl:inverseOf recs:representsEntity .
+
+recs:usesSpatialPattern a owl:ObjectProperty ;
+    rdfs:label "uses spatial pattern"@en ;
+    rdfs:domain recs:RecreationSpatialFeature ;
+    rdfs:range owl:Thing .
+
+recs:intersectsPhysicalRealm a owl:ObjectProperty ;
+    rdfs:label "intersects physical realm"@en ;
+    rdfs:domain recs:RecreationSpatialFeature ;
+    rdfs:range upr:PhysicalRealm .
+
+recs:sourceLayerName a owl:DatatypeProperty ;
+    rdfs:label "source layer name"@en ;
+    rdfs:domain recs:RecreationSpatialFeature ;
+    rdfs:range xsd:string .
+
+recs:featureGrain a owl:DatatypeProperty ;
+    rdfs:label "feature grain"@en ;
+    rdfs:domain recs:RecreationSpatialFeature ;
+    rdfs:range xsd:string .
+
+recs:sourceIdentifier a owl:DatatypeProperty ;
+    rdfs:label "source identifier"@en ;
+    rdfs:domain recs:RecreationSpatialFeature ;
+    rdfs:range xsd:string .
+
+recs:RecreationAreaFeature a owl:Class ;
+    rdfs:label "Recreation Area Feature"@en ;
+    rdfs:subClassOf recs:RecreationSpatialFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Polygon
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:RecreationArea
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Recreation Area Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:RecreationFacilityFeature a owl:Class ;
+    rdfs:label "Recreation Facility Feature"@en ;
+    rdfs:subClassOf recs:RecreationSpatialFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom geo:Geometry
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:RecreationFacility
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Recreation Facility Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:RecreationAmenityFeature a owl:Class ;
+    rdfs:label "Recreation Amenity Feature"@en ;
+    rdfs:subClassOf recs:RecreationSpatialFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom geo:Geometry
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:RecreationAmenity
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Recreation Amenity Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:CampgroundFeature a owl:Class ;
+    rdfs:label "Campground Feature"@en ;
+    rdfs:subClassOf recs:RecreationFacilityFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Polygon
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:Campground
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Campground Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:CampsiteFeature a owl:Class ;
+    rdfs:label "Campsite Feature"@en ;
+    rdfs:subClassOf recs:RecreationAmenityFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Point
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:Campsite
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Campsite Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:DayUseAreaFeature a owl:Class ;
+    rdfs:label "Day Use Area Feature"@en ;
+    rdfs:subClassOf recs:RecreationFacilityFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Polygon
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:DayUseArea
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Day Use Area Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:PicnicAreaFeature a owl:Class ;
+    rdfs:label "Picnic Area Feature"@en ;
+    rdfs:subClassOf recs:RecreationAmenityFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Polygon
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:PicnicArea
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Picnic Area Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:MarinaFeature a owl:Class ;
+    rdfs:label "Marina Feature"@en ;
+    rdfs:subClassOf recs:WaterAccessFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Polygon
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:Marina
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Marina Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:WaterAccessFeature a owl:Class ;
+    rdfs:label "Water Access Feature"@en ;
+    rdfs:subClassOf recs:RecreationSpatialFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom geo:Geometry
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:WaterAccessAsset
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Water Access Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:BoatRampFeature a owl:Class ;
+    rdfs:label "Boat Ramp Feature"@en ;
+    rdfs:subClassOf recs:WaterAccessFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom geo:Geometry
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:BoatRamp
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Boat Ramp Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:FishingPierFeature a owl:Class ;
+    rdfs:label "Fishing Pier Feature"@en ;
+    rdfs:subClassOf recs:WaterAccessFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom geo:Geometry
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:FishingPier
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Fishing Pier Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:FuelDockFeature a owl:Class ;
+    rdfs:label "Fuel Dock Feature"@en ;
+    rdfs:subClassOf recs:WaterAccessFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom geo:Geometry
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:FuelDock
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Fuel Dock Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:SwimmingAreaFeature a owl:Class ;
+    rdfs:label "Swimming Area Feature"@en ;
+    rdfs:subClassOf recs:WaterAccessFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Polygon
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:SwimmingArea
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Swimming Area Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:TrailFeature a owl:Class ;
+    rdfs:label "Trail Feature"@en ;
+    rdfs:subClassOf recs:RecreationFacilityFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:LineString
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:Trail
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Trail Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:ParkingAreaFeature a owl:Class ;
+    rdfs:label "Parking Area Feature"@en ;
+    rdfs:subClassOf recs:RecreationAmenityFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Polygon
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:ParkingArea
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Parking Area Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:RestroomFeature a owl:Class ;
+    rdfs:label "Restroom Feature"@en ;
+    rdfs:subClassOf recs:RecreationAmenityFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Point
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:Restroom
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Restroom Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:VisitorCenterFeature a owl:Class ;
+    rdfs:label "Visitor Center Feature"@en ;
+    rdfs:subClassOf recs:RecreationFacilityFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Polygon
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsEntity ;
+        owl:someValuesFrom rec:VisitorCenter
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Visitor Center Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:LandClassificationAreaFeature a owl:Class ;
+    rdfs:label "Land Classification Area Feature"@en ;
+    rdfs:subClassOf recs:RecreationSpatialFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Polygon
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Land Classification Area Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:WaterSurfaceZoneFeature a owl:Class ;
+    rdfs:label "Water Surface Zone Feature"@en ;
+    rdfs:subClassOf recs:RecreationSpatialFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Polygon
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Water Surface Zone Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:ProjectBoundaryFeature a owl:Class ;
+    rdfs:label "Project Boundary Feature"@en ;
+    rdfs:subClassOf recs:RecreationSpatialFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Polygon
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Project Boundary Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .

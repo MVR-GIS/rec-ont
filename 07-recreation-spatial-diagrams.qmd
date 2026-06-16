@@ -1,0 +1,251 @@
+# Recreation Spatial Diagrams
+
+These diagrams describe the active spatial extension in `06-recreation-spatial.ttl`. The spatial ontology models GIS-recordable feature representations; it does not replace recreation business entities, source vocabulary concepts, or geometry instances.
+
+## Ontology Scope
+
+```{mermaid}
+flowchart LR
+    RECS["recs: Recreation Spatial Ontology"]
+    REC["rec: Recreation Domain Ontology"]
+    USF["usf: Spatial Foundation"]
+    UPR["upr: Physical Realms"]
+    GEO["GeoSPARQL"]
+
+    RECS -->|imports| REC
+    RECS -->|imports| USF
+    RECS -->|imports| UPR
+    RECS -->|imports| GEO
+    RECS --> RSF["recs:RecreationSpatialFeature"]
+```
+
+## Core Spatial Contract
+
+```{mermaid}
+classDiagram
+    class GeoFeature
+    class SpatialFeature
+    class RecreationSpatialFeature {
+        <<owl:Class>>
+        +sourceLayerName
+        +featureGrain
+        +sourceIdentifier
+    }
+    class RecreationDomainEntity
+    class SourceConcept
+    class Geometry
+    class PhysicalRealm
+    class SpatialPattern
+
+    GeoFeature <|-- RecreationSpatialFeature
+    SpatialFeature <|-- RecreationSpatialFeature
+    RecreationSpatialFeature --> RecreationDomainEntity : representsEntity
+    RecreationSpatialFeature --> SourceConcept : representsConcept
+    RecreationSpatialFeature --> Geometry : geo_hasGeometry
+    RecreationSpatialFeature --> PhysicalRealm : intersectsPhysicalRealm
+    RecreationSpatialFeature --> SpatialPattern : usesSpatialPattern
+```
+
+## Representation Relationship
+
+```{mermaid}
+flowchart LR
+    Entity["rec:RecreationDomainEntity"]
+    Feature["recs:RecreationSpatialFeature"]
+    Geometry["geo:Geometry"]
+    Concept["skos:Concept"]
+
+    Entity -->|rec:hasSpatialRepresentation| Feature
+    Feature -->|recs:representsEntity| Entity
+    Feature -->|geo:hasGeometry| Geometry
+    Feature -->|recs:representsConcept| Concept
+```
+
+## Spatial Pattern Model
+
+```{mermaid}
+flowchart LR
+    Pattern["recs:usesSpatialPattern"]
+    Direct["recs:DirectFeaturePattern"]
+    Representation["recs:RepresentationFeaturePattern"]
+    Feature["all current recs feature classes"]
+
+    Feature --> Pattern
+    Pattern --> Representation
+    Pattern -. available but not currently used .-> Direct
+```
+
+## Complete Class Hierarchy
+
+```{mermaid}
+classDiagram
+    class RecreationSpatialFeature
+    class RecreationAreaFeature
+    class RecreationFacilityFeature
+    class RecreationAmenityFeature
+    class WaterAccessFeature
+    class CampgroundFeature
+    class CampsiteFeature
+    class DayUseAreaFeature
+    class PicnicAreaFeature
+    class MarinaFeature
+    class BoatRampFeature
+    class FishingPierFeature
+    class FuelDockFeature
+    class SwimmingAreaFeature
+    class TrailFeature
+    class ParkingAreaFeature
+    class RestroomFeature
+    class VisitorCenterFeature
+    class LandClassificationAreaFeature
+    class WaterSurfaceZoneFeature
+    class ProjectBoundaryFeature
+
+    RecreationSpatialFeature <|-- RecreationAreaFeature
+    RecreationSpatialFeature <|-- RecreationFacilityFeature
+    RecreationSpatialFeature <|-- RecreationAmenityFeature
+    RecreationSpatialFeature <|-- WaterAccessFeature
+    RecreationSpatialFeature <|-- LandClassificationAreaFeature
+    RecreationSpatialFeature <|-- WaterSurfaceZoneFeature
+    RecreationSpatialFeature <|-- ProjectBoundaryFeature
+
+    RecreationFacilityFeature <|-- CampgroundFeature
+    RecreationFacilityFeature <|-- DayUseAreaFeature
+    RecreationFacilityFeature <|-- TrailFeature
+    RecreationFacilityFeature <|-- VisitorCenterFeature
+
+    RecreationAmenityFeature <|-- CampsiteFeature
+    RecreationAmenityFeature <|-- PicnicAreaFeature
+    RecreationAmenityFeature <|-- ParkingAreaFeature
+    RecreationAmenityFeature <|-- RestroomFeature
+
+    WaterAccessFeature <|-- MarinaFeature
+    WaterAccessFeature <|-- BoatRampFeature
+    WaterAccessFeature <|-- FishingPierFeature
+    WaterAccessFeature <|-- FuelDockFeature
+    WaterAccessFeature <|-- SwimmingAreaFeature
+```
+
+## Area And Facility Representations
+
+```{mermaid}
+flowchart LR
+    RAF["RecreationAreaFeature<br/>sf:Polygon"] --> RA["rec:RecreationArea"]
+    RFF["RecreationFacilityFeature<br/>geo:Geometry"] --> RF["rec:RecreationFacility"]
+    CGF["CampgroundFeature<br/>sf:Polygon"] --> CG["rec:Campground"]
+    DUF["DayUseAreaFeature<br/>sf:Polygon"] --> DU["rec:DayUseArea"]
+    TF["TrailFeature<br/>sf:LineString"] --> TR["rec:Trail"]
+    VCF["VisitorCenterFeature<br/>sf:Polygon"] --> VC["rec:VisitorCenter"]
+```
+
+## Amenity Representations
+
+```{mermaid}
+flowchart LR
+    RAF["RecreationAmenityFeature<br/>geo:Geometry"] --> RA["rec:RecreationAmenity"]
+    CSF["CampsiteFeature<br/>sf:Point"] --> CS["rec:Campsite"]
+    PAF["PicnicAreaFeature<br/>sf:Polygon"] --> PA["rec:PicnicArea"]
+    PKF["ParkingAreaFeature<br/>sf:Polygon"] --> PK["rec:ParkingArea"]
+    RRF["RestroomFeature<br/>sf:Point"] --> RR["rec:Restroom"]
+```
+
+## Water Access Representations
+
+```{mermaid}
+flowchart LR
+    WAF["WaterAccessFeature<br/>geo:Geometry"] --> WAA["rec:WaterAccessAsset"]
+    MF["MarinaFeature<br/>sf:Polygon"] --> MAR["rec:Marina"]
+    BRF["BoatRampFeature<br/>geo:Geometry"] --> BR["rec:BoatRamp"]
+    FPF["FishingPierFeature<br/>geo:Geometry"] --> FP["rec:FishingPier"]
+    FDF["FuelDockFeature<br/>geo:Geometry"] --> FD["rec:FuelDock"]
+    SAF["SwimmingAreaFeature<br/>sf:Polygon"] --> SA["rec:SwimmingArea"]
+```
+
+## Source Concept And Boundary Records
+
+{mermaid}
+flowchart LR
+    LCF["LandClassificationAreaFeature<br/>sf:Polygon"] --> LC["skos:Concept<br/>land allocation or classification"]
+    WZF["WaterSurfaceZoneFeature<br/>sf:Polygon"] --> WZ["skos:Concept<br/>water surface zoning"]
+    PBF["ProjectBoundaryFeature<br/>sf:Polygon"] --> PB["source boundary concept<br/>implementation-specific"]
+
+    LCF -->|recs:representsConcept| LC
+    WZF -->|recs:representsConcept| WZ
+    PBF -->|recs:representsConcept when source-backed| PB
+```
+
+## Physical Realm Context
+
+{mermaid}
+flowchart LR
+    Feature["recs:RecreationSpatialFeature"]
+    Land["upr:LandRealm"]
+    Water["upr:AquaticSurface"]
+    Interface["land-water interface"]
+
+    Feature -->|recs:intersectsPhysicalRealm| Land
+    Feature -->|recs:intersectsPhysicalRealm| Water
+    Land --- Interface
+    Water --- Interface
+    Interface --> BoatRamp["BoatRampFeature"]
+    Interface --> Marina["MarinaFeature"]
+    Interface --> FishingPier["FishingPierFeature"]
+    Interface --> SwimmingArea["SwimmingAreaFeature"]
+```
+
+## Source Layer Metadata
+
+{mermaid}
+flowchart LR
+    Layer["source layer or feature class"]
+    Row["source record"]
+    Feature["recs:RecreationSpatialFeature"]
+    Entity["rec:RecreationDomainEntity"]
+    Concept["skos:Concept"]
+    Geometry["geo:Geometry"]
+
+    Layer -->|recs:sourceLayerName| Feature
+    Row -->|recs:sourceIdentifier| Feature
+    Feature -->|recs:featureGrain| Row
+    Feature -->|recs:representsEntity| Entity
+    Feature -->|recs:representsConcept| Concept
+    Feature -->|geo:hasGeometry| Geometry
+```
+
+## Feature Matrix
+
+| Spatial class | Parent class | Geometry restriction | Represents |
+| --- | --- | --- | --- |
+| `recs:RecreationAreaFeature` | `recs:RecreationSpatialFeature` | `sf:Polygon` | `rec:RecreationArea` |
+| `recs:RecreationFacilityFeature` | `recs:RecreationSpatialFeature` | `geo:Geometry` | `rec:RecreationFacility` |
+| `recs:RecreationAmenityFeature` | `recs:RecreationSpatialFeature` | `geo:Geometry` | `rec:RecreationAmenity` |
+| `recs:CampgroundFeature` | `recs:RecreationFacilityFeature` | `sf:Polygon` | `rec:Campground` |
+| `recs:CampsiteFeature` | `recs:RecreationAmenityFeature` | `sf:Point` | `rec:Campsite` |
+| `recs:DayUseAreaFeature` | `recs:RecreationFacilityFeature` | `sf:Polygon` | `rec:DayUseArea` |
+| `recs:PicnicAreaFeature` | `recs:RecreationAmenityFeature` | `sf:Polygon` | `rec:PicnicArea` |
+| `recs:MarinaFeature` | `recs:WaterAccessFeature` | `sf:Polygon` | `rec:Marina` |
+| `recs:WaterAccessFeature` | `recs:RecreationSpatialFeature` | `geo:Geometry` | `rec:WaterAccessAsset` |
+| `recs:BoatRampFeature` | `recs:WaterAccessFeature` | `geo:Geometry` | `rec:BoatRamp` |
+| `recs:FishingPierFeature` | `recs:WaterAccessFeature` | `geo:Geometry` | `rec:FishingPier` |
+| `recs:FuelDockFeature` | `recs:WaterAccessFeature` | `geo:Geometry` | `rec:FuelDock` |
+| `recs:SwimmingAreaFeature` | `recs:WaterAccessFeature` | `sf:Polygon` | `rec:SwimmingArea` |
+| `recs:TrailFeature` | `recs:RecreationFacilityFeature` | `sf:LineString` | `rec:Trail` |
+| `recs:ParkingAreaFeature` | `recs:RecreationAmenityFeature` | `sf:Polygon` | `rec:ParkingArea` |
+| `recs:RestroomFeature` | `recs:RecreationAmenityFeature` | `sf:Point` | `rec:Restroom` |
+| `recs:VisitorCenterFeature` | `recs:RecreationFacilityFeature` | `sf:Polygon` | `rec:VisitorCenter` |
+| `recs:LandClassificationAreaFeature` | `recs:RecreationSpatialFeature` | `sf:Polygon` | source-backed `skos:Concept` by implementation profile |
+| `recs:WaterSurfaceZoneFeature` | `recs:RecreationSpatialFeature` | `sf:Polygon` | source-backed `skos:Concept` by implementation profile |
+| `recs:ProjectBoundaryFeature` | `recs:RecreationSpatialFeature` | `sf:Polygon` | source-backed boundary concept by implementation profile |
+
+## Property Matrix
+
+| Property | Type | Domain | Range | Role |
+| --- | --- | --- | --- | --- |
+| `recs:representsEntity` | Object property | `recs:RecreationSpatialFeature` | `rec:RecreationDomainEntity` | Links a GIS representation to the managed recreation entity it represents. |
+| `recs:representsConcept` | Object property | `recs:RecreationSpatialFeature` | `skos:Concept` | Links a GIS representation to a source-backed classification, zoning, or boundary concept. |
+| `rec:hasSpatialRepresentation` | Object property | `rec:RecreationDomainEntity` | `recs:RecreationSpatialFeature` | Inverse of `recs:representsEntity`. |
+| `recs:usesSpatialPattern` | Object property | `recs:RecreationSpatialFeature` | `owl:Thing` | Declares whether the feature is modeled as a representation or direct feature pattern. |
+| `recs:intersectsPhysicalRealm` | Object property | `recs:RecreationSpatialFeature` | `upr:PhysicalRealm` | Connects a spatial feature to land, water, or other physical realm context. |
+| `recs:sourceLayerName` | Datatype property | `recs:RecreationSpatialFeature` | `xsd:string` | Preserves the source layer or feature class name. |
+| `recs:featureGrain` | Datatype property | `recs:RecreationSpatialFeature` | `xsd:string` | Explains what one source row or feature represents. |
+| `recs:sourceIdentifier` | Datatype property | `recs:RecreationSpatialFeature` | `xsd:string` | Preserves the source record identifier or crosswalk key. |

@@ -1,0 +1,437 @@
+@prefix rec: <https://usace.mil/ontology/recreation/> .
+@prefix recv: <https://usace.mil/vocabulary/recreation/> .
+@prefix recs: <https://usace.mil/ontology/recreation/spatial/> .
+@prefix cwom: <https://usace.mil/ontology/cw-om/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+rec: a owl:Ontology ;
+    rdfs:label "USACE Recreation Ontology"@en ;
+    dct:title "USACE Recreation Ontology"@en ;
+    dct:description "Spatial-first target semantic model for recreation operations. Source terms are preserved in SKOS; OWL classes are limited to deliberate business/entity roles."@en ;
+    dct:source "EP 1130-2-550; recreation v1 artifacts as evidence; spatial-first methodology"@en ;
+    owl:versionInfo "2.0-draft" .
+
+rec:RecreationDomainEntity a owl:Class ;
+    rdfs:label "Recreation Domain Entity"@en ;
+    rdfs:comment "Abstract parent for recreation domain classes."@en .
+
+rec:PhysicalRecreationAsset a owl:Class ;
+    rdfs:label "Physical Recreation Asset"@en ;
+    rdfs:subClassOf rec:RecreationDomainEntity ;
+    rdfs:comment "Physical thing or managed place involved in recreation operations."@en .
+
+rec:ManagedRecreationPlace a owl:Class ;
+    rdfs:label "Managed Recreation Place"@en ;
+    rdfs:subClassOf rec:PhysicalRecreationAsset ;
+    rdfs:comment "Place managed for recreation use or recreation support."@en .
+
+rec:RecreationArea a owl:Class ;
+    rdfs:label "Recreation Area"@en ;
+    rdfs:subClassOf rec:ManagedRecreationPlace ;
+    skos:exactMatch recv:RecreationArea ;
+    rdfs:comment "Managed area at a project where recreation use occurs."@en .
+
+rec:RecreationFacility a owl:Class ;
+    rdfs:label "Recreation Facility"@en ;
+    rdfs:subClassOf rec:ManagedRecreationPlace ;
+    skos:exactMatch recv:RecreationFacility ;
+    rdfs:comment "Managed facility or developed place supporting recreation use."@en .
+
+rec:RecreationAmenity a owl:Class ;
+    rdfs:label "Recreation Amenity"@en ;
+    rdfs:subClassOf rec:ManagedRecreationPlace ;
+    skos:exactMatch recv:RecreationAmenity ;
+    rdfs:comment "Supporting amenity that may be associated with one or more recreation facilities."@en .
+
+rec:WaterAccessAsset a owl:Class ;
+    rdfs:label "Water Access Asset"@en ;
+    rdfs:subClassOf rec:PhysicalRecreationAsset ;
+    rdfs:comment "Asset or managed place that provides or controls visitor access to water."@en .
+
+rec:LinearRecreationAsset a owl:Class ;
+    rdfs:label "Linear Recreation Asset"@en ;
+    rdfs:subClassOf rec:PhysicalRecreationAsset ;
+    rdfs:comment "Asset primarily represented as a linear feature."@en .
+
+rec:AquaticUseArea a owl:Class ;
+    rdfs:label "Aquatic Use Area"@en ;
+    rdfs:subClassOf rec:ManagedRecreationPlace ;
+    rdfs:subClassOf rec:WaterAccessAsset ;
+    rdfs:comment "Managed aquatic area for recreation use."@en .
+
+rec:Campground a owl:Class ;
+    rdfs:label "Campground"@en ;
+    rdfs:subClassOf rec:RecreationFacility ;
+    skos:exactMatch recv:Campground ;
+    rdfs:comment "Managed area for overnight camping."@en .
+
+rec:Campsite a owl:Class ;
+    rdfs:label "Campsite"@en ;
+    rdfs:subClassOf rec:RecreationAmenity ;
+    skos:exactMatch recv:Campsite ;
+    rdfs:comment "Individual camping unit or site associated with a campground."@en .
+
+rec:GroupCampArea a owl:Class ;
+    rdfs:label "Group Camp Area"@en ;
+    rdfs:subClassOf rec:RecreationFacility ;
+    skos:exactMatch recv:GroupCampArea ;
+    rdfs:comment "Camping area intended for group use."@en .
+
+rec:RVCampground a owl:Class ;
+    rdfs:label "RV Campground"@en ;
+    rdfs:subClassOf rec:Campground ;
+    skos:exactMatch recv:RVCampground ;
+    rdfs:comment "Campground supporting recreational vehicles."@en .
+
+rec:DayUseArea a owl:Class ;
+    rdfs:label "Day Use Area"@en ;
+    rdfs:subClassOf rec:RecreationFacility ;
+    skos:exactMatch recv:DayUseArea ;
+    rdfs:comment "Managed area for day-use recreation."@en .
+
+rec:PicnicArea a owl:Class ;
+    rdfs:label "Picnic Area"@en ;
+    rdfs:subClassOf rec:RecreationAmenity ;
+    skos:exactMatch recv:PicnicArea ;
+    rdfs:comment "Designated area for picnicking."@en .
+
+rec:PicnicShelter a owl:Class ;
+    rdfs:label "Picnic Shelter"@en ;
+    rdfs:subClassOf rec:RecreationAmenity ;
+    skos:exactMatch recv:Shelter ;
+    rdfs:comment "Shelter supporting picnic or group day use."@en .
+
+rec:Playground a owl:Class ;
+    rdfs:label "Playground"@en ;
+    rdfs:subClassOf rec:RecreationAmenity ;
+    skos:exactMatch recv:Playground ;
+    rdfs:comment "Play area supporting visitor recreation."@en .
+
+rec:Marina a owl:Class ;
+    rdfs:label "Marina"@en ;
+    rdfs:subClassOf rec:RecreationFacility ;
+    rdfs:subClassOf rec:WaterAccessAsset ;
+    skos:exactMatch recv:Marina ;
+    rdfs:comment "Managed boating facility with mooring or boating services."@en .
+
+rec:BoatSlip a owl:Class ;
+    rdfs:label "Boat Slip"@en ;
+    rdfs:subClassOf rec:RecreationAmenity ;
+    rdfs:subClassOf rec:WaterAccessAsset ;
+    skos:exactMatch recv:BoatSlip ;
+    rdfs:comment "Individual boat mooring location."@en .
+
+rec:FuelDock a owl:Class ;
+    rdfs:label "Fuel Dock"@en ;
+    rdfs:subClassOf rec:RecreationAmenity ;
+    rdfs:subClassOf rec:WaterAccessAsset ;
+    skos:exactMatch recv:FuelDock ;
+    rdfs:comment "Marine fuel service asset associated with boating access."@en .
+
+rec:PumpOutStation a owl:Class ;
+    rdfs:label "Pump Out Station"@en ;
+    rdfs:subClassOf rec:RecreationAmenity ;
+    rdfs:subClassOf rec:WaterAccessAsset ;
+    skos:exactMatch recv:PumpOutStation ;
+    rdfs:comment "Boat waste pump-out service asset."@en .
+
+rec:BoatRamp a owl:Class ;
+    rdfs:label "Boat Ramp"@en ;
+    rdfs:subClassOf rec:RecreationAmenity ;
+    rdfs:subClassOf rec:WaterAccessAsset ;
+    skos:exactMatch recv:BoatRamp ;
+    rdfs:comment "Boat launch asset; business entity distinct from its GIS representation."@en .
+
+rec:FishingPier a owl:Class ;
+    rdfs:label "Fishing Pier"@en ;
+    rdfs:subClassOf rec:RecreationAmenity ;
+    rdfs:subClassOf rec:WaterAccessAsset ;
+    skos:exactMatch recv:FishingPier ;
+    rdfs:comment "Fishing platform or pier used for visitor water access."@en .
+
+rec:SwimmingArea a owl:Class ;
+    rdfs:label "Swimming Area"@en ;
+    rdfs:subClassOf rec:RecreationFacility ;
+    rdfs:subClassOf rec:AquaticUseArea ;
+    skos:exactMatch recv:SwimmingArea ;
+    rdfs:comment "Designated aquatic recreation area for swimming."@en .
+
+rec:Trail a owl:Class ;
+    rdfs:label "Trail"@en ;
+    rdfs:subClassOf rec:RecreationFacility ;
+    rdfs:subClassOf rec:LinearRecreationAsset ;
+    skos:exactMatch recv:TrailFacility ;
+    rdfs:comment "Managed linear recreation route."@en .
+
+rec:HikingTrail a owl:Class ;
+    rdfs:label "Hiking Trail"@en ;
+    rdfs:subClassOf rec:Trail ;
+    skos:exactMatch recv:HikingTrail ;
+    rdfs:comment "Trail designated for foot travel."@en .
+
+rec:BikeTrail a owl:Class ;
+    rdfs:label "Bike Trail"@en ;
+    rdfs:subClassOf rec:Trail ;
+    skos:exactMatch recv:BikeTrail ;
+    rdfs:comment "Trail designated for bicycle use."@en .
+
+rec:EquestrianTrail a owl:Class ;
+    rdfs:label "Equestrian Trail"@en ;
+    rdfs:subClassOf rec:Trail ;
+    skos:exactMatch recv:EquipTrail ;
+    rdfs:comment "Trail designated for horseback riding."@en .
+
+rec:ParkingArea a owl:Class ;
+    rdfs:label "Parking Area"@en ;
+    rdfs:subClassOf rec:RecreationAmenity ;
+    skos:exactMatch recv:ParkingArea ;
+    rdfs:comment "Vehicle parking area supporting recreation use."@en .
+
+rec:Restroom a owl:Class ;
+    rdfs:label "Restroom"@en ;
+    rdfs:subClassOf rec:RecreationAmenity ;
+    skos:exactMatch recv:Restroom ;
+    rdfs:comment "Sanitary facility supporting recreation use."@en .
+
+rec:FlushRestroom a owl:Class ;
+    rdfs:label "Flush Restroom"@en ;
+    rdfs:subClassOf rec:Restroom ;
+    skos:exactMatch recv:FlushRestroom ;
+    rdfs:comment "Restroom with flush toilet infrastructure."@en .
+
+rec:VaultToilet a owl:Class ;
+    rdfs:label "Vault Toilet"@en ;
+    rdfs:subClassOf rec:Restroom ;
+    skos:exactMatch recv:VaultToilet ;
+    rdfs:comment "Restroom with vault toilet infrastructure."@en .
+
+rec:VisitorCenter a owl:Class ;
+    rdfs:label "Visitor Center"@en ;
+    rdfs:subClassOf rec:RecreationFacility ;
+    skos:exactMatch recv:VisitorCenter ;
+    rdfs:comment "Facility providing visitor information and interpretive support."@en .
+
+rec:VisitorService a owl:Class ;
+    rdfs:label "Visitor Service"@en ;
+    rdfs:subClassOf rec:RecreationDomainEntity ;
+    skos:exactMatch recv:VisitorService ;
+    rdfs:comment "Service provided to recreation visitors."@en .
+
+rec:Reservation a owl:Class ;
+    rdfs:label "Reservation"@en ;
+    rdfs:subClassOf rec:VisitorService ;
+    skos:exactMatch recv:Reservation ;
+    rdfs:comment "Reservation service or action for recreation use."@en .
+
+rec:VisitorAssistance a owl:Class ;
+    rdfs:label "Visitor Assistance"@en ;
+    rdfs:subClassOf rec:VisitorService ;
+    skos:exactMatch recv:VisitorAssistance ;
+    rdfs:comment "Visitor assistance service or program."@en .
+
+rec:InterpretationProgram a owl:Class ;
+    rdfs:label "Interpretation Program"@en ;
+    rdfs:subClassOf rec:RecreationDomainEntity ;
+    skos:exactMatch recv:Interpretation ;
+    rdfs:comment "Interpretive program or service."@en .
+
+rec:RecreationFee a owl:Class ;
+    rdfs:label "Recreation Fee"@en ;
+    rdfs:subClassOf rec:RecreationDomainEntity ;
+    skos:exactMatch recv:RecreationFee ;
+    rdfs:comment "Fee charged for recreation use or service."@en .
+
+rec:CampingFee a owl:Class ;
+    rdfs:label "Camping Fee"@en ;
+    rdfs:subClassOf rec:RecreationFee ;
+    skos:exactMatch recv:CampingFee ;
+    rdfs:comment "Fee charged for camping use."@en .
+
+rec:DayUseFee a owl:Class ;
+    rdfs:label "Day Use Fee"@en ;
+    rdfs:subClassOf rec:RecreationFee ;
+    skos:exactMatch recv:DayUseFee ;
+    rdfs:comment "Fee charged for day use."@en .
+
+rec:BoatLaunchFee a owl:Class ;
+    rdfs:label "Boat Launch Fee"@en ;
+    rdfs:subClassOf rec:RecreationFee ;
+    skos:exactMatch recv:BoatLaunchFee ;
+    rdfs:comment "Fee charged for boat launch use."@en .
+
+rec:SpecialUseFee a owl:Class ;
+    rdfs:label "Special Use Fee"@en ;
+    rdfs:subClassOf rec:RecreationFee ;
+    skos:exactMatch recv:SpecialUseFee ;
+    rdfs:comment "Fee charged for special uses."@en .
+
+rec:RecreationAgreement a owl:Class ;
+    rdfs:label "Recreation Agreement"@en ;
+    rdfs:subClassOf rec:RecreationDomainEntity ;
+    rdfs:comment "Agreement supporting recreation operations."@en .
+
+rec:Concession a owl:Class ;
+    rdfs:label "Concession"@en ;
+    rdfs:subClassOf rec:RecreationAgreement ;
+    skos:exactMatch recv:Concession ;
+    rdfs:comment "Commercial concession agreement or arrangement."@en .
+
+rec:RecreationProgram a owl:Class ;
+    rdfs:label "Recreation Program"@en ;
+    rdfs:subClassOf rec:RecreationDomainEntity ;
+    rdfs:comment "Programmatic recreation operation or management activity."@en .
+
+rec:RecreationManagement a owl:Class ;
+    rdfs:label "Recreation Management"@en ;
+    rdfs:subClassOf rec:RecreationProgram ;
+    skos:exactMatch recv:RecreationManagement ;
+    rdfs:comment "Programmatic management of recreation operations."@en .
+
+rec:WaterSafety a owl:Class ;
+    rdfs:label "Water Safety"@en ;
+    rdfs:subClassOf rec:RecreationProgram ;
+    skos:exactMatch recv:WaterSafety ;
+    rdfs:comment "Water safety program, activity, or control."@en .
+
+rec:RecreationEnforcement a owl:Class ;
+    rdfs:label "Recreation Enforcement"@en ;
+    rdfs:subClassOf rec:RecreationProgram ;
+    skos:exactMatch recv:RecreationEnforcement ;
+    rdfs:comment "Recreation enforcement or visitor assistance program."@en .
+
+rec:RecreationIncident a owl:Class ;
+    rdfs:label "Recreation Incident"@en ;
+    rdfs:subClassOf rec:RecreationDomainEntity ;
+    skos:exactMatch recv:RecreationIncident ;
+    rdfs:comment "Incident occurring in recreation context."@en .
+
+rec:RecreationActivity a owl:Class ;
+    rdfs:label "Recreation Activity"@en ;
+    rdfs:subClassOf rec:RecreationDomainEntity ;
+    skos:exactMatch recv:RecreationActivity ;
+    rdfs:comment "Visitor recreation activity type."@en .
+
+rec:hasFacility a owl:ObjectProperty ;
+    rdfs:label "has facility"@en ;
+    rdfs:domain rec:RecreationArea ;
+    rdfs:range rec:RecreationFacility ;
+    rdfs:comment "Area has a managed recreation facility."@en .
+
+rec:facilityOf a owl:ObjectProperty ;
+    rdfs:label "facility of"@en ;
+    rdfs:domain rec:RecreationFacility ;
+    rdfs:range rec:RecreationArea ;
+    rdfs:comment "Facility is associated with a recreation area."@en .
+
+rec:hasAmenity a owl:ObjectProperty ;
+    rdfs:label "has amenity"@en ;
+    rdfs:domain rec:RecreationFacility ;
+    rdfs:range rec:RecreationAmenity ;
+    rdfs:comment "Facility has a supporting amenity."@en .
+
+rec:amenityOf a owl:ObjectProperty ;
+    rdfs:label "amenity of"@en ;
+    rdfs:domain rec:RecreationAmenity ;
+    rdfs:range rec:RecreationFacility ;
+    rdfs:comment "Amenity supports a recreation facility."@en .
+
+rec:supportsActivity a owl:ObjectProperty ;
+    rdfs:label "supports activity"@en ;
+    rdfs:domain rec:PhysicalRecreationAsset ;
+    rdfs:range rec:RecreationActivity ;
+    rdfs:comment "Asset supports a recreation activity."@en .
+
+rec:chargesFee a owl:ObjectProperty ;
+    rdfs:label "charges fee"@en ;
+    rdfs:domain rec:ManagedRecreationPlace ;
+    rdfs:range rec:RecreationFee ;
+    rdfs:comment "Managed place or asset has an associated recreation fee."@en .
+
+rec:operatedBy a owl:ObjectProperty ;
+    rdfs:label "operated by"@en ;
+    rdfs:domain rec:ManagedRecreationPlace ;
+    rdfs:range <http://www.w3.org/2002/07/owl#Thing> ;
+    rdfs:comment "Managed place is operated by an organization or operator."@en .
+
+rec:managedUnder a owl:ObjectProperty ;
+    rdfs:label "managed under"@en ;
+    rdfs:domain rec:RecreationDomainEntity ;
+    rdfs:range rec:RecreationProgram ;
+    rdfs:comment "Entity is governed or supported by a recreation program."@en .
+
+rec:hasLandAllocation a owl:ObjectProperty ;
+    rdfs:label "has land allocation"@en ;
+    rdfs:domain rec:RecreationArea ;
+    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+    rdfs:comment "Area has a source-backed land allocation concept."@en .
+
+rec:hasLandClassification a owl:ObjectProperty ;
+    rdfs:label "has land classification"@en ;
+    rdfs:domain rec:RecreationArea ;
+    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+    rdfs:comment "Area has a source-backed land classification concept."@en .
+
+rec:hasWaterSurfaceZoning a owl:ObjectProperty ;
+    rdfs:label "has water surface zoning"@en ;
+    rdfs:domain rec:AquaticUseArea ;
+    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+    rdfs:comment "Aquatic area has a source-backed water surface zoning concept."@en .
+
+rec:hasSourceConcept a owl:ObjectProperty ;
+    rdfs:label "has source concept"@en ;
+    rdfs:domain rec:RecreationDomainEntity ;
+    rdfs:range <http://www.w3.org/2004/02/skos/core#Concept> ;
+    rdfs:comment "Entity is connected to a source-backed vocabulary concept."@en .
+
+rec:localIdentifier a owl:DatatypeProperty ;
+    rdfs:label "local identifier"@en ;
+    rdfs:domain rec:RecreationDomainEntity ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Local identifier used by a source system or project."@en .
+
+rec:facilityName a owl:DatatypeProperty ;
+    rdfs:label "facility name"@en ;
+    rdfs:domain rec:ManagedRecreationPlace ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Human-readable name used in operations."@en .
+
+rec:numberOfSites a owl:DatatypeProperty ;
+    rdfs:label "number of sites"@en ;
+    rdfs:domain rec:Campground ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Number of campsites or camping units."@en .
+
+rec:boatSlips a owl:DatatypeProperty ;
+    rdfs:label "boat slips"@en ;
+    rdfs:domain rec:Marina ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Number of boat slips."@en .
+
+rec:boatRampLanes a owl:DatatypeProperty ;
+    rdfs:label "boat ramp lanes"@en ;
+    rdfs:domain rec:BoatRamp ;
+    rdfs:range xsd:integer ;
+    rdfs:comment "Number of boat launch lanes."@en .
+
+rec:trailLengthMiles a owl:DatatypeProperty ;
+    rdfs:label "trail length miles"@en ;
+    rdfs:domain rec:Trail ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Trail length in miles."@en .
+
+rec:operatingSeasonStart a owl:DatatypeProperty ;
+    rdfs:label "operating season start"@en ;
+    rdfs:domain rec:ManagedRecreationPlace ;
+    rdfs:range xsd:date ;
+    rdfs:comment "Seasonal opening date."@en .
+
+rec:operatingSeasonEnd a owl:DatatypeProperty ;
+    rdfs:label "operating season end"@en ;
+    rdfs:domain rec:ManagedRecreationPlace ;
+    rdfs:range xsd:date ;
+    rdfs:comment "Seasonal closing date."@en .

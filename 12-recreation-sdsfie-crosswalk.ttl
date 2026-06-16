@@ -1,0 +1,127 @@
+@prefix reccw: <https://usace.mil/ontology/recreation/crosswalk/sdsfie/> .
+@prefix rec: <https://usace.mil/ontology/recreation/> .
+@prefix recs: <https://usace.mil/ontology/recreation/spatial/> .
+@prefix sd: <https://dod.mil/ontology/sdsfie/> .
+@prefix sde: <https://dod.mil/vocabulary/sdsfie/enumerations/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+reccw: a owl:Ontology ;
+    rdfs:label "USACE Recreation SDSFIE Crosswalk"@en ;
+    dct:title "USACE Recreation SDSFIE Crosswalk"@en ;
+    dct:description "SKOS alignment overlay from the spatial-first USACE recreation ontology to defensible SDSFIE 5.0 feature and enumerant anchors. The overlay preserves recreation business semantics and does not make SDSFIE govern the target model."@en ;
+    dct:source "EP 1130-2-550; SDSFIE 5.0 Gold Draft; recreation v2 spatial-first methodology"@en ;
+    owl:versionInfo "2.0-draft" ;
+    owl:imports rec: , recs: , sd: .
+
+recs:RecreationAreaFeature
+    skos:closeMatch sd:RecreationBoundary ;
+    skos:editorialNote "SDSFIE RecreationBoundary is close to the recreation area boundary representation, but rec:RecreationArea remains the managed business entity."@en .
+
+recs:RecreationFacilityFeature
+    skos:broadMatch sd:RecreationFeature ;
+    skos:editorialNote "SDSFIE RecreationFeature is broader than the recreation facility representation role."@en .
+
+recs:RecreationAmenityFeature
+    skos:broadMatch sd:RecreationFeature ;
+    skos:editorialNote "SDSFIE RecreationFeature is broader than the recreation amenity representation role."@en .
+
+recs:CampgroundFeature
+    skos:exactMatch sd:Campground .
+
+recs:CampsiteFeature
+    skos:exactMatch sd:Campsite .
+
+recs:DayUseAreaFeature
+    skos:broadMatch sd:RecreationFeature ;
+    skos:editorialNote "SDSFIE has no default day-use-area feature class; the generic RecreationFeature anchor is broader."@en .
+
+recs:PicnicAreaFeature
+    skos:closeMatch sde:RecreationFeatureUseType_picnicSite ;
+    skos:relatedMatch sd:RecreationFeature .
+
+recs:MarinaFeature
+    skos:closeMatch sd:Marina ;
+    skos:editorialNote "SDSFIE Marina is a harbor facility; recreation Marina is also a managed recreation facility and water access asset."@en .
+
+recs:WaterAccessFeature
+    skos:relatedMatch sd:RecreationFeature ;
+    skos:editorialNote "Water access is a recreation modeling facet and can be implemented through several SDSFIE feature classes or type values."@en .
+
+recs:BoatRampFeature
+    skos:closeMatch sde:RecreationFeatureUseType_boatRamp ;
+    skos:relatedMatch sd:RecreationFeature ;
+    skos:editorialNote "Recreational boat ramps map to the SDSFIE RecreationFeature boatRamp value, not sd:BoatRamp, because SDSFIE scopes sd:BoatRamp to non-recreational ramps."@en .
+
+recs:FishingPierFeature
+    skos:broadMatch sd:FishingFeature ;
+    skos:relatedMatch sd:DockOrWharf .
+
+recs:FuelDockFeature
+    skos:broadMatch sd:DockOrWharf ;
+    skos:editorialNote "SDSFIE DockOrWharf is broader than the recreation fuel dock asset role."@en .
+
+recs:SwimmingAreaFeature
+    skos:closeMatch sde:RecreationFeatureUseType_swimmingDesignatedBeach ;
+    skos:broadMatch sde:RecreationFeatureUseType_waterActivitySite ;
+    skos:relatedMatch sd:RecreationFeature .
+
+recs:TrailFeature
+    skos:exactMatch sd:RecreationTrail .
+
+recs:ParkingAreaFeature
+    skos:exactMatch sd:ParkingArea .
+
+recs:RestroomFeature
+    skos:closeMatch sde:RecreationFeatureUseType_restroom ;
+    skos:relatedMatch sd:RecreationFeature .
+
+recs:VisitorCenterFeature
+    skos:closeMatch sde:RecreationFeatureUseType_museumOrVisitorCenter ;
+    skos:relatedMatch sd:RecreationFeature .
+
+recs:LandClassificationAreaFeature
+    skos:relatedMatch sd:LandUse ;
+    skos:editorialNote "SDSFIE LandUse is related to recreation land classification areas, but is not equivalent to USACE recreation classification vocabulary."@en .
+
+recs:WaterSurfaceZoneFeature
+    skos:relatedMatch sd:RestrictedArea ;
+    skos:editorialNote "The RestrictedArea relation applies only to water-surface zones whose source semantics restrict access or activity."@en .
+
+rec:PicnicShelter
+    skos:closeMatch sde:RecreationFeatureUseType_picnicShelter .
+
+rec:Playground
+    skos:closeMatch sd:Playground .
+
+rec:BoatSlip
+    skos:relatedMatch sd:DockOrWharf .
+
+rec:PumpOutStation
+    skos:relatedMatch sd:DockOrWharf .
+
+rec:Restroom
+    skos:narrowMatch sde:RecreationFeatureUseType_restroom ,
+        sde:RecreationFeatureUseType_vaultToilet .
+
+rec:FlushRestroom
+    skos:exactMatch sde:RecreationFeatureUseType_restroom .
+
+rec:VaultToilet
+    skos:exactMatch sde:RecreationFeatureUseType_vaultToilet .
+
+rec:Trail
+    skos:narrowMatch sde:RecreationTrailUseType_hike ,
+        sde:RecreationTrailUseType_bike ,
+        sde:RecreationTrailUseType_equestrianOrPack .
+
+rec:HikingTrail
+    skos:closeMatch sde:RecreationTrailUseType_hike .
+
+rec:BikeTrail
+    skos:closeMatch sde:RecreationTrailUseType_bike .
+
+rec:EquestrianTrail
+    skos:closeMatch sde:RecreationTrailUseType_equestrianOrPack .

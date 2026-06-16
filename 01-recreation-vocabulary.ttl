@@ -1,0 +1,1103 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix recv: <https://usace.mil/vocabulary/recreation/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+recv:AnnualPass a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 9-5.b(4)"@en ;
+    skos:broader recv:DayUseFee ;
+    skos:definition "Pass providing unlimited day use access for one year, purchasable in person, by mail, or by phone with credit card."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Annual Pass"@en .
+
+recv:CarryingCapacity a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-3.b(1)(a)"@en ;
+    skos:broader recv:RecreationManagement ;
+    skos:definition "The maximum use level a recreation area can sustain without degradation of resources or visitor experience, including social and resource carrying capacity."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Carrying Capacity"@en .
+
+recv:CollateralForfeiture a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 6-3.h(4)"@en ;
+    skos:broader recv:ViolationNotice ;
+    skos:definition "Payment by alleged violator in lieu of court appearance per the forfeiture schedule approved by the District Court."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Collateral Forfeiture"@en .
+
+recv:EmergencyResponse a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 17"@en ;
+    skos:definition "Response to emergencies at recreation areas."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Emergency Response"@en .
+
+recv:FreeNightCampingCoupon a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 9-3.f(3)"@en ;
+    skos:broader recv:CampingFee ;
+    skos:definition "Coupon issued to increase awareness of recreation opportunities, redeemable for one free night of camping within one year at the issuing project, not valid for reservable sites."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Free-Night Camping Coupon"@en .
+
+recv:InformationExchange a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 15-4.d"@en ;
+    skos:broader recv:RecreationManagementSupportProgram ;
+    skos:definition "Technology transfer and distribution of research results to bring about program enhancement."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Information Exchange"@en .
+
+recv:InterpretiveProspectus a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 5-4.b"@en ;
+    skos:broader recv:Interpretation ;
+    skos:definition "Document identifying interpretive themes and objectives for a Visitor Center, including design criteria and storyline development."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Interpretive Prospectus"@en .
+
+recv:InterpretiveServicesOutreachProgram a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:altLabel "ISOP"@en ;
+    skos:broader recv:Interpretation ;
+    skos:definition "USACE program for interpretive services and outreach at civil works water resource projects, based on Freeman Tilden principles of effective interpretation. Includes personal and nonpersonal communication and educational activities."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Interpretive Services and Outreach Program"@en .
+
+recv:ManagementAssistance a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 15-4.c"@en ;
+    skos:broader recv:RecreationManagementSupportProgram ;
+    skos:definition "Short-term study (less than one year) or ongoing assistance in managing a recreation component considered a national priority."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Management Assistance"@en .
+
+recv:ManagementStudy a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 15-4.b"@en ;
+    skos:broader recv:RecreationManagementSupportProgram ;
+    skos:definition "Long-term RMSP activity (one year or more) of regional or national significance addressing recreation issues."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Management Study"@en .
+
+recv:MasterPlan a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-3.a"@en ;
+    skos:broader recv:RecreationManagement ;
+    skos:definition "Comprehensive plan for the development and management of land and water resources at a project, establishing recreation area designations and facility development."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Master Plan"@en .
+
+recv:NationalRecreationReservationService a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 9-3.g"@en ;
+    skos:altLabel "NRRS"@en ;
+    skos:broader recv:Reservation ;
+    skos:definition "National system for making advance reservations at Federal recreation facilities, also used for fee collection and permit issuance."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "National Recreation Reservation Service"@en .
+
+recv:NaturalResourcesManagementSystem a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 12"@en ;
+    skos:altLabel "NRMS"@en ;
+    skos:broader recv:RecreationManagement ;
+    skos:definition "Electronic system for storing and providing data on Corps natural resources management activities."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Natural Resources Management System"@en .
+
+recv:ORVArea a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 10-4.a(1)"@en ;
+    skos:broader recv:OffRoadVehicleUse ;
+    skos:definition "Area designated for off-road vehicle use containing topography suitable to the vehicles and having ready public access."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "ORV Area"@en .
+
+recv:ORVTrail a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 10-4.a(2)"@en ;
+    skos:broader recv:OffRoadVehicleUse ;
+    skos:definition "Trail designated for off-road vehicle use without conflict with other public uses or environmental harm."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "ORV Trail"@en .
+
+recv:OperationalManagementPlan a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-3.a"@en ;
+    skos:altLabel "OMP"@en ;
+    skos:broader recv:RecreationManagement ;
+    skos:definition "Plan that implements the Master Plan through specific operational procedures and management practices."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Operational Management Plan"@en .
+
+recv:OperationsProjectManager a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-4.c(1)"@en ;
+    skos:broader recv:RecreationManagement ;
+    skos:definition "USACE employee responsible for all aspects of operations, maintenance, and administration of a water resource development project and its natural and cultural resources."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Operations Project Manager"@en .
+
+recv:PepperSprayProgram a skos:Concept ;
+    dct:source "EP 1130-2-550 Appendix K"@en ;
+    skos:altLabel "OC Program"@en ;
+    skos:broader recv:RecreationEnforcement ;
+    skos:definition "Program authorizing USACE park rangers to carry Oleoresin Capsicum (Pepper Spray) for self-defensive purposes, based on district position and project activity hazard analysis."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Pepper Spray Program"@en .
+
+recv:RecreationLeadershipAdvisoryTeam a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 15-2"@en ;
+    skos:broader recv:RecreationManagementSupportProgram ;
+    skos:definition "Team providing oversight of the RMSP, evaluating proposals for funding and recommending priorities to HQUSACE."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Recreation Leadership Advisory Team"@en .
+
+recv:ServiceContract a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-3.c"@en ;
+    skos:broader recv:RecreationManagement ;
+    skos:definition "Contract for services at recreation areas evaluated per OMB Circular A-76 comparing full cost of contracting with in-house cost."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Service Contract"@en .
+
+recv:Snowmobile a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 10-4.a(3)"@en ;
+    skos:broader recv:OffRoadVehicleUse ;
+    skos:definition "Motorized vehicle designed for travel on snow, one type of off-road vehicle requiring designated areas."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Snowmobile"@en .
+
+recv:SpecialEventPermit a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 9-6.c"@en ;
+    skos:broader recv:SpecialUseFee ;
+    skos:definition "Permit authorizing special events at recreation areas, with associated permit fee."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Special Event Permit"@en .
+
+recv:VisitorAssistanceTraining a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 6-4"@en ;
+    skos:broader recv:VisitorAssistanceProgram ;
+    skos:definition "Required training curriculum for personnel with visitor assistance responsibilities, consisting of basic, refresher, and management modules."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Visitor Assistance Training"@en .
+
+recv:BikeTrail a skos:Concept ;
+    skos:broader recv:TrailFacility ;
+    skos:definition "Trail designated for bicycle use."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Bike Trail"@en .
+
+recv:BoatLaunchFee a skos:Concept ;
+    skos:broader recv:RecreationFee ;
+    skos:definition "Fee for boat ramp use."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Boat Launch Fee"@en .
+
+recv:BoatRamp a skos:Concept ;
+    skos:altLabel "Boat Launch"@en ;
+    skos:broader recv:RecreationAmenity ;
+    skos:definition "Ramp for launching and retrieving boats."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Boat Ramp"@en ;
+    skos:scopeNote "Source term for a boat launch asset. The spatial ontology models BoatRampFeature separately when a GIS feature record represents the asset."@en .
+
+recv:BoatSlip a skos:Concept ;
+    skos:broader recv:Marina ;
+    skos:definition "Individual boat docking space."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Boat Slip"@en .
+
+recv:BoatingAccident a skos:Concept ;
+    skos:broader recv:RecreationIncident ;
+    skos:definition "Accident involving recreational watercraft."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Boating Accident"@en .
+
+recv:BodyRecovery a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-4.b(3)"@en ;
+    skos:broader recv:SearchAndRescue ;
+    skos:definition "Recovery operations conducted in coordination with sheriff's department, state police, or other local law enforcement agencies."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Body Recovery"@en .
+
+recv:CampgroundConcessionaire a skos:Concept ;
+    skos:broader recv:Concession ;
+    skos:definition "Concessionaire operating campground facilities."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Campground Concessionaire"@en .
+
+recv:Campsite a skos:Concept ;
+    skos:broader recv:Campground ;
+    skos:definition "Individual camping unit within campground."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Campsite"@en .
+
+recv:CitationAuthority a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 6-3"@en ;
+    skos:broader recv:RecreationEnforcement ;
+    skos:definition "Authority granted to personnel to issue citations for Title 36 violations, documented by ENG Form 5036-R Certificate of Authority."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Citation Authority"@en .
+
+recv:ClassAArea a skos:Concept ;
+    skos:broader recv:RecreationArea ;
+    skos:definition "High-density developed recreation area."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Class A Recreation Area"@en .
+
+recv:ClassACampArea a skos:Concept ;
+    dct:source "EP 1130-2-550 Appendix M"@en ;
+    skos:broader recv:CampAreaClass ;
+    skos:definition "Highest class camp area with flush restrooms, potable water, showers, sanitary disposal station, personal fee collection, and all standard amenities. Minimum fee $10 for single user unit, $50 for group."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Class A Camp Area"@en .
+
+recv:ClassBArea a skos:Concept ;
+    skos:broader recv:RecreationArea ;
+    skos:definition "Moderate development recreation area."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Class B Recreation Area"@en .
+
+recv:ClassBCampArea a skos:Concept ;
+    dct:source "EP 1130-2-550 Appendix M"@en ;
+    skos:broader recv:CampAreaClass ;
+    skos:definition "Camp area with vault restrooms, potable water, sanitary disposal station, and standard amenities but no showers or personal fee collection. Minimum fee $8 for single user unit, $40 for group."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Class B Camp Area"@en .
+
+recv:ClassCArea a skos:Concept ;
+    skos:broader recv:RecreationArea ;
+    skos:definition "Primitive or minimal development area."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Class C Recreation Area"@en .
+
+recv:ClassCCampArea a skos:Concept ;
+    dct:source "EP 1130-2-550 Appendix M"@en ;
+    skos:broader recv:CampAreaClass ;
+    skos:definition "Camp area with vault restrooms, potable water, and standard amenities. Minimum fee $6 for single user unit, $30 for group."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Class C Camp Area"@en .
+
+recv:ClassDCampArea a skos:Concept ;
+    dct:source "EP 1130-2-550 Appendix M"@en ;
+    skos:broader recv:CampAreaClass ;
+    skos:definition "Basic camp area meeting at least 5 of the first 9 facility criteria. Minimum fee $5 for single user unit, $20 for group."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Class D Camp Area"@en .
+
+recv:ClassECampArea a skos:Concept ;
+    dct:source "EP 1130-2-550 Appendix M"@en ;
+    skos:altLabel "No-Fee Camp Area"@en ;
+    skos:broader recv:CampAreaClass ;
+    skos:definition "Camp area meeting fewer than 5 of the first 9 facility criteria. No fee may be charged."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Class E Camp Area"@en .
+
+recv:ConservationEasement a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:ProjectEasement ;
+    skos:definition "Easement where Corps retains rights to lands for aesthetic, recreation and environmental benefits."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Conservation Easement"@en .
+
+recv:CooperativeAgreement a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 5-7"@en ;
+    skos:broader recv:RecreationManagement ;
+    skos:definition "Agreement between the Corps and nonprofit, tax-exempt corporations or other agencies for educational, scientific, and/or interpretive purposes providing services, programs, or activities."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Cooperative Agreement"@en .
+
+recv:DangerZone a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-4.b(2)(g)"@en ;
+    skos:broader recv:WaterSafety ;
+    skos:definition "Hazardous area including tailwater areas and areas immediately above spillways and dams, marked with signs, buoys, or booms."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Danger Zone"@en .
+
+recv:DesignatedNoWake a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:WaterSurfaceZoning ;
+    skos:definition "Water zone designated to protect environmentally sensitive shoreline areas, recreational water access areas from disturbance, and for public safety."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Designated No-Wake"@en .
+
+recv:Drowning a skos:Concept ;
+    skos:broader recv:RecreationIncident ;
+    skos:definition "Fatal water-related incident."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Drowning"@en .
+
+recv:EnvironmentallySensitiveAreas a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:altLabel "ESA"@en ;
+    skos:broader recv:LandClassification ;
+    skos:definition "Areas where scientific, ecological, cultural or aesthetic features have been identified. Typically limited or no development of public use is allowed. No agricultural or grazing uses permitted unless necessary for specific resource management benefit."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Environmentally Sensitive Areas"@en .
+
+recv:EquipTrail a skos:Concept ;
+    skos:broader recv:TrailFacility ;
+    skos:definition "Trail designated for horseback riding."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Equestrian Trail"@en .
+
+recv:Exhibit a skos:Concept ;
+    skos:broader recv:Interpretation ;
+    skos:definition "Display educating visitors about project resources."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Exhibit"@en .
+
+recv:FeeSchedule a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 9-3.a"@en ;
+    skos:broader recv:RecreationFee ;
+    skos:definition "Approved schedule of use fees for camping, day use, and special facilities, submitted annually to MSC Commander for approval."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Fee Schedule"@en .
+
+recv:FishAndWildlifeSanctuary a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:WaterSurfaceZoning ;
+    skos:definition "Annual or seasonal restrictions on water areas to protect fish and wildlife species during periods of migration, resting, feeding, nesting, and/or spawning."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Fish and Wildlife Sanctuary"@en .
+
+recv:FishAndWildlilfeAllocation a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:LandAllocation ;
+    skos:definition "Lands acquired specifically for the congressionally authorized purpose of fish and wildlife management, referred to as separable fish and wildlife lands. Can only be given a land classification of Wildlife Management."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Fish and Wildlife Allocation"@en .
+
+recv:FishingPier a skos:Concept ;
+    skos:broader recv:RecreationAmenity ;
+    skos:definition "Structure for shore-based fishing."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Fishing Pier"@en .
+
+recv:FlowageEasement a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:ProjectEasement ;
+    skos:definition "Easement where Corps retains the right to inundate lands for project operations."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Flowage Easement"@en .
+
+recv:FlushRestroom a skos:Concept ;
+    skos:broader recv:Restroom ;
+    skos:definition "Restroom with flush toilets and running water."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Flush Restroom"@en .
+
+recv:FoodService a skos:Concept ;
+    skos:broader recv:Concession ;
+    skos:definition "Food and beverage concession services."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Food Service"@en .
+
+recv:FuelDock a skos:Concept ;
+    skos:broader recv:Marina ;
+    skos:definition "Facility providing marine fuel."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Fuel Dock"@en ;
+    skos:scopeNote "Source term retained as a specific water-access support asset. Generic dock semantics require separate review before broad reuse."@en .
+
+recv:FutureRecreationAreas a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:altLabel "Inactive Recreation Areas"@en ;
+    skos:broader recv:MultipleResourceManagement ;
+    skos:definition "Areas with site characteristics compatible with potential future recreational development or recreation areas that are closed. Until there is an opportunity to develop or reopen, they are managed for multiple resources."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Future Recreation Areas"@en .
+
+recv:GoldenAccessPassport a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 9-4.c(4)(b)"@en ;
+    skos:broader recv:RecreationFee ;
+    skos:definition "Federal pass providing 50 percent discount on recreation use fees for U.S. citizens or permanent residents with permanent disabilities."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Golden Access Passport"@en .
+
+recv:GoldenAgePassport a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 9-4.c(4)(b)"@en ;
+    skos:broader recv:RecreationFee ;
+    skos:definition "Federal pass providing 50 percent discount on recreation use fees for U.S. citizens or permanent residents 62 years or older."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Golden Age Passport"@en .
+
+recv:GroupCampArea a skos:Concept ;
+    skos:broader recv:Campground ;
+    skos:definition "Camping area for organized groups."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Group Camp Area"@en .
+
+recv:HazardMarking a skos:Concept ;
+    skos:broader recv:WaterSafety ;
+    skos:definition "Signs and buoys marking water hazards."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Hazard Marking"@en .
+
+recv:HighDensityRecreation a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:LandClassification ;
+    skos:definition "Lands developed for intensive recreational activities for the visiting public including day use areas and/or campgrounds, including areas for commercial concessions and quasi-public development."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "High Density Recreation"@en .
+
+recv:HikingTrail a skos:Concept ;
+    skos:broader recv:TrailFacility ;
+    skos:definition "Trail designated for foot travel."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Hiking Trail"@en .
+
+recv:Injury a skos:Concept ;
+    skos:broader recv:RecreationIncident ;
+    skos:definition "Personal injury to recreation visitor."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Visitor Injury"@en .
+
+recv:InterpretiveProgram a skos:Concept ;
+    skos:broader recv:Interpretation ;
+    skos:definition "Guided educational program for visitors."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Interpretive Program"@en .
+
+recv:InterpretiveSign a skos:Concept ;
+    skos:broader recv:Interpretation ;
+    skos:definition "Sign providing educational information."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Interpretive Sign"@en .
+
+recv:LandPatrol a skos:Concept ;
+    skos:broader recv:Patrol ;
+    skos:definition "Vehicle or foot patrol of land areas."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Land Patrol"@en .
+
+recv:LawEnforcementCooperativeAgreement a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 7"@en ;
+    skos:broader recv:CooperativeAgreement ;
+    skos:definition "Agreement between Corps and states or political subdivisions for increased law enforcement services at civil works water resource projects during peak visitation periods."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:PlanOfOperation ;
+    skos:prefLabel "Law Enforcement Cooperative Agreement"@en .
+
+recv:LifeJacketLoaner a skos:Concept ;
+    skos:broader recv:SafetyEquipment ;
+    skos:definition "Station providing free life jacket loans."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Life Jacket Loaner Station"@en .
+
+recv:LowDensityRecreation a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:MultipleResourceManagement ;
+    skos:definition "Lands with minimal development or infrastructure that support passive public recreational use such as primitive camping, fishing, hunting, trails, and wildlife viewing."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Low Density Recreation"@en .
+
+recv:MarinaConcessionaire a skos:Concept ;
+    skos:broader recv:Concession ;
+    skos:definition "Concessionaire operating marina facilities."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Marina Concessionaire"@en .
+
+recv:MitigationAllocation a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:LandAllocation ;
+    skos:definition "Lands acquired or designated specifically for the congressionally authorized purpose of offsetting losses associated with development of the project, referred to as separable mitigation lands."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Mitigation Allocation"@en .
+
+recv:MitigationClassification a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:LandClassification ;
+    skos:definition "Land classification used only for lands with an allocation of Mitigation that were acquired specifically for the purposes of offsetting losses associated with development of the project."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Mitigation"@en .
+
+recv:OpenRecreation a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:WaterSurfaceZoning ;
+    skos:definition "Waters available for year round or seasonal water-based recreational use."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Open Recreation"@en .
+
+recv:OperationsAllocation a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:LandAllocation ;
+    skos:definition "Lands acquired for the congressionally authorized purpose of constructing and operating the project, including flood control and hydropower. Most project lands are included in this allocation."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Operations Allocation"@en .
+
+recv:OperationsEasement a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:ProjectEasement ;
+    skos:definition "Easement where Corps retains rights to lands necessary for project operations including access."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Operations Easement"@en .
+
+recv:ParkRanger a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 6"@en ;
+    skos:broader recv:RecreationEnforcement ;
+    skos:definition "USACE Natural Resources Management personnel providing visitor assistance and Title 36 enforcement with citation authority."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Park Ranger"@en .
+
+recv:ParkingArea a skos:Concept ;
+    skos:broader recv:RecreationAmenity ;
+    skos:definition "Designated vehicle parking area."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Parking Area"@en .
+
+recv:PicnicArea a skos:Concept ;
+    skos:broader recv:DayUseArea ;
+    skos:definition "Area with picnic tables and facilities."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Picnic Area"@en .
+
+recv:PlanOfOperation a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 7-3.e"@en ;
+    skos:broader recv:LawEnforcementCooperativeAgreement ;
+    skos:definition "Attachment to law enforcement cooperative agreement specifying project areas, services, schedules, costs, contacts, and billing procedures."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Plan of Operation"@en .
+
+recv:Playground a skos:Concept ;
+    skos:broader recv:DayUseArea ;
+    skos:definition "Area with play equipment for children."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Playground"@en .
+
+recv:ProjectOperationsClassification a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:LandClassification ;
+    skos:definition "Lands required for the dam, spillway, switchyard, levees, dikes, offices, maintenance facilities, and other areas that are used solely for the operation of the project."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Project Operations"@en .
+
+recv:PumpOutStation a skos:Concept ;
+    skos:broader recv:Marina ;
+    skos:definition "Facility for boat sewage disposal."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Pump Out Station"@en .
+
+recv:RVCampground a skos:Concept ;
+    skos:broader recv:Campground ;
+    skos:definition "Campground with hookups for recreational vehicles."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "RV Campground"@en .
+
+recv:RecreationAllocation a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:LandAllocation ;
+    skos:definition "Lands acquired specifically for the congressionally authorized purpose of recreation, referred to as separable recreation lands. Can only be given a land classification of Recreation."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Recreation Allocation"@en .
+
+recv:RecreationUseFeeProgram a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 9"@en ;
+    skos:broader recv:RecreationFee ;
+    skos:definition "Program for collecting fees from users of specialized sites, facilities, equipment or services at civil works water resource projects per 16 USC 460l-6a."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Recreation Use Fee Program"@en .
+
+recv:RecreationUseSurvey a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 13"@en ;
+    skos:broader recv:VisitorStatistics ;
+    skos:definition "Survey conducted to measure recreation use and visitor characteristics at Corps projects."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Recreation Use Survey"@en .
+
+recv:RescueEquipment a skos:Concept ;
+    skos:broader recv:SafetyEquipment ;
+    skos:definition "Equipment for water rescue operations."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Rescue Equipment"@en .
+
+recv:RestrictedArea a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-4.b(2)(g)"@en ;
+    skos:broader recv:WaterSafety ;
+    skos:definition "Area with limited or prohibited public access, properly marked with appropriate buoys, markers, signs, or barricades."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Restricted Area"@en .
+
+recv:RestrictedWaterArea a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:WaterSurfaceZoning ;
+    skos:definition "Water areas restricted for project operations, safety, and security purposes."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Restricted Water Area"@en .
+
+recv:SeaplaneOperations a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 11"@en ;
+    skos:broader recv:RecreationActivity ;
+    skos:definition "Operation of seaplanes on civil works project waters, subject to designation and regulation."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Seaplane Operations"@en .
+
+recv:SearchAndRescue a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-4.b(3)"@en ;
+    skos:altLabel "SAR"@en ;
+    skos:definition "Operations to locate and assist distressed persons."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:BodyRecovery ;
+    skos:prefLabel "Search and Rescue"@en .
+
+recv:SelfDepositVaultSystem a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 9-4.c(4)"@en ;
+    skos:broader recv:RecreationFee ;
+    skos:definition "Fee collection method using secure honor vault and ENG Form 4839 Self Deposit Permit for small and remote recreation areas to reduce collection costs."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Self-Deposit Vault System"@en .
+
+recv:Shelter a skos:Concept ;
+    skos:broader recv:DayUseArea ;
+    skos:definition "Covered structure for group picnicking."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Picnic Shelter"@en .
+
+recv:SwimmingArea a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-3.b(4)"@en ;
+    skos:altLabel "Beach"@en ;
+    skos:broader recv:RecreationFacility ;
+    skos:definition "Designated area for swimming, developed and maintained under guidelines of PL 89-72 and EM 1110-2-400."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Swimming Area"@en .
+
+recv:TypeAVisitorCenter a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 5-3.c"@en ;
+    skos:altLabel "Regional Visitor Center"@en ;
+    skos:broader recv:VisitorCenter ;
+    skos:definition "Regional Visitor Center serving multiple projects or a major geographic area, with comprehensive exhibits and programs."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Type A Visitor Center"@en .
+
+recv:TypeBVisitorCenter a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 5-3.c"@en ;
+    skos:altLabel "Project Visitor Center"@en ;
+    skos:broader recv:VisitorCenter ;
+    skos:definition "Project Visitor Center serving a single project with exhibits and interpretive programs specific to that project."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Type B Visitor Center"@en .
+
+recv:TypeCVisitorCenter a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 5-3.c"@en ;
+    skos:altLabel "Visitor Information Center"@en ;
+    skos:broader recv:VisitorCenter ;
+    skos:definition "Visitor Information Center providing basic visitor information and orientation without extensive exhibits."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Type C Visitor Center"@en .
+
+recv:UserPermit a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 9-3.g"@en ;
+    skos:altLabel "ENG Form 4457"@en ;
+    skos:broader recv:RecreationFee ;
+    skos:definition "Official permit and receipt for fees paid for use of campsites, special sites, facilities, equipment, services, activities, and special events."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "User Permit"@en .
+
+recv:VaultToilet a skos:Concept ;
+    skos:broader recv:Restroom ;
+    skos:definition "Restroom with vault toilet system."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Vault Toilet"@en .
+
+recv:VegetativeManagement a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:MultipleResourceManagement ;
+    skos:definition "Lands designated for stewardship of forest, prairie, and other native vegetative cover."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Vegetative Management"@en .
+
+recv:Visitation a skos:Concept ;
+    skos:broader recv:VisitorStatistics ;
+    skos:definition "Number of visits to recreation areas."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Visitation"@en .
+
+recv:VisitorAssistance a skos:Concept ;
+    skos:broader recv:VisitorService ;
+    skos:definition "Direct assistance provided to visitors."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Visitor Assistance"@en .
+
+recv:VisitorDay a skos:Concept ;
+    skos:broader recv:VisitorStatistics ;
+    skos:definition "Unit of recreation use equal to 12 visitor hours."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Visitor Day"@en .
+
+recv:WaterPatrol a skos:Concept ;
+    skos:broader recv:Patrol ;
+    skos:definition "Boat patrol of water areas."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Water Patrol"@en .
+
+recv:WaterSafetyProgram a skos:Concept ;
+    skos:broader recv:WaterSafety ;
+    skos:definition "Program educating visitors on water hazards."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Water Safety Program"@en .
+
+recv:WildlifeManagement a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:MultipleResourceManagement ;
+    skos:definition "Lands designated for stewardship of fish and wildlife resources."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Wildlife Management"@en .
+
+recv:WrittenWarning a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 6-3.g"@en ;
+    skos:broader recv:Citation ;
+    skos:definition "Warning citation prepared on ENG Form 4381 for minor violations, with records maintained for at least two years."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Written Warning"@en .
+
+recv:CampingFee a skos:Concept ;
+    skos:broader recv:RecreationFee ;
+    skos:definition "Fee for overnight camping."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Camping Fee"@en .
+
+recv:DayUseFee a skos:Concept ;
+    skos:broader recv:RecreationFee ;
+    skos:definition "Fee for day use area access."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Day Use Fee"@en .
+
+recv:Reservation a skos:Concept ;
+    skos:broader recv:VisitorService ;
+    skos:definition "Advance booking of recreation facilities."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Reservation"@en .
+
+recv:SpecialUseFee a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 9-6"@en ;
+    skos:broader recv:RecreationFee ;
+    skos:definition "Fee for special facility use, special events, or special activities such as group shelters, amphitheaters, and athletic complexes."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Special Use Fee"@en .
+
+recv:ViolationNotice a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 6-3.h"@en ;
+    skos:broader recv:Citation ;
+    skos:definition "Central Violations Bureau form issued for Title 36 violations requiring collateral forfeiture or mandatory court appearance."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Violation Notice"@en .
+
+recv:VisitorAssistanceProgram a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 6"@en ;
+    skos:broader recv:RecreationEnforcement ;
+    skos:definition "Program for providing visitor assistance and enforcing rules and regulations at recreation areas, including alternative management techniques beyond citation issuance."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Visitor Assistance Program"@en .
+
+recv:Citation a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 6-3"@en ;
+    skos:broader recv:RecreationEnforcement ;
+    skos:definition "Enforcement action for Title 36 regulation violation, including written warnings and violation notices."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:ViolationNotice,
+        recv:WrittenWarning ;
+    skos:prefLabel "Citation"@en .
+
+recv:Patrol a skos:Concept ;
+    skos:broader recv:RecreationEnforcement ;
+    skos:definition "Ranger patrol of recreation areas."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:LandPatrol,
+        recv:WaterPatrol ;
+    skos:prefLabel "Patrol"@en .
+
+recv:RecreationActivity a skos:Concept ;
+    skos:definition "Outdoor recreation activity occurring at USACE civil works projects."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:OffRoadVehicleUse,
+        recv:SeaplaneOperations ;
+    skos:prefLabel "Recreation Activity"@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:Restroom a skos:Concept ;
+    skos:broader recv:RecreationAmenity ;
+    skos:definition "Public toilet facility."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:FlushRestroom,
+        recv:VaultToilet ;
+    skos:prefLabel "Restroom"@en .
+
+recv:SafetyEquipment a skos:Concept ;
+    skos:broader recv:WaterSafety ;
+    skos:definition "Equipment for visitor safety."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:LifeJacketLoaner,
+        recv:RescueEquipment ;
+    skos:prefLabel "Safety Equipment"@en .
+
+recv:VisitorStatistics a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 13"@en ;
+    skos:definition "Data on recreation visitation and use patterns."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:RecreationUseSurvey,
+        recv:Visitation,
+        recv:VisitorDay ;
+    skos:prefLabel "Visitor Statistics"@en .
+
+recv:Concession a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-3.b(1)(f)"@en ;
+    skos:definition "Commercial services provided under concession agreement for park and recreation purposes."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:CampgroundConcessionaire,
+        recv:FoodService,
+        recv:MarinaConcessionaire ;
+    skos:prefLabel "Concession"@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:DayUseArea a skos:Concept ;
+    skos:broader recv:RecreationFacility ;
+    skos:definition "Area for daytime recreational activities."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:PicnicArea,
+        recv:Playground,
+        recv:Shelter ;
+    skos:prefLabel "Day Use Area"@en .
+
+recv:Marina a skos:Concept ;
+    skos:broader recv:RecreationFacility ;
+    skos:definition "Facility for boat docking and services."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:BoatSlip,
+        recv:FuelDock,
+        recv:PumpOutStation ;
+    skos:prefLabel "Marina"@en ;
+    skos:scopeNote "Source term for boating facility. Spatial representation may include area, shoreline, docks, slips, and service features depending on source layer grain."@en .
+
+recv:OffRoadVehicleUse a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 10"@en ;
+    skos:altLabel "ORV Use"@en ;
+    skos:broader recv:RecreationActivity ;
+    skos:definition "Operation of off-road vehicles on designated project lands including areas and trails zoned for such use."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Off-Road Vehicle Use"@en .
+
+recv:ProjectEasement a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:definition "Lands for which the Corps holds an easement interest but not fee title. Planned use and management must be in strict accordance with terms and conditions of the easement estate acquired."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:ConservationEasement,
+        recv:FlowageEasement,
+        recv:OperationsEasement ;
+    skos:prefLabel "Project Easement"@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:RecreationArea a skos:Concept ;
+    skos:definition "Managed area providing recreational opportunities."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:ClassAArea,
+        recv:ClassBArea,
+        recv:ClassCArea ;
+    skos:prefLabel "Recreation Area"@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:RecreationIncident a skos:Concept ;
+    skos:definition "Safety or security incident at recreation area."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:BoatingAccident,
+        recv:Drowning,
+        recv:Injury ;
+    skos:prefLabel "Recreation Incident"@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:RecreationManagementSupportProgram a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 15"@en ;
+    skos:altLabel "RMSP"@en ;
+    skos:broader recv:RecreationManagement ;
+    skos:definition "USACE program providing mechanism for identifying national recreation program priorities through research, management support, and technical information transfer."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Recreation Management Support Program"@en .
+
+recv:TrailFacility a skos:Concept ;
+    skos:broader recv:RecreationFacility ;
+    skos:definition "Path for hiking, biking, or other trail uses."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:BikeTrail,
+        recv:EquipTrail,
+        recv:HikingTrail ;
+    skos:prefLabel "Trail"@en ;
+    skos:scopeNote "Source term retained as vocabulary. The OWL class is rec:Trail; spatial representation is recs:TrailFeature."@en .
+
+recv:VisitorCenter a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 5"@en ;
+    skos:broader recv:VisitorService ;
+    skos:definition "Facility providing interpretive information to the visiting public about the Corps, its mission, the project and its facilities, visitor safety, and the geographic area."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:TypeAVisitorCenter,
+        recv:TypeBVisitorCenter,
+        recv:TypeCVisitorCenter ;
+    skos:prefLabel "Visitor Center"@en .
+
+recv:VisitorService a skos:Concept ;
+    skos:definition "Service provided to recreation visitors."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:Reservation,
+        recv:VisitorAssistance,
+        recv:VisitorCenter ;
+    skos:prefLabel "Visitor Service"@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:CampAreaClass a skos:Concept ;
+    dct:source "EP 1130-2-550 Appendix M"@en ;
+    skos:broader recv:Campground ;
+    skos:definition "Classification of camp areas based on facility criteria for fee determination. Classes range from Class A (highest facilities) to Class E (no fee)."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:ClassACampArea,
+        recv:ClassBCampArea,
+        recv:ClassCCampArea,
+        recv:ClassDCampArea,
+        recv:ClassECampArea ;
+    skos:prefLabel "Camp Area Class"@en .
+
+recv:Campground a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-3.b(2)"@en ;
+    skos:broader recv:RecreationFacility ;
+    skos:definition "Area with campsites for overnight camping, provided by the Corps, another public agency, or commercial concessions."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:Campsite,
+        recv:GroupCampArea,
+        recv:RVCampground ;
+    skos:prefLabel "Campground"@en .
+
+recv:LandAllocation a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:definition "The congressionally authorized purpose for which project lands were acquired. There are only four land allocation categories applicable to Corps projects."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:FishAndWildlilfeAllocation,
+        recv:MitigationAllocation,
+        recv:OperationsAllocation,
+        recv:RecreationAllocation ;
+    skos:prefLabel "Land Allocation"@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:MultipleResourceManagement a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:broader recv:LandClassification ;
+    skos:definition "Land classification allowing for designation of a predominant use with other compatible uses. Land classification maps must reflect the predominant sub-classification."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:FutureRecreationAreas,
+        recv:LowDensityRecreation,
+        recv:VegetativeManagement,
+        recv:WildlifeManagement ;
+    skos:prefLabel "Multiple Resource Management"@en .
+
+recv:RecreationAmenity a skos:Concept ;
+    skos:definition "Support facility or feature for recreation."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:BoatRamp,
+        recv:FishingPier,
+        recv:ParkingArea,
+        recv:Restroom ;
+    skos:prefLabel "Recreation Amenity"@en ;
+    skos:scopeNote "Vocabulary concept for support assets. The OWL model treats amenities as managed assets that may have separate spatial representations."@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:WaterSurfaceZoning a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:definition "Classification of project water surface for development and resource management. Included in Master Plan if the project administers a surface water zoning program."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:DesignatedNoWake,
+        recv:FishAndWildlifeSanctuary,
+        recv:OpenRecreation,
+        recv:RestrictedWaterArea ;
+    skos:prefLabel "Water Surface Zoning"@en ;
+    skos:scopeNote "Classification vocabulary for water surface use. Spatial zone features should represent these concepts explicitly."@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:Interpretation a skos:Concept ;
+    skos:definition "Educational programs and exhibits for visitors."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:Exhibit,
+        recv:InterpretiveProgram,
+        recv:InterpretiveSign ;
+    skos:prefLabel "Interpretation"@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:LandClassification a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 4"@en ;
+    skos:definition "The primary use for which project lands are managed. Project lands are zoned for development and resource management consistent with authorized project purposes and provisions of NEPA and other Federal laws."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:EnvironmentallySensitiveAreas,
+        recv:HighDensityRecreation,
+        recv:MitigationClassification,
+        recv:MultipleResourceManagement,
+        recv:ProjectOperationsClassification ;
+    skos:prefLabel "Land Classification"@en ;
+    skos:scopeNote "Classification vocabulary. Do not automatically convert land-classification values into OWL subclasses."@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:RecreationFacility a skos:Concept ;
+    skos:definition "Physical facility supporting recreational use."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:Campground,
+        recv:DayUseArea,
+        recv:Marina,
+        recv:SwimmingArea,
+        recv:TrailFacility ;
+    skos:prefLabel "Recreation Facility"@en ;
+    skos:scopeNote "Vocabulary concept for source language. The OWL model treats facility as a business/domain role, not as a spatial feature or geometry."@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:WaterSafety a skos:Concept ;
+    dct:source "EP 1130-2-550 Section 2-4.b"@en ;
+    skos:definition "Programs and measures for visitor safety near water, including marking of hazards and restricted areas."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:DangerZone,
+        recv:HazardMarking,
+        recv:RestrictedArea,
+        recv:SafetyEquipment,
+        recv:WaterSafetyProgram ;
+    skos:prefLabel "Water Safety"@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:RecreationEnforcement a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 6"@en ;
+    skos:definition "Enforcement of rules and regulations at recreation areas per 36 CFR 327."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:Citation,
+        recv:CitationAuthority,
+        recv:ParkRanger,
+        recv:Patrol,
+        recv:VisitorAssistanceProgram ;
+    skos:prefLabel "Recreation Enforcement"@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:RecreationManagement a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 2"@en ;
+    skos:definition "Administration and management of USACE recreation programs and facilities at civil works water resource projects."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:prefLabel "Recreation Management"@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:RecreationFee a skos:Concept ;
+    dct:source "EP 1130-2-550 Chapter 9"@en ;
+    skos:definition "Fee charged for recreation use or services per 16 USC 460l-6a, assessed for specialized sites, facilities, equipment or services provided at Federal expense."@en ;
+    skos:inScheme recv:RecreationConceptScheme ;
+    skos:narrower recv:BoatLaunchFee,
+        recv:CampingFee,
+        recv:DayUseFee,
+        recv:FeeSchedule,
+        recv:GoldenAccessPassport,
+        recv:GoldenAgePassport,
+        recv:RecreationUseFeeProgram,
+        recv:SelfDepositVaultSystem,
+        recv:SpecialUseFee,
+        recv:UserPermit ;
+    skos:prefLabel "Recreation Fee"@en ;
+    skos:topConceptOf recv:RecreationConceptScheme .
+
+recv:RecreationConceptScheme a skos:ConceptScheme ;
+    dct:created "2025-12-19"^^xsd:date ;
+    dct:description "Domain vocabulary for USACE Recreation O&M activities. Covers recreation facilities, visitor services, fee programs, water safety, recreation activities, land allocation, land classification, water surface zoning, and project easements. Derived from EP 1130-2-550."@en,
+        "Spatial-first recreation vocabulary preserving source terms as evidence without requiring each term to become an OWL class."@en ;
+    dct:modified "2026-01-13"^^xsd:date,
+        "2026-06-01" ;
+    dct:source "EP 1130-2-550"@en ;
+    skos:hasTopConcept recv:Concession,
+        recv:Interpretation,
+        recv:LandAllocation,
+        recv:LandClassification,
+        recv:ProjectEasement,
+        recv:RecreationActivity,
+        recv:RecreationAmenity,
+        recv:RecreationArea,
+        recv:RecreationEnforcement,
+        recv:RecreationFacility,
+        recv:RecreationFee,
+        recv:RecreationIncident,
+        recv:RecreationManagement,
+        recv:VisitorService,
+        recv:WaterSafety,
+        recv:WaterSurfaceZoning ;
+    skos:prefLabel "USACE Recreation O&M Vocabulary"@en .
