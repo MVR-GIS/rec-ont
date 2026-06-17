@@ -1,0 +1,422 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "USACE Recreation Ontology Review",
+    "section": "",
+    "text": "1 Welcome\nThis Quarto book is a review workspace for the USACE Recreation Ontology and its related artifacts. It is designed to help subject matter experts, GIS staff, and ontology reviewers inspect the model structure, visualize relationships, and compare the ontology against supporting spatial and crosswalk materials.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>USACE Recreation Ontology Review</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#purpose",
+    "href": "index.html#purpose",
+    "title": "USACE Recreation Ontology Review",
+    "section": "1.1 Purpose",
+    "text": "1.1 Purpose\nThis site supports team review of the recreation ontology by organizing the core materials into a single navigable website.\nThe review package includes:\n\nan overview of the ontology scope and modeling intent\nan interactive visualization of ontology classes and properties\nsupporting spatial diagrams\nthe SDSFIE crosswalk material used for comparison and traceability",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>USACE Recreation Ontology Review</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use-this-site",
+    "href": "index.html#how-to-use-this-site",
+    "title": "USACE Recreation Ontology Review",
+    "section": "1.2 How to use this site",
+    "text": "1.2 How to use this site\nRecommended review flow:\n\nStart with the Introduction for context and review goals.\nRead the Ontology Overview to understand the model structure and intended interpretation.\nOpen Ontology Visualization to inspect class hierarchies and property relationships interactively.\nReview the Spatial Diagrams for GIS-oriented context.\nReview the SDSFIE Crosswalk to compare ontology terms with external structures.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>USACE Recreation Ontology Review</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#included-source-artifacts",
+    "href": "index.html#included-source-artifacts",
+    "title": "USACE Recreation Ontology Review",
+    "section": "1.3 Included source artifacts",
+    "text": "1.3 Included source artifacts\nThis site is built from the following repository assets:\n\ndata/01-recreation-vocabulary.ttl\ndata/02-recreation-ontology.ttl\ndata/06-recreation-spatial.ttl\ndata/12-recreation-sdsfie-crosswalk.ttl",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>USACE Recreation Ontology Review</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#reviewer-guidance",
+    "href": "index.html#reviewer-guidance",
+    "title": "USACE Recreation Ontology Review",
+    "section": "1.4 Reviewer guidance",
+    "text": "1.4 Reviewer guidance\nWhen reviewing the ontology, focus on questions such as:\n\nAre the class hierarchies intuitive and complete?\nDo object properties connect the right kinds of entities?\nDo datatype properties capture the operational attributes needed by users?\nAre any labels, definitions, or modeling boundaries unclear?\nDo the ontology and supporting diagrams align with expected recreation business concepts?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>USACE Recreation Ontology Review</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#notes",
+    "href": "index.html#notes",
+    "title": "USACE Recreation Ontology Review",
+    "section": "1.5 Notes",
+    "text": "1.5 Notes\nThis website is intended for collaborative review and discussion. It emphasizes readability and navigation over exhaustive RDF inspection.\nContinue to the next chapter to begin the review.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>USACE Recreation Ontology Review</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "2  Introduction",
+    "section": "",
+    "text": "2.1 Review objective\nThis book presents the current draft of the USACE Recreation Ontology in a format that is easier to review than raw Turtle files alone. The goal is to support discussion of structure, naming, hierarchy, and relationship design before the ontology is finalized or expanded.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#what-is-being-reviewed",
+    "href": "intro.html#what-is-being-reviewed",
+    "title": "2  Introduction",
+    "section": "2.2 What is being reviewed",
+    "text": "2.2 What is being reviewed\nThe review focuses primarily on the ontology content in:\n\ndata/02-recreation-ontology.ttl\n\nThis ontology defines:\n\ncore recreation domain classes\nclass hierarchies\nobject properties connecting domain entities\ndatatype properties describing operational attributes\n\nAdditional files in this repository provide vocabulary, spatial context, and crosswalk material that support interpretation of the ontology.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#review-perspective",
+    "href": "intro.html#review-perspective",
+    "title": "2  Introduction",
+    "section": "2.3 Review perspective",
+    "text": "2.3 Review perspective\nThis site is intended for a mixed audience, including:\n\nontology reviewers\nGIS practitioners\nprogram/domain subject matter experts\nstakeholders validating terminology and structure\n\nBecause of that, the materials are organized to support both:\n\nconceptual review, such as whether a class belongs in the model\nimplementation review, such as whether relationships and data properties are structured appropriately",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#what-to-look-for",
+    "href": "intro.html#what-to-look-for",
+    "title": "2  Introduction",
+    "section": "2.4 What to look for",
+    "text": "2.4 What to look for\nAs you move through the book, consider the following:\n\n2.4.1 Class model\n\nAre the major classes appropriate for the recreation domain?\nAre subclass relationships correct and understandable?\nAre any classes missing, redundant, or overly broad?\n\n\n\n2.4.2 Object properties\n\nDo relationships connect the correct domain and range classes?\nAre any relationship names unclear or inconsistent?\nAre inverse-style relationships necessary and well named?\n\n\n\n2.4.3 Datatype properties\n\nDo the datatype properties reflect realistic operational attributes?\nAre domains and ranges appropriately assigned?\nShould any datatype properties instead be modeled differently?\n\n\n\n2.4.4 Integration readiness\n\nDoes the model appear suitable for alignment with GIS, SDSFIE, and source vocabularies?\nAre external concepts and references used in a clear and manageable way?",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#site-organization",
+    "href": "intro.html#site-organization",
+    "title": "2  Introduction",
+    "section": "2.5 Site organization",
+    "text": "2.5 Site organization\nThis book is organized into the following sections:\n\nOntology Overview — conceptual summary of the ontology structure\nOntology Visualization — interactive graph views of class and property relationships\nSpatial Diagrams — supporting spatial context\nSDSFIE Crosswalk — comparison artifact for review and traceability",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#expected-use",
+    "href": "intro.html#expected-use",
+    "title": "2  Introduction",
+    "section": "2.6 Expected use",
+    "text": "2.6 Expected use\nThis site is meant to support iterative review. It should be easy to update as ontology files and supporting materials evolve.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "ontology-overview.html",
+    "href": "ontology-overview.html",
+    "title": "3  Ontology Overview",
+    "section": "",
+    "text": "3.1 Scope\nThe recreation ontology models core recreation business entities, managed places, facilities, amenities, services, programs, fees, and related operational concepts relevant to USACE recreation management.\nThe primary ontology source for this chapter is:",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ontology Overview</span>"
+    ]
+  },
+  {
+    "objectID": "ontology-overview.html#scope",
+    "href": "ontology-overview.html#scope",
+    "title": "3  Ontology Overview",
+    "section": "",
+    "text": "data/02-recreation-ontology.ttl",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ontology Overview</span>"
+    ]
+  },
+  {
+    "objectID": "ontology-overview.html#high-level-structure",
+    "href": "ontology-overview.html#high-level-structure",
+    "title": "3  Ontology Overview",
+    "section": "3.2 High-level structure",
+    "text": "3.2 High-level structure\nAt a high level, the ontology is organized around several major concept areas:\n\nDomain entities that represent the broad recreation business space\nPhysical and managed assets such as recreation areas, facilities, and amenities\nWater-access and linear assets for specialized physical features\nVisitor services and programs representing operational and service concepts\nFees, agreements, incidents, and activities representing supporting business concepts",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ontology Overview</span>"
+    ]
+  },
+  {
+    "objectID": "ontology-overview.html#class-hierarchy-patterns",
+    "href": "ontology-overview.html#class-hierarchy-patterns",
+    "title": "3  Ontology Overview",
+    "section": "3.3 Class hierarchy patterns",
+    "text": "3.3 Class hierarchy patterns\nThe ontology uses rdfs:subClassOf to establish class hierarchies. These hierarchies help distinguish:\n\ngeneral versus specialized recreation concepts\nmanaged places versus supporting amenities\nphysical assets versus operational/service concepts\n\nExamples of expected hierarchy patterns include:\n\nbroad domain classes that act as abstract parents\nfacility subclasses for more specialized recreation facilities\namenity subclasses for supporting infrastructure\nspecialized trail, campground, and aquatic-use concepts",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ontology Overview</span>"
+    ]
+  },
+  {
+    "objectID": "ontology-overview.html#property-model",
+    "href": "ontology-overview.html#property-model",
+    "title": "3  Ontology Overview",
+    "section": "3.4 Property model",
+    "text": "3.4 Property model\nThe ontology includes both object properties and datatype properties.\n\n3.4.1 Object properties\nObject properties connect one resource to another resource. In this ontology, they are used to express relationships such as:\n\nan area having a facility\na facility having an amenity\nan asset supporting an activity\nan entity being managed under a program\n\nThese relationships are especially important for understanding how the model expresses operational structure rather than just classification.\n\n\n3.4.2 Datatype properties\nDatatype properties connect a resource to a literal value such as text, number, date, or decimal. In this ontology, they are used for values such as:\n\nlocal identifiers\nfacility names\ncounts of sites or slips\ntrail length\noperating dates",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ontology Overview</span>"
+    ]
+  },
+  {
+    "objectID": "ontology-overview.html#external-references",
+    "href": "ontology-overview.html#external-references",
+    "title": "3  Ontology Overview",
+    "section": "3.5 External references",
+    "text": "3.5 External references\nThe ontology also connects to external namespaces and concepts, including:\n\nSKOS concepts\nXML Schema datatypes\nOWL classes such as owl:Thing\n\nThese references help the ontology align with supporting vocabularies and standard semantic web constructs.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ontology Overview</span>"
+    ]
+  },
+  {
+    "objectID": "ontology-overview.html#how-to-review-this-ontology",
+    "href": "ontology-overview.html#how-to-review-this-ontology",
+    "title": "3  Ontology Overview",
+    "section": "3.6 How to review this ontology",
+    "text": "3.6 How to review this ontology\nA useful way to review the ontology is to separate the work into three passes:\n\n3.6.1 1. Hierarchy pass\nCheck whether classes are arranged appropriately and whether subclassing is intuitive.\n\n\n3.6.2 2. Relationship pass\nReview object properties and verify that domains, ranges, and property names make sense.\n\n\n3.6.3 3. Attribute pass\nReview datatype properties and confirm that literal-valued attributes are assigned to the right classes with the right datatypes.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ontology Overview</span>"
+    ]
+  },
+  {
+    "objectID": "ontology-overview.html#next-step",
+    "href": "ontology-overview.html#next-step",
+    "title": "3  Ontology Overview",
+    "section": "3.7 Next step",
+    "text": "3.7 Next step\nThe next chapter provides an interactive graph-based visualization of the ontology to support structural review.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Ontology Overview</span>"
+    ]
+  },
+  {
+    "objectID": "rec-vis.html",
+    "href": "rec-vis.html",
+    "title": "4  Ontology Module Review",
+    "section": "",
+    "text": "4.1 Executive Summary\nThis interactive page visualizes the ontology structure in 02-recreation-ontology.ttl.\nIt provides four separate views:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Ontology Module Review</span>"
+    ]
+  },
+  {
+    "objectID": "rec-vis.html#executive-summary",
+    "href": "rec-vis.html#executive-summary",
+    "title": "4  Ontology Module Review",
+    "section": "",
+    "text": "Full Graph\nHierarchy Only\nObject Properties Only\nDatatype Properties Only\n\n\n4.1.1 Display behavior\n\nEdge labels are suppressed by default in all views to improve readability\nHover over edges to inspect relationship names\nHover over nodes to inspect labels, groups, and full URIs\n\n\n\n4.1.2 How to use this page\n\nUse the view selector to switch between graph modes\nPan/Zoom to navigate dense clusters\nHover over nodes and edges to inspect labels, URIs, and relationship types\nClick a node to highlight immediate relationships\nUse the node selector within each graph to jump to a resource\n\n\nSelect graph view:\n\nFull Graph\nHierarchy Only\nObject Properties Only\nDatatype Properties Only",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Ontology Module Review</span>"
+    ]
+  },
+  {
+    "objectID": "rec-vis.html#notes",
+    "href": "rec-vis.html#notes",
+    "title": "4  Ontology Module Review",
+    "section": "4.2 Notes",
+    "text": "4.2 Notes\nThis page is designed specifically for 02-recreation-ontology.ttl.\n\n4.2.1 Graph views\n\nFull Graph combines hierarchy, object-property, and datatype-property relationships\nHierarchy Only shows only rdfs:subClassOf\nObject Properties Only shows domain --property--&gt; range\nDatatype Properties Only shows domain --property--&gt; datatype\n\n\n\n4.2.2 Node categories\n\nontology classes\nsuperclasses\nXSD datatypes\nexternal SKOS concepts\nexternal classes such as owl:Thing\n\nThis design avoids cross-view leakage by rendering separate graph widgets for each mode.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Ontology Module Review</span>"
+    ]
+  },
+  {
+    "objectID": "07-recreation-spatial-diagrams.html",
+    "href": "07-recreation-spatial-diagrams.html",
+    "title": "5  Recreation Spatial Diagrams",
+    "section": "",
+    "text": "5.1 Ontology Scope\nThese diagrams describe the active spatial extension in 06-recreation-spatial.ttl. The spatial ontology models GIS-recordable feature representations; it does not replace recreation business entities, source vocabulary concepts, or geometry instances.\nflowchart LR\n    RECS[\"recs: Recreation Spatial Ontology\"]\n    REC[\"rec: Recreation Domain Ontology\"]\n    USF[\"usf: Spatial Foundation\"]\n    UPR[\"upr: Physical Realms\"]\n    GEO[\"GeoSPARQL\"]\n\n    RECS --&gt;|imports| REC\n    RECS --&gt;|imports| USF\n    RECS --&gt;|imports| UPR\n    RECS --&gt;|imports| GEO\n    RECS --&gt; RSF[\"recs:RecreationSpatialFeature\"]",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Recreation Spatial Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "07-recreation-spatial-diagrams.html#core-spatial-contract",
+    "href": "07-recreation-spatial-diagrams.html#core-spatial-contract",
+    "title": "5  Recreation Spatial Diagrams",
+    "section": "5.2 Core Spatial Contract",
+    "text": "5.2 Core Spatial Contract\n\n\n\n\n\nclassDiagram\n    class GeoFeature\n    class SpatialFeature\n    class RecreationSpatialFeature {\n        &lt;&lt;owl:Class&gt;&gt;\n        +sourceLayerName\n        +featureGrain\n        +sourceIdentifier\n    }\n    class RecreationDomainEntity\n    class SourceConcept\n    class Geometry\n    class PhysicalRealm\n    class SpatialPattern\n\n    GeoFeature &lt;|-- RecreationSpatialFeature\n    SpatialFeature &lt;|-- RecreationSpatialFeature\n    RecreationSpatialFeature --&gt; RecreationDomainEntity : representsEntity\n    RecreationSpatialFeature --&gt; SourceConcept : representsConcept\n    RecreationSpatialFeature --&gt; Geometry : geo_hasGeometry\n    RecreationSpatialFeature --&gt; PhysicalRealm : intersectsPhysicalRealm\n    RecreationSpatialFeature --&gt; SpatialPattern : usesSpatialPattern",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Recreation Spatial Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "07-recreation-spatial-diagrams.html#representation-relationship",
+    "href": "07-recreation-spatial-diagrams.html#representation-relationship",
+    "title": "5  Recreation Spatial Diagrams",
+    "section": "5.3 Representation Relationship",
+    "text": "5.3 Representation Relationship\n\n\n\n\n\nflowchart LR\n    Entity[\"rec:RecreationDomainEntity\"]\n    Feature[\"recs:RecreationSpatialFeature\"]\n    Geometry[\"geo:Geometry\"]\n    Concept[\"skos:Concept\"]\n\n    Entity --&gt;|rec:hasSpatialRepresentation| Feature\n    Feature --&gt;|recs:representsEntity| Entity\n    Feature --&gt;|geo:hasGeometry| Geometry\n    Feature --&gt;|recs:representsConcept| Concept",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Recreation Spatial Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "07-recreation-spatial-diagrams.html#spatial-pattern-model",
+    "href": "07-recreation-spatial-diagrams.html#spatial-pattern-model",
+    "title": "5  Recreation Spatial Diagrams",
+    "section": "5.4 Spatial Pattern Model",
+    "text": "5.4 Spatial Pattern Model\n\n\n\n\n\nflowchart LR\n    Pattern[\"recs:usesSpatialPattern\"]\n    Direct[\"recs:DirectFeaturePattern\"]\n    Representation[\"recs:RepresentationFeaturePattern\"]\n    Feature[\"all current recs feature classes\"]\n\n    Feature --&gt; Pattern\n    Pattern --&gt; Representation\n    Pattern -. available but not currently used .-&gt; Direct",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Recreation Spatial Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "07-recreation-spatial-diagrams.html#complete-class-hierarchy",
+    "href": "07-recreation-spatial-diagrams.html#complete-class-hierarchy",
+    "title": "5  Recreation Spatial Diagrams",
+    "section": "5.5 Complete Class Hierarchy",
+    "text": "5.5 Complete Class Hierarchy\n\n\n\n\n\nclassDiagram\n    class RecreationSpatialFeature\n    class RecreationAreaFeature\n    class RecreationFacilityFeature\n    class RecreationAmenityFeature\n    class WaterAccessFeature\n    class CampgroundFeature\n    class CampsiteFeature\n    class DayUseAreaFeature\n    class PicnicAreaFeature\n    class MarinaFeature\n    class BoatRampFeature\n    class FishingPierFeature\n    class FuelDockFeature\n    class SwimmingAreaFeature\n    class TrailFeature\n    class ParkingAreaFeature\n    class RestroomFeature\n    class VisitorCenterFeature\n    class LandClassificationAreaFeature\n    class WaterSurfaceZoneFeature\n    class ProjectBoundaryFeature\n\n    RecreationSpatialFeature &lt;|-- RecreationAreaFeature\n    RecreationSpatialFeature &lt;|-- RecreationFacilityFeature\n    RecreationSpatialFeature &lt;|-- RecreationAmenityFeature\n    RecreationSpatialFeature &lt;|-- WaterAccessFeature\n    RecreationSpatialFeature &lt;|-- LandClassificationAreaFeature\n    RecreationSpatialFeature &lt;|-- WaterSurfaceZoneFeature\n    RecreationSpatialFeature &lt;|-- ProjectBoundaryFeature\n\n    RecreationFacilityFeature &lt;|-- CampgroundFeature\n    RecreationFacilityFeature &lt;|-- DayUseAreaFeature\n    RecreationFacilityFeature &lt;|-- TrailFeature\n    RecreationFacilityFeature &lt;|-- VisitorCenterFeature\n\n    RecreationAmenityFeature &lt;|-- CampsiteFeature\n    RecreationAmenityFeature &lt;|-- PicnicAreaFeature\n    RecreationAmenityFeature &lt;|-- ParkingAreaFeature\n    RecreationAmenityFeature &lt;|-- RestroomFeature\n\n    WaterAccessFeature &lt;|-- MarinaFeature\n    WaterAccessFeature &lt;|-- BoatRampFeature\n    WaterAccessFeature &lt;|-- FishingPierFeature\n    WaterAccessFeature &lt;|-- FuelDockFeature\n    WaterAccessFeature &lt;|-- SwimmingAreaFeature",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Recreation Spatial Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "07-recreation-spatial-diagrams.html#area-and-facility-representations",
+    "href": "07-recreation-spatial-diagrams.html#area-and-facility-representations",
+    "title": "5  Recreation Spatial Diagrams",
+    "section": "5.6 Area And Facility Representations",
+    "text": "5.6 Area And Facility Representations\n\n\n\n\n\nflowchart LR\n    RAF[\"RecreationAreaFeature&lt;br/&gt;sf:Polygon\"] --&gt; RA[\"rec:RecreationArea\"]\n    RFF[\"RecreationFacilityFeature&lt;br/&gt;geo:Geometry\"] --&gt; RF[\"rec:RecreationFacility\"]\n    CGF[\"CampgroundFeature&lt;br/&gt;sf:Polygon\"] --&gt; CG[\"rec:Campground\"]\n    DUF[\"DayUseAreaFeature&lt;br/&gt;sf:Polygon\"] --&gt; DU[\"rec:DayUseArea\"]\n    TF[\"TrailFeature&lt;br/&gt;sf:LineString\"] --&gt; TR[\"rec:Trail\"]\n    VCF[\"VisitorCenterFeature&lt;br/&gt;sf:Polygon\"] --&gt; VC[\"rec:VisitorCenter\"]",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Recreation Spatial Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "07-recreation-spatial-diagrams.html#amenity-representations",
+    "href": "07-recreation-spatial-diagrams.html#amenity-representations",
+    "title": "5  Recreation Spatial Diagrams",
+    "section": "5.7 Amenity Representations",
+    "text": "5.7 Amenity Representations\n\n\n\n\n\nflowchart LR\n    RAF[\"RecreationAmenityFeature&lt;br/&gt;geo:Geometry\"] --&gt; RA[\"rec:RecreationAmenity\"]\n    CSF[\"CampsiteFeature&lt;br/&gt;sf:Point\"] --&gt; CS[\"rec:Campsite\"]\n    PAF[\"PicnicAreaFeature&lt;br/&gt;sf:Polygon\"] --&gt; PA[\"rec:PicnicArea\"]\n    PKF[\"ParkingAreaFeature&lt;br/&gt;sf:Polygon\"] --&gt; PK[\"rec:ParkingArea\"]\n    RRF[\"RestroomFeature&lt;br/&gt;sf:Point\"] --&gt; RR[\"rec:Restroom\"]",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Recreation Spatial Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "07-recreation-spatial-diagrams.html#water-access-representations",
+    "href": "07-recreation-spatial-diagrams.html#water-access-representations",
+    "title": "5  Recreation Spatial Diagrams",
+    "section": "5.8 Water Access Representations",
+    "text": "5.8 Water Access Representations\n\n\n\n\n\nflowchart LR\n    WAF[\"WaterAccessFeature&lt;br/&gt;geo:Geometry\"] --&gt; WAA[\"rec:WaterAccessAsset\"]\n    MF[\"MarinaFeature&lt;br/&gt;sf:Polygon\"] --&gt; MAR[\"rec:Marina\"]\n    BRF[\"BoatRampFeature&lt;br/&gt;geo:Geometry\"] --&gt; BR[\"rec:BoatRamp\"]\n    FPF[\"FishingPierFeature&lt;br/&gt;geo:Geometry\"] --&gt; FP[\"rec:FishingPier\"]\n    FDF[\"FuelDockFeature&lt;br/&gt;geo:Geometry\"] --&gt; FD[\"rec:FuelDock\"]\n    SAF[\"SwimmingAreaFeature&lt;br/&gt;sf:Polygon\"] --&gt; SA[\"rec:SwimmingArea\"]",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Recreation Spatial Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "07-recreation-spatial-diagrams.html#source-concept-and-boundary-records",
+    "href": "07-recreation-spatial-diagrams.html#source-concept-and-boundary-records",
+    "title": "5  Recreation Spatial Diagrams",
+    "section": "5.9 Source Concept And Boundary Records",
+    "text": "5.9 Source Concept And Boundary Records\n{mermaid} flowchart LR LCF[“LandClassificationAreaFeaturesf:Polygon”] –&gt; LC[“skos:Conceptland allocation or classification”] WZF[“WaterSurfaceZoneFeaturesf:Polygon”] –&gt; WZ[“skos:Conceptwater surface zoning”] PBF[“ProjectBoundaryFeaturesf:Polygon”] –&gt; PB[“source boundary conceptimplementation-specific”]\nLCF --&gt;|recs:representsConcept| LC\nWZF --&gt;|recs:representsConcept| WZ\nPBF --&gt;|recs:representsConcept when source-backed| PB\n\n## Physical Realm Context\n\n{mermaid}\nflowchart LR\n    Feature[\"recs:RecreationSpatialFeature\"]\n    Land[\"upr:LandRealm\"]\n    Water[\"upr:AquaticSurface\"]\n    Interface[\"land-water interface\"]\n\n    Feature --&gt;|recs:intersectsPhysicalRealm| Land\n    Feature --&gt;|recs:intersectsPhysicalRealm| Water\n    Land --- Interface\n    Water --- Interface\n    Interface --&gt; BoatRamp[\"BoatRampFeature\"]\n    Interface --&gt; Marina[\"MarinaFeature\"]\n    Interface --&gt; FishingPier[\"FishingPierFeature\"]\n    Interface --&gt; SwimmingArea[\"SwimmingAreaFeature\"]",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Recreation Spatial Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "07-recreation-spatial-diagrams.html#source-layer-metadata",
+    "href": "07-recreation-spatial-diagrams.html#source-layer-metadata",
+    "title": "5  Recreation Spatial Diagrams",
+    "section": "5.10 Source Layer Metadata",
+    "text": "5.10 Source Layer Metadata\n{mermaid} flowchart LR Layer[“source layer or feature class”] Row[“source record”] Feature[“recs:RecreationSpatialFeature”] Entity[“rec:RecreationDomainEntity”] Concept[“skos:Concept”] Geometry[“geo:Geometry”]\nLayer --&gt;|recs:sourceLayerName| Feature\nRow --&gt;|recs:sourceIdentifier| Feature\nFeature --&gt;|recs:featureGrain| Row\nFeature --&gt;|recs:representsEntity| Entity\nFeature --&gt;|recs:representsConcept| Concept\nFeature --&gt;|geo:hasGeometry| Geometry\n```",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Recreation Spatial Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "07-recreation-spatial-diagrams.html#feature-matrix",
+    "href": "07-recreation-spatial-diagrams.html#feature-matrix",
+    "title": "5  Recreation Spatial Diagrams",
+    "section": "5.11 Feature Matrix",
+    "text": "5.11 Feature Matrix\n\n\n\n\n\n\n\n\n\nSpatial class\nParent class\nGeometry restriction\nRepresents\n\n\n\n\nrecs:RecreationAreaFeature\nrecs:RecreationSpatialFeature\nsf:Polygon\nrec:RecreationArea\n\n\nrecs:RecreationFacilityFeature\nrecs:RecreationSpatialFeature\ngeo:Geometry\nrec:RecreationFacility\n\n\nrecs:RecreationAmenityFeature\nrecs:RecreationSpatialFeature\ngeo:Geometry\nrec:RecreationAmenity\n\n\nrecs:CampgroundFeature\nrecs:RecreationFacilityFeature\nsf:Polygon\nrec:Campground\n\n\nrecs:CampsiteFeature\nrecs:RecreationAmenityFeature\nsf:Point\nrec:Campsite\n\n\nrecs:DayUseAreaFeature\nrecs:RecreationFacilityFeature\nsf:Polygon\nrec:DayUseArea\n\n\nrecs:PicnicAreaFeature\nrecs:RecreationAmenityFeature\nsf:Polygon\nrec:PicnicArea\n\n\nrecs:MarinaFeature\nrecs:WaterAccessFeature\nsf:Polygon\nrec:Marina\n\n\nrecs:WaterAccessFeature\nrecs:RecreationSpatialFeature\ngeo:Geometry\nrec:WaterAccessAsset\n\n\nrecs:BoatRampFeature\nrecs:WaterAccessFeature\ngeo:Geometry\nrec:BoatRamp\n\n\nrecs:FishingPierFeature\nrecs:WaterAccessFeature\ngeo:Geometry\nrec:FishingPier\n\n\nrecs:FuelDockFeature\nrecs:WaterAccessFeature\ngeo:Geometry\nrec:FuelDock\n\n\nrecs:SwimmingAreaFeature\nrecs:WaterAccessFeature\nsf:Polygon\nrec:SwimmingArea\n\n\nrecs:TrailFeature\nrecs:RecreationFacilityFeature\nsf:LineString\nrec:Trail\n\n\nrecs:ParkingAreaFeature\nrecs:RecreationAmenityFeature\nsf:Polygon\nrec:ParkingArea\n\n\nrecs:RestroomFeature\nrecs:RecreationAmenityFeature\nsf:Point\nrec:Restroom\n\n\nrecs:VisitorCenterFeature\nrecs:RecreationFacilityFeature\nsf:Polygon\nrec:VisitorCenter\n\n\nrecs:LandClassificationAreaFeature\nrecs:RecreationSpatialFeature\nsf:Polygon\nsource-backed skos:Concept by implementation profile\n\n\nrecs:WaterSurfaceZoneFeature\nrecs:RecreationSpatialFeature\nsf:Polygon\nsource-backed skos:Concept by implementation profile\n\n\nrecs:ProjectBoundaryFeature\nrecs:RecreationSpatialFeature\nsf:Polygon\nsource-backed boundary concept by implementation profile",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Recreation Spatial Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "07-recreation-spatial-diagrams.html#property-matrix",
+    "href": "07-recreation-spatial-diagrams.html#property-matrix",
+    "title": "5  Recreation Spatial Diagrams",
+    "section": "5.12 Property Matrix",
+    "text": "5.12 Property Matrix\n\n\n\n\n\n\n\n\n\n\nProperty\nType\nDomain\nRange\nRole\n\n\n\n\nrecs:representsEntity\nObject property\nrecs:RecreationSpatialFeature\nrec:RecreationDomainEntity\nLinks a GIS representation to the managed recreation entity it represents.\n\n\nrecs:representsConcept\nObject property\nrecs:RecreationSpatialFeature\nskos:Concept\nLinks a GIS representation to a source-backed classification, zoning, or boundary concept.\n\n\nrec:hasSpatialRepresentation\nObject property\nrec:RecreationDomainEntity\nrecs:RecreationSpatialFeature\nInverse of recs:representsEntity.\n\n\nrecs:usesSpatialPattern\nObject property\nrecs:RecreationSpatialFeature\nowl:Thing\nDeclares whether the feature is modeled as a representation or direct feature pattern.\n\n\nrecs:intersectsPhysicalRealm\nObject property\nrecs:RecreationSpatialFeature\nupr:PhysicalRealm\nConnects a spatial feature to land, water, or other physical realm context.\n\n\nrecs:sourceLayerName\nDatatype property\nrecs:RecreationSpatialFeature\nxsd:string\nPreserves the source layer or feature class name.\n\n\nrecs:featureGrain\nDatatype property\nrecs:RecreationSpatialFeature\nxsd:string\nExplains what one source row or feature represents.\n\n\nrecs:sourceIdentifier\nDatatype property\nrecs:RecreationSpatialFeature\nxsd:string\nPreserves the source record identifier or crosswalk key.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Recreation Spatial Diagrams</span>"
+    ]
+  },
+  {
+    "objectID": "12-recreation-sdsfie-crosswalk.html",
+    "href": "12-recreation-sdsfie-crosswalk.html",
+    "title": "6  Recreation SDSFIE Crosswalk",
+    "section": "",
+    "text": "6.1 Purpose\nStatus: v2 review draft Date: 2026-06-01 Sources: Recreation v2 artifacts; SDSFIE 5.0 Gold Draft vocabulary, ontology, and enumerations\nThis crosswalk records where SDSFIE terminology can be mapped cleanly to the recreation ontology without making SDSFIE’s feature model govern the recreation conceptual model.\nThe recreation model keeps these boundaries:",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Recreation SDSFIE Crosswalk</span>"
+    ]
+  },
+  {
+    "objectID": "12-recreation-sdsfie-crosswalk.html#purpose",
+    "href": "12-recreation-sdsfie-crosswalk.html#purpose",
+    "title": "6  Recreation SDSFIE Crosswalk",
+    "section": "",
+    "text": "rec:* classes are business/domain concepts.\nrecs:*Feature classes are GIS representation classes.\nrecv:* concepts preserve recreation source vocabulary.\nsd:* and sde:* terms are SDSFIE alignment anchors.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Recreation SDSFIE Crosswalk</span>"
+    ]
+  },
+  {
+    "objectID": "12-recreation-sdsfie-crosswalk.html#mapping-semantics",
+    "href": "12-recreation-sdsfie-crosswalk.html#mapping-semantics",
+    "title": "6  Recreation SDSFIE Crosswalk",
+    "section": "6.2 Mapping Semantics",
+    "text": "6.2 Mapping Semantics\nPredicates are written from the recreation term to the SDSFIE anchor.\n\n\n\n\n\n\n\nPredicate\nMeaning in this crosswalk\n\n\n\n\nskos:exactMatch\nThe recreation term and SDSFIE anchor can be treated as equivalent for the mapped feature concept.\n\n\nskos:closeMatch\nThe concepts are operationally close, but differ by model grain, feature/entity boundary, or implementation convention.\n\n\nskos:broadMatch\nThe SDSFIE anchor is broader than the recreation term.\n\n\nskos:narrowMatch\nThe SDSFIE anchor is narrower than the recreation term.\n\n\nskos:relatedMatch\nThe terms are relevant to one another but should not be treated as a hierarchy or equivalence.\n\n\nNo mapping\nNo class-level SDSFIE anchor is clear enough to assert by default.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Recreation SDSFIE Crosswalk</span>"
+    ]
+  },
+  {
+    "objectID": "12-recreation-sdsfie-crosswalk.html#spatial-feature-crosswalk",
+    "href": "12-recreation-sdsfie-crosswalk.html#spatial-feature-crosswalk",
+    "title": "6  Recreation SDSFIE Crosswalk",
+    "section": "6.3 Spatial Feature Crosswalk",
+    "text": "6.3 Spatial Feature Crosswalk\n\n\n\n\n\n\n\n\n\n\nRecreation term\nRecreation meaning\nSDSFIE anchor\nMapping\nNotes\n\n\n\n\nrecs:RecreationAreaFeature\nGIS representation of rec:RecreationArea\nsd:RecreationBoundary\nskos:closeMatch\nSDSFIE’s boundary represents the overall recreation area. Recreation keeps the managed area entity separate from its boundary feature.\n\n\nrecs:RecreationFacilityFeature\nGeneric facility representation\nsd:RecreationFeature\nskos:broadMatch\nSDSFIE RecreationFeature is a general storage class for recreation objects and assets.\n\n\nrecs:RecreationAmenityFeature\nGeneric amenity representation\nsd:RecreationFeature\nskos:broadMatch\nAmenity is a clearer recreation role than the flat SDSFIE feature bucket.\n\n\nrecs:CampgroundFeature\nCampground spatial representation\nsd:Campground\nskos:exactMatch\nSDSFIE also allows the campground recreation feature type value when using the generic feature class.\n\n\nrecs:CampsiteFeature\nIndividual campsite representation\nsd:Campsite\nskos:exactMatch\nSDSFIE campsite use values can be implementation attributes, not recreation OWL subclasses by default.\n\n\nrecs:DayUseAreaFeature\nManaged day-use area representation\nsd:RecreationFeature\nskos:broadMatch\nSDSFIE has no clean day-use-area class-level anchor.\n\n\nrecs:PicnicAreaFeature\nPicnic area representation\nsde:RecreationFeatureUseType_picnicSite\nskos:closeMatch\nSDSFIE models this as a recreation feature type value rather than a standalone class.\n\n\nrecs:MarinaFeature\nManaged boating facility representation\nsd:Marina\nskos:closeMatch\nSDSFIE marina is a harbor facility. Recreation marina is a managed recreation facility and water access asset.\n\n\nrecs:WaterAccessFeature\nGeneric water access representation\nsd:RecreationFeature\nskos:relatedMatch\nWater access is a recreation facet that can cut across several SDSFIE classes and values.\n\n\nrecs:BoatRampFeature\nRecreational boat launch representation\nsde:RecreationFeatureUseType_boatRamp\nskos:closeMatch\nDo not map recreational boat ramps to sd:BoatRamp; SDSFIE scopes that feature class to non-recreational ramps.\n\n\nrecs:FishingPierFeature\nFishing platform or pier representation\nsd:FishingFeature\nskos:broadMatch\nSDSFIE fishing feature is broader than a fishing pier.\n\n\nrecs:FishingPierFeature\nFishing platform or pier representation\nsd:DockOrWharf\nskos:relatedMatch\nUseful when the source feature is also managed as dock or wharf infrastructure.\n\n\nrecs:FuelDockFeature\nMarine fuel service asset representation\nsd:DockOrWharf\nskos:broadMatch\nSDSFIE has the generic water-land interface structure; fuel service is the narrower recreation asset role.\n\n\nrecs:SwimmingAreaFeature\nDesignated swimming area representation\nsde:RecreationFeatureUseType_swimmingDesignatedBeach\nskos:closeMatch\nClose when the source feature is a designated beach.\n\n\nrecs:SwimmingAreaFeature\nDesignated swimming area representation\nsde:RecreationFeatureUseType_waterActivitySite\nskos:broadMatch\nUse for broader water activity site implementations.\n\n\nrecs:TrailFeature\nManaged recreation route representation\nsd:RecreationTrail\nskos:exactMatch\nTrail use values remain attributes or source concepts unless separate classes are justified.\n\n\nrecs:ParkingAreaFeature\nRecreation parking area representation\nsd:ParkingArea\nskos:exactMatch\nSDSFIE explicitly separates parking area mapping from pavement management segmentation.\n\n\nrecs:RestroomFeature\nRestroom representation\nsde:RecreationFeatureUseType_restroom\nskos:closeMatch\nSDSFIE restroom value is flush-oriented. Vault toilets map separately.\n\n\nrecs:VisitorCenterFeature\nVisitor information and interpretation facility representation\nsde:RecreationFeatureUseType_museumOrVisitorCenter\nskos:closeMatch\nSDSFIE combines museums and visitor centers under one feature type value.\n\n\nrecs:LandClassificationAreaFeature\nSource-backed land classification area\nsd:LandUse\nskos:relatedMatch\nSDSFIE land use is related, but not identical to USACE recreation land allocation or classification concepts.\n\n\nrecs:WaterSurfaceZoneFeature\nSource-backed water surface zone\nsd:RestrictedArea\nskos:relatedMatch\nApplies only when the zone restricts access or activity. Other water-surface zones require source-specific mapping.\n\n\nrecs:ProjectBoundaryFeature\nProject boundary representation\nNo default mapping\nNo mapping\nA project boundary is not automatically a SDSFIE recreation boundary. Map to sd:RecreationBoundary only when the source explicitly represents a recreation area boundary.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Recreation SDSFIE Crosswalk</span>"
+    ]
+  },
+  {
+    "objectID": "12-recreation-sdsfie-crosswalk.html#domain-terms-without-current-spatial-feature-classes",
+    "href": "12-recreation-sdsfie-crosswalk.html#domain-terms-without-current-spatial-feature-classes",
+    "title": "6  Recreation SDSFIE Crosswalk",
+    "section": "6.4 Domain Terms Without Current Spatial Feature Classes",
+    "text": "6.4 Domain Terms Without Current Spatial Feature Classes\nThese recreation domain classes have useful SDSFIE anchors, but the active spatial extension does not currently define separate recs:*Feature classes for each one.\n\n\n\n\n\n\n\n\n\nRecreation term\nSDSFIE anchor\nMapping\nNotes\n\n\n\n\nrec:PicnicShelter\nsde:RecreationFeatureUseType_picnicShelter\nskos:closeMatch\nSDSFIE models picnic shelter as a recreation feature type value.\n\n\nrec:Playground\nsd:Playground\nskos:closeMatch\nThe SDSFIE class is spatial/entity oriented; recreation keeps playground as an amenity domain class.\n\n\nrec:BoatSlip\nsd:DockOrWharf\nskos:relatedMatch\nA slip is a managed mooring location, not necessarily the dock or wharf structure itself.\n\n\nrec:PumpOutStation\nsd:DockOrWharf\nskos:relatedMatch\nRelated when the station is located on dock infrastructure; no default equivalence.\n\n\nrec:Restroom\nsde:RecreationFeatureUseType_restroom; sde:RecreationFeatureUseType_vaultToilet\nskos:narrowMatch\nSDSFIE separates narrower restroom feature type values below the broader recreation restroom domain class.\n\n\nrec:FlushRestroom\nsde:RecreationFeatureUseType_restroom\nskos:exactMatch\nSDSFIE restroom definition is flush-water oriented.\n\n\nrec:VaultToilet\nsde:RecreationFeatureUseType_vaultToilet\nskos:exactMatch\nSDSFIE has a specific vault toilet recreation feature type value.\n\n\nrec:Trail\nsde:RecreationTrailUseType_hike; sde:RecreationTrailUseType_bike; sde:RecreationTrailUseType_equestrianOrPack\nskos:narrowMatch\nSDSFIE trail use values are narrower than the general managed trail class.\n\n\nrec:HikingTrail\nsde:RecreationTrailUseType_hike\nskos:closeMatch\nSDSFIE trail use value can type a recs:TrailFeature implementation.\n\n\nrec:BikeTrail\nsde:RecreationTrailUseType_bike\nskos:closeMatch\nSDSFIE trail use value can type a recs:TrailFeature implementation.\n\n\nrec:EquestrianTrail\nsde:RecreationTrailUseType_equestrianOrPack\nskos:closeMatch\nSDSFIE combines equestrian and pack trail use.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Recreation SDSFIE Crosswalk</span>"
+    ]
+  },
+  {
+    "objectID": "12-recreation-sdsfie-crosswalk.html#sdsfie-anchors-to-use-carefully",
+    "href": "12-recreation-sdsfie-crosswalk.html#sdsfie-anchors-to-use-carefully",
+    "title": "6  Recreation SDSFIE Crosswalk",
+    "section": "6.5 SDSFIE Anchors To Use Carefully",
+    "text": "6.5 SDSFIE Anchors To Use Carefully\n\n\n\n\n\n\n\nSDSFIE term\nCrosswalk decision\n\n\n\n\nsd:BoatRamp\nDo not use as the recreational boat ramp match. SDSFIE scopes the class to non-recreational boat ramps and directs recreational ramps to sd:RecreationFeature with the boat ramp type value.\n\n\nsd:RecreationFeature\nUse as a broad anchor for generic recreation assets, not as a replacement for rec:RecreationFacility, rec:RecreationAmenity, or rec:WaterAccessAsset.\n\n\nsd:RecreationBoundary\nUse for overall recreation area boundaries, not for every recreation use area or project boundary.\n\n\nsd:DockOrWharf\nUse for dock/wharf infrastructure. Do not collapse boat slips, fuel docks, pump-out stations, and fishing piers into this class unless the source feature grain supports that interpretation.\n\n\nsd:LandUse\nRelated to recreation land classification, but not equivalent to USACE source classification vocabularies.\n\n\nsd:RestrictedArea\nRelated to water-surface zones only when the zone restricts access or activity.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Recreation SDSFIE Crosswalk</span>"
+    ]
+  },
+  {
+    "objectID": "12-recreation-sdsfie-crosswalk.html#implementation-rule",
+    "href": "12-recreation-sdsfie-crosswalk.html#implementation-rule",
+    "title": "6  Recreation SDSFIE Crosswalk",
+    "section": "6.6 Implementation Rule",
+    "text": "6.6 Implementation Rule\nUse SDSFIE mappings as crosswalk assertions and migration aids. Do not make SDSFIE classes superclasses of recreation classes unless an implementation profile explicitly requires that inheritance.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Recreation SDSFIE Crosswalk</span>"
+    ]
+  }
+]
