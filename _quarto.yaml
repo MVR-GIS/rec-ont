@@ -19,7 +19,6 @@ book:
 format:
   html:
     theme: cosmo
-    css: styles.css
     toc: true
     embed-resources: true
 
