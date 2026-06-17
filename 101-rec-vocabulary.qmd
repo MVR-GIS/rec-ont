@@ -1,0 +1,754 @@
+---
+format:
+  html:
+    toc: true
+    page-layout: full
+---
+
+# Recreation Vocabulary Review
+
+This page is designed to support review of the controlled vocabulary that informs the recreation ontology.
+
+It focuses on:
+
+- **vocabulary concepts** rather than ontology classes
+- **broader/narrower concept structure**
+- **connections from vocabulary concepts to ontology resources**
+- **review clarity** over exhaustive RDF inspection
+
+## How to use this page
+
+Recommended review sequence:
+
+1. Start with the **Vocabulary In Context** diagram
+2. Review the **Major Vocabulary Families**
+3. Use the **Interactive Vocabulary Explorer** to inspect specific concepts
+4. Consult the **Concept Inventory** for a tabular audit view
+
+As you review, consider:
+
+- Are these items really best modeled as **concepts** rather than **classes**?
+- Are broader/narrower relationships intuitive?
+- Are any concepts too implementation-specific for a shared vocabulary?
+- Are concept-to-ontology links clear and appropriate?
+
+```{r setup, include=FALSE}
+library(rdflib)
+library(dplyr)
+library(stringr)
+library(tibble)
+library(tidyr)
+library(purrr)
+library(visNetwork)
+library(htmltools)
+library(htmlwidgets)
+library(DT)
+```
+
+```{r configuration, include=FALSE}
+# Update this path as needed when collaborator files move or are renamed.
+ttl_file <- "data/01-recreation-vocabulary.ttl"
+
+# Display configuration
+default_group_name <- "Other Concepts"
+
+group_colors <- c(
+  "Top Concept" = "#1E4620",
+  "Concept Scheme" = "#4A7A96",
+  "Area Classification" = "#8C6D31",
+  "Camp Classification" = "#A6611A",
+  "Trail Concepts" = "#1F78B4",
+  "Water Concepts" = "#0B775E",
+  "Land / Water Classification" = "#6A3D9A",
+  "Ontology Link Target" = "#7A7A7A",
+  "External Concept" = "#999999",
+  "Other Concepts" = "#666666"
+)
+
+priority_group_patterns <- tribble(
+  ~group, ~pattern,
+  "Area Classification", "area|allocation|classification|project boundary|boundary",
+  "Camp Classification", "camp|campsite|campground|fee class|development class",
+  "Trail Concepts", "trail|trailhead|trail access|hiking|bike|equestrian",
+  "Water Concepts", "marina|boat|dock|pier|swimming|water access|aquatic",
+  "Land / Water Classification", "land use|restricted area|water surface|zoning|realm"
+)
+```
+
+```{r rdf-helpers, include=FALSE}
+clean_uri_token <- function(x) {
+  gsub("^<|>$", "", x)
+}
+
+is_uri_token <- function(x) {
+  grepl("^<[^>]+>$", x)
+}
+
+strip_literal_quotes <- function(x) {
+  x %>%
+    sub("@[A-Za-z0-9_-]+$", "", .) %>%
+    sub("\\^\\^<[^>]+>$", "", .) %>%
+    sub('^"', "", .) %>%
+    sub('"$', "", .)
+}
+
+get_local_name <- function(uri) {
+  ifelse(
+    is.na(uri) | uri == "",
+    uri,
+    sub("^.*[/#]", "", uri)
+  )
+}
+
+safe_first <- function(x) {
+  if (length(x) == 0) return(NA_character_)
+  x[[1]]
+}
+
+coalesce_text <- function(...) {
+  vals <- list(...)
+  for (v in vals) {
+    if (!all(is.na(v)) && any(nzchar(replace_na(v, "")))) return(v)
+  }
+  vals[[1]]
+}
+```
+
+```{r rdf-parse, include=FALSE}
+rdf <- rdf_parse(ttl_file, format = "turtle")
+
+nt_text <- rdf_serialize(rdf, format = "ntriples")
+nt_lines <- strsplit(nt_text, "\n", fixed = TRUE)[[1]]
+nt_lines <- nt_lines[nzchar(trimws(nt_lines))]
+
+triple_match <- stringr::str_match(
+  nt_lines,
+  '^\\s*(<[^>]+>)\\s+(<[^>]+>)\\s+(.+)\\s+\\.\\s*$'
+)
+
+triples <- data.frame(
+  subject   = triple_match[, 2],
+  predicate = triple_match[, 3],
+  object    = triple_match[, 4],
+  stringsAsFactors = FALSE
+) %>%
+  filter(!is.na(subject), !is.na(predicate), !is.na(object)) %>%
+  mutate(
+    subject = clean_uri_token(subject),
+    predicate = clean_uri_token(predicate),
+    object = ifelse(is_uri_token(object), clean_uri_token(object), object)
+  )
+```
+
+```{r vocab-constants, include=FALSE}
+rdf_type              <- "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+rdfs_label            <- "http://www.w3.org/2000/01/rdf-schema#label"
+rdfs_comment          <- "http://www.w3.org/2000/01/rdf-schema#comment"
+
+skos_concept          <- "http://www.w3.org/2004/02/skos/core#Concept"
+skos_concept_scheme   <- "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+skos_pref_label       <- "http://www.w3.org/2004/02/skos/core#prefLabel"
+skos_alt_label        <- "http://www.w3.org/2004/02/skos/core#altLabel"
+skos_definition       <- "http://www.w3.org/2004/02/skos/core#definition"
+skos_broader          <- "http://www.w3.org/2004/02/skos/core#broader"
+skos_narrower         <- "http://www.w3.org/2004/02/skos/core#narrower"
+skos_related          <- "http://www.w3.org/2004/02/skos/core#related"
+skos_in_scheme        <- "http://www.w3.org/2004/02/skos/core#inScheme"
+skos_top_concept_of   <- "http://www.w3.org/2004/02/skos/core#topConceptOf"
+skos_has_top_concept  <- "http://www.w3.org/2004/02/skos/core#hasTopConcept"
+skos_notation         <- "http://www.w3.org/2004/02/skos/core#notation"
+
+owl_class             <- "http://www.w3.org/2002/07/owl#Class"
+rdfs_class            <- "http://www.w3.org/2000/01/rdf-schema#Class"
+
+xsd_ns  <- "http://www.w3.org/2001/XMLSchema#"
+skos_ns <- "http://www.w3.org/2004/02/skos/core#"
+```
+
+```{r vocab-extract, include=FALSE}
+literal_values <- triples %>%
+  filter(!grepl("^https?://", object), !grepl("^urn:", object)) %>%
+  mutate(literal_value = strip_literal_quotes(object))
+
+pref_labels <- literal_values %>%
+  filter(predicate == skos_pref_label) %>%
+  transmute(id = subject, pref_label = literal_value) %>%
+  distinct(id, .keep_all = TRUE)
+
+rdfs_labels <- literal_values %>%
+  filter(predicate == rdfs_label) %>%
+  transmute(id = subject, rdfs_label_text = literal_value) %>%
+  distinct(id, .keep_all = TRUE)
+
+definitions <- literal_values %>%
+  filter(predicate %in% c(skos_definition, rdfs_comment)) %>%
+  transmute(id = subject, definition = literal_value) %>%
+  distinct(id, .keep_all = TRUE)
+
+notations <- literal_values %>%
+  filter(predicate == skos_notation) %>%
+  transmute(id = subject, notation = literal_value) %>%
+  distinct(id, .keep_all = TRUE)
+
+concepts <- triples %>%
+  filter(predicate == rdf_type, object == skos_concept) %>%
+  transmute(id = subject, node_type = "Concept") %>%
+  distinct()
+
+concept_schemes <- triples %>%
+  filter(predicate == rdf_type, object == skos_concept_scheme) %>%
+  transmute(id = subject, node_type = "ConceptScheme") %>%
+  distinct()
+
+ontology_targets <- triples %>%
+  filter(predicate == rdf_type, object %in% c(owl_class, rdfs_class)) %>%
+  transmute(id = subject, node_type = "OntologyTarget") %>%
+  distinct()
+
+broader_edges <- triples %>%
+  filter(predicate == skos_broader) %>%
+  transmute(from = subject, to = object, relation = "broader", edge_type = "Hierarchy")
+
+narrower_edges <- triples %>%
+  filter(predicate == skos_narrower) %>%
+  transmute(from = subject, to = object, relation = "narrower", edge_type = "Hierarchy")
+
+related_edges <- triples %>%
+  filter(predicate == skos_related) %>%
+  transmute(from = subject, to = object, relation = "related", edge_type = "Related")
+
+in_scheme_edges <- triples %>%
+  filter(predicate == skos_in_scheme) %>%
+  transmute(from = subject, to = object, relation = "inScheme", edge_type = "Scheme")
+
+top_concept_edges <- triples %>%
+  filter(predicate == skos_top_concept_of) %>%
+  transmute(from = subject, to = object, relation = "topConceptOf", edge_type = "Scheme")
+
+has_top_concept_edges <- triples %>%
+  filter(predicate == skos_has_top_concept) %>%
+  transmute(from = subject, to = object, relation = "hasTopConcept", edge_type = "Scheme")
+```
+
+```{r vocab-link-extract, include=FALSE}
+concept_ids <- concepts$id
+scheme_ids <- concept_schemes$id
+
+all_skos_predicates <- c(
+  skos_pref_label, skos_alt_label, skos_definition, skos_broader, skos_narrower,
+  skos_related, skos_in_scheme, skos_top_concept_of, skos_has_top_concept,
+  skos_notation, rdf_type, rdfs_label, rdfs_comment
+)
+
+concept_link_edges <- triples %>%
+  filter(subject %in% concept_ids, grepl("^https?://|^urn:", object)) %>%
+  filter(!predicate %in% all_skos_predicates) %>%
+  transmute(
+    from = subject,
+    to = object,
+    relation = get_local_name(predicate),
+    edge_type = "Ontology Link",
+    predicate_uri = predicate
+  )
+
+linked_targets <- concept_link_edges %>%
+  distinct(to) %>%
+  transmute(id = to)
+
+target_labels <- bind_rows(pref_labels %>% rename(label_text = pref_label),
+                           rdfs_labels %>% rename(label_text = rdfs_label_text)) %>%
+  distinct(id, .keep_all = TRUE)
+```
+
+```{r vocab-model, include=FALSE}
+vocab_nodes_raw <- bind_rows(concepts, concept_schemes) %>%
+  distinct(id, .keep_all = TRUE) %>%
+  left_join(pref_labels, by = "id") %>%
+  left_join(rdfs_labels, by = "id") %>%
+  left_join(definitions, by = "id") %>%
+  left_join(notations, by = "id") %>%
+  mutate(
+    display_label = case_when(
+      !is.na(pref_label) & nzchar(pref_label) ~ pref_label,
+      !is.na(rdfs_label_text) & nzchar(rdfs_label_text) ~ rdfs_label_text,
+      TRUE ~ get_local_name(id)
+    )
+  )
+
+top_concept_ids <- bind_rows(
+  top_concept_edges %>% transmute(id = from),
+  has_top_concept_edges %>% transmute(id = to)
+) %>%
+  distinct()
+
+scheme_membership <- bind_rows(
+  in_scheme_edges %>% transmute(id = from, scheme = to),
+  top_concept_edges %>% transmute(id = from, scheme = to)
+) %>%
+  distinct()
+
+classify_group <- function(label, uri, node_type, is_top_concept = FALSE) {
+  lower_text <- tolower(paste(label, get_local_name(uri)))
+
+  if (node_type == "ConceptScheme") return("Concept Scheme")
+  if (is_top_concept) return("Top Concept")
+
+  for (i in seq_len(nrow(priority_group_patterns))) {
+    if (str_detect(lower_text, priority_group_patterns$pattern[[i]])) {
+      return(priority_group_patterns$group[[i]])
+    }
+  }
+
+  default_group_name
+}
+
+vocab_nodes <- vocab_nodes_raw %>%
+  left_join(top_concept_ids %>% mutate(is_top_concept = TRUE), by = "id") %>%
+  left_join(scheme_membership, by = "id") %>%
+  mutate(
+    is_top_concept = replace_na(is_top_concept, FALSE),
+    group = pmap_chr(
+      list(display_label, id, node_type, is_top_concept),
+      ~ classify_group(..1, ..2, ..3, ..4)
+    ),
+    title = paste0(
+      "<b>", display_label, "</b>",
+      "<br/>Type: ", node_type,
+      "<br/>Group: ", group,
+      ifelse(!is.na(notation) & nzchar(notation), paste0("<br/>Notation: ", notation), ""),
+      ifelse(!is.na(definition) & nzchar(definition), paste0("<br/>Definition: ", definition), ""),
+      "<br/>URI: ", id
+    )
+  ) %>%
+  transmute(
+    id = id,
+    label = display_label,
+    title = title,
+    group = group,
+    node_type = node_type,
+    scheme = scheme
+  ) %>%
+  distinct(id, .keep_all = TRUE)
+
+ontology_link_nodes <- linked_targets %>%
+  left_join(target_labels, by = "id") %>%
+  left_join(ontology_targets, by = "id") %>%
+  mutate(
+    node_type = coalesce(node_type, "LinkedResource"),
+    label = ifelse(!is.na(label_text) & nzchar(label_text), label_text, get_local_name(id)),
+    group = ifelse(node_type == "OntologyTarget", "Ontology Link Target", "External Concept"),
+    title = paste0(
+      "<b>", label, "</b>",
+      "<br/>Type: ", node_type,
+      "<br/>Group: ", group,
+      "<br/>URI: ", id
+    )
+  ) %>%
+  transmute(
+    id = id,
+    label = label,
+    title = title,
+    group = group,
+    node_type = node_type,
+    scheme = NA_character_
+  ) %>%
+  distinct(id, .keep_all = TRUE)
+
+all_nodes <- bind_rows(vocab_nodes, ontology_link_nodes) %>%
+  distinct(id, .keep_all = TRUE)
+```
+
+```{r edge-model, include=FALSE}
+hierarchy_edges_raw <- bind_rows(
+  broader_edges,
+  narrower_edges
+) %>%
+  distinct()
+
+scheme_edges_raw <- bind_rows(
+  in_scheme_edges,
+  top_concept_edges,
+  has_top_concept_edges
+) %>%
+  distinct()
+
+all_edges_raw <- bind_rows(
+  hierarchy_edges_raw,
+  scheme_edges_raw,
+  related_edges,
+  concept_link_edges
+) %>%
+  distinct()
+
+style_edges <- function(edge_df) {
+  if (nrow(edge_df) == 0) return(edge_df)
+
+  edge_df %>%
+    mutate(
+      color = case_when(
+        edge_type == "Hierarchy" ~ "#2C7FB8",
+        edge_type == "Scheme" ~ "#8C6D31",
+        edge_type == "Related" ~ "#756BB1",
+        edge_type == "Ontology Link" ~ "#D95F0E",
+        TRUE ~ "#666666"
+      ),
+      dashes = edge_type %in% c("Related", "Ontology Link"),
+      width = case_when(
+        edge_type == "Hierarchy" ~ 2,
+        edge_type == "Scheme" ~ 1.5,
+        TRUE ~ 1
+      ),
+      arrows = ifelse(edge_type == "Related", "", "to"),
+      title = relation,
+      font = replicate(dplyr::n(), list(size = 10, align = "middle"), simplify = FALSE)
+    ) %>%
+    transmute(
+      from = from,
+      to = to,
+      label = relation,
+      title = title,
+      arrows = arrows,
+      color = color,
+      dashes = dashes,
+      width = width,
+      font = font
+    )
+}
+
+hierarchy_edges <- style_edges(hierarchy_edges_raw)
+scheme_edges <- style_edges(scheme_edges_raw)
+related_edges_styled <- style_edges(related_edges)
+link_edges <- style_edges(concept_link_edges)
+full_edges <- style_edges(all_edges_raw)
+```
+
+```{r graph-builders, include=FALSE}
+subset_nodes_for_edges <- function(nodes, edges) {
+  if (nrow(edges) == 0) return(nodes[0, , drop = FALSE])
+  node_ids <- unique(c(edges$from, edges$to))
+  nodes %>% filter(id %in% node_ids)
+}
+
+hierarchy_nodes <- subset_nodes_for_edges(all_nodes, hierarchy_edges)
+scheme_nodes <- subset_nodes_for_edges(all_nodes, scheme_edges)
+link_nodes <- subset_nodes_for_edges(all_nodes, link_edges)
+full_nodes <- subset_nodes_for_edges(all_nodes, full_edges)
+
+make_network <- function(nodes, edges, height = "920px", show_edge_labels = FALSE, show_legend = TRUE) {
+  if (nrow(nodes) == 0 || nrow(edges) == 0) {
+    return(tags$div("No data available for this graph view."))
+  }
+
+  edges_to_render <- edges
+  if (!show_edge_labels) {
+    edges_to_render <- edges_to_render %>% mutate(label = "")
+  }
+
+  net <- visNetwork(nodes, edges_to_render, width = "100%", height = height) %>%
+    visGroups(groupname = "Concept Scheme", color = group_colors[["Concept Scheme"]], shape = "database",
+              font = list(color = "white", size = 14)) %>%
+    visGroups(groupname = "Top Concept", color = group_colors[["Top Concept"]], shape = "hexagon",
+              font = list(color = "white", size = 14)) %>%
+    visGroups(groupname = "Area Classification", color = group_colors[["Area Classification"]], shape = "star",
+              font = list(color = "white", size = 13)) %>%
+    visGroups(groupname = "Camp Classification", color = group_colors[["Camp Classification"]], shape = "star",
+              font = list(color = "white", size = 13)) %>%
+    visGroups(groupname = "Trail Concepts", color = group_colors[["Trail Concepts"]], shape = "diamond",
+              font = list(color = "white", size = 13)) %>%
+    visGroups(groupname = "Water Concepts", color = group_colors[["Water Concepts"]], shape = "diamond",
+              font = list(color = "white", size = 13)) %>%
+    visGroups(groupname = "Land / Water Classification", color = group_colors[["Land / Water Classification"]], shape = "diamond",
+              font = list(color = "white", size = 13)) %>%
+    visGroups(groupname = "Ontology Link Target", color = group_colors[["Ontology Link Target"]], shape = "box",
+              font = list(color = "white", size = 13)) %>%
+    visGroups(groupname = "External Concept", color = group_colors[["External Concept"]], shape = "dot",
+              font = list(color = "white", size = 12)) %>%
+    visGroups(groupname = "Other Concepts", color = group_colors[["Other Concepts"]], shape = "dot",
+              font = list(color = "white", size = 12)) %>%
+    visEdges(
+      smooth = FALSE,
+      arrows = list(to = list(enabled = TRUE, scaleFactor = 0.8))
+    ) %>%
+    visNodes(borderWidth = 1, shadow = FALSE) %>%
+    visOptions(
+      highlightNearest = list(enabled = TRUE, degree = 1, hover = TRUE),
+      nodesIdSelection = list(enabled = TRUE, main = "Select a Concept or Resource")
+    ) %>%
+    visPhysics(
+      solver = "forceAtlas2Based",
+      forceAtlas2Based = list(
+        gravitationalConstant = -50,
+        centralGravity = 0.01,
+        springLength = 140,
+        springConstant = 0.04
+      ),
+      stabilization = list(iterations = 300)
+    ) %>%
+    visInteraction(
+      navigationButtons = TRUE,
+      keyboard = TRUE,
+      hover = TRUE
+    )
+
+  if (show_legend) {
+    net <- net %>%
+      visLegend(
+        addNodes = data.frame(
+          label = c(
+            "Concept Scheme", "Top Concept", "Area Classification",
+            "Camp Classification", "Trail Concepts", "Water Concepts",
+            "Land / Water Classification", "Ontology Link Target", "Other Concepts"
+          ),
+          shape = c("database", "hexagon", "star", "star", "diamond", "diamond", "diamond", "box", "dot"),
+          color = unname(c(
+            group_colors[["Concept Scheme"]],
+            group_colors[["Top Concept"]],
+            group_colors[["Area Classification"]],
+            group_colors[["Camp Classification"]],
+            group_colors[["Trail Concepts"]],
+            group_colors[["Water Concepts"]],
+            group_colors[["Land / Water Classification"]],
+            group_colors[["Ontology Link Target"]],
+            group_colors[["Other Concepts"]]
+          ))
+        ),
+        addEdges = data.frame(
+          label = c("Hierarchy", "Scheme membership", "Related", "Ontology link"),
+          color = c("#2C7FB8", "#8C6D31", "#756BB1", "#D95F0E"),
+          dashes = c(FALSE, FALSE, TRUE, TRUE)
+        ),
+        useGroups = FALSE
+      )
+  }
+
+  net
+}
+```
+
+## Vocabulary In Context
+
+This diagram shows the role of the source vocabulary relative to the ontology and downstream review artifacts.
+
+```{mermaid}
+flowchart LR
+    V[Source Vocabulary]
+    O[Target Ontology]
+    S[Spatial Extension]
+    C[Crosswalk / Alignment]
+    R[Review Pages]
+    I[Implementation Profiles]
+
+    V --> O
+    V --> S
+    V --> C
+    O --> R
+    S --> R
+    C --> R
+    V --> I
+    O --> I
+```
+
+## Major Vocabulary Families
+
+These summary views are intentionally simplified for reviewer clarity.
+
+### Area and classification concepts
+
+```{mermaid}
+flowchart TD
+    A[Area / Classification Concepts]
+    A --> RA[Recreation Area]
+    A --> LC[Land Classification]
+    A --> PB[Project Boundary]
+    A --> WS[Water Surface Zone]
+```
+
+### Camp and facility-support concepts
+
+```{mermaid}
+flowchart TD
+    C[Camp / Facility Concepts]
+    C --> CG[Campground]
+    C --> CS[Campsite]
+    C --> DC[Development / Fee Class]
+```
+
+### Trail and access concepts
+
+```{mermaid}
+flowchart TD
+    T[Trail Concepts]
+    T --> TR[Trail]
+    T --> TH[Trailhead]
+    T --> TA[Trail Access / Associated Concepts]
+```
+
+## Interactive Vocabulary Explorer
+
+Use the selector to switch between review modes:
+
+- **Full Vocabulary Graph**
+- **Hierarchy Only**
+- **Scheme Membership Only**
+- **Ontology Linkages**
+
+```{r render-vocab-graphs, echo=FALSE, results='asis'}
+full_graph <- make_network(
+  full_nodes,
+  full_edges,
+  height = "920px",
+  show_edge_labels = FALSE,
+  show_legend = TRUE
+)
+
+hierarchy_graph <- make_network(
+  hierarchy_nodes,
+  hierarchy_edges,
+  height = "920px",
+  show_edge_labels = FALSE,
+  show_legend = FALSE
+)
+
+scheme_graph <- make_network(
+  scheme_nodes,
+  scheme_edges,
+  height = "920px",
+  show_edge_labels = FALSE,
+  show_legend = FALSE
+)
+
+link_graph <- make_network(
+  link_nodes,
+  link_edges,
+  height = "920px",
+  show_edge_labels = FALSE,
+  show_legend = FALSE
+)
+
+view_controls <- tags$div(
+  style = "margin-bottom: 1rem;",
+  tags$label(`for` = "vocab-view-select", style = "font-weight: bold; margin-right: 0.5rem;", "Select graph view:"),
+  tags$select(
+    id = "vocab-view-select",
+    style = "padding: 0.35rem; min-width: 280px;",
+    tags$option(value = "full-vocab-graph", "Full Vocabulary Graph"),
+    tags$option(value = "hierarchy-vocab-graph", "Hierarchy Only"),
+    tags$option(value = "scheme-vocab-graph", "Scheme Membership Only"),
+    tags$option(value = "link-vocab-graph", "Ontology Linkages")
+  )
+)
+
+graph_panels <- tags$div(
+  tags$div(id = "full-vocab-graph", class = "vocab-graph-panel", full_graph),
+  tags$div(id = "hierarchy-vocab-graph", class = "vocab-graph-panel", style = "display:none;", hierarchy_graph),
+  tags$div(id = "scheme-vocab-graph", class = "vocab-graph-panel", style = "display:none;", scheme_graph),
+  tags$div(id = "link-vocab-graph", class = "vocab-graph-panel", style = "display:none;", link_graph)
+)
+
+toggle_script <- tags$script(HTML("
+document.addEventListener('DOMContentLoaded', function() {
+  var select = document.getElementById('vocab-view-select');
+  var panels = document.querySelectorAll('.vocab-graph-panel');
+
+  function showPanel(panelId) {
+    panels.forEach(function(panel) {
+      panel.style.display = (panel.id === panelId) ? 'block' : 'none';
+    });
+  }
+
+  if (select) {
+    select.addEventListener('change', function() {
+      showPanel(this.value);
+    });
+  }
+
+  showPanel('full-vocab-graph');
+});
+"))
+
+browsable(tagList(view_controls, graph_panels, toggle_script))
+```
+
+## Review Notes
+
+Interpret the graph with the following distinctions in mind:
+
+- **Concept Scheme** nodes represent organizing schemes or collections
+- **Top Concept** nodes usually act as major entry points in the vocabulary
+- **Grouped concept nodes** are heuristically clustered for reviewer readability
+- **Ontology Link Target** nodes are not vocabulary concepts; they are linked resources from the ontology or related model artifacts
+
+This page is intentionally optimized for review clarity rather than full RDF completeness.
+
+## Concept Inventory
+
+This table provides a compact audit view of extracted vocabulary resources.
+
+```{r concept-inventory, echo=FALSE}
+inventory <- vocab_nodes_raw %>%
+  left_join(top_concept_ids %>% mutate(is_top_concept = TRUE), by = "id") %>%
+  left_join(scheme_membership, by = "id") %>%
+  left_join(pref_labels, by = "id") %>%
+  left_join(rdfs_labels, by = "id") %>%
+  left_join(definitions, by = "id") %>%
+  left_join(notations, by = "id") %>%
+  mutate(
+    is_top_concept = replace_na(is_top_concept, FALSE),
+    label = case_when(
+      !is.na(pref_label) & nzchar(pref_label) ~ pref_label,
+      !is.na(rdfs_label_text) & nzchar(rdfs_label_text) ~ rdfs_label_text,
+      TRUE ~ get_local_name(id)
+    ),
+    group = pmap_chr(
+      list(label, id, node_type, is_top_concept),
+      ~ classify_group(..1, ..2, ..3, ..4)
+    )
+  ) %>%
+  select(
+    Label = label,
+    `Node Type` = node_type,
+    Group = group,
+    `Top Concept` = is_top_concept,
+    Scheme = scheme,
+    Notation = notation,
+    Definition = definition,
+    URI = id
+  ) %>%
+  arrange(Group, Label)
+
+datatable(
+  inventory,
+  rownames = FALSE,
+  filter = "top",
+  options = list(
+    pageLength = 15,
+    scrollX = TRUE,
+    autoWidth = TRUE
+  )
+)
+```
+
+## Implementation Notes
+
+This scaffold keeps the processing functions inside the `.qmd` for now so the page is immediately runnable.
+
+Recommended next refactor steps:
+
+1. Move RDF parsing helpers into `R/io_ttl.R`
+2. Move SKOS extraction into `R/parse_skos.R`
+3. Move graph-building functions into `R/build_visnetwork.R`
+4. Replace inline functions with sourced helpers or an internal package
+
+## Assumptions and updates
+
+This page assumes the collaborator-supplied vocabulary file is Turtle and primarily uses SKOS-style constructs.
+
+If collaborators update the vocabulary regularly, the page should continue to work as long as the file remains RDF/Turtle and still exposes at least some of:
+
+- `skos:Concept`
+- `skos:ConceptScheme`
+- `skos:prefLabel`
+- `skos:broader`
+- `skos:inScheme`
+
+If your collaborator file uses different predicates or naming conventions, the constants section near the top is the main place to adapt it.

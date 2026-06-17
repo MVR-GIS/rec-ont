@@ -17,6 +17,7 @@ book:
     - 07-recreation-spatial-diagrams.qmd
     - 10-recreation-modernization-decision-log.qmd
     - 12-recreation-sdsfie-crosswalk.qmd
+    - 101-rec-vocabulary.qmd
     - rec-ontology.qmd
 
 format:
