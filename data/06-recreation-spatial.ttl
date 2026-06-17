@@ -50,6 +50,18 @@ rec:hasSpatialRepresentation a owl:ObjectProperty ;
     rdfs:range recs:RecreationSpatialFeature ;
     owl:inverseOf recs:representsEntity .
 
+recs:associatedTrail a owl:ObjectProperty ;
+    rdfs:label "associated trail"@en ;
+    rdfs:domain recs:TrailAssociatedFeature ;
+    rdfs:range rec:Trail ;
+    rdfs:comment "Links a trail-associated point feature to the trail business entity it is associated with. Use this when the point feature is not itself the trail line representation."@en .
+
+rec:hasTrailAssociatedFeature a owl:ObjectProperty ;
+    rdfs:label "has trail associated feature"@en ;
+    rdfs:domain rec:Trail ;
+    rdfs:range recs:TrailAssociatedFeature ;
+    owl:inverseOf recs:associatedTrail .
+
 recs:usesSpatialPattern a owl:ObjectProperty ;
     rdfs:label "uses spatial pattern"@en ;
     rdfs:domain recs:RecreationSpatialFeature ;
@@ -354,6 +366,36 @@ recs:TrailFeature a owl:Class ;
         owl:hasValue recs:RepresentationFeaturePattern
     ] ;
     rdfs:comment "Trail Feature is a GIS representation class, not a replacement for the domain entity or geometry instance."@en .
+
+recs:TrailAssociatedFeature a owl:Class ;
+    rdfs:label "Trail Associated Feature"@en ;
+    rdfs:subClassOf recs:RecreationSpatialFeature ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty geo:hasGeometry ;
+        owl:someValuesFrom sf:Point
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:associatedTrail ;
+        owl:someValuesFrom rec:Trail
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:representsConcept ;
+        owl:someValuesFrom skos:Concept
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty recs:usesSpatialPattern ;
+        owl:hasValue recs:RepresentationFeaturePattern
+    ] ;
+    rdfs:comment "Trail Associated Feature is a point feature linked to a trail and typed by a source or standard concept such as a trailhead marker, bench, bridge, distance marker, or interpretive point. It is not the trail entity or the trail line representation."@en .
+
+recs:TrailheadFeature a owl:Class ;
+    rdfs:label "Trailhead Feature"@en ;
+    rdfs:subClassOf recs:TrailAssociatedFeature ;
+    rdfs:comment "Trailhead Feature is a point representation for a trailhead location or trail access or junction point associated with a trail."@en .
 
 recs:ParkingAreaFeature a owl:Class ;
     rdfs:label "Parking Area Feature"@en ;

@@ -1,0 +1,72 @@
+# Recreation Domain Diagrams
+
+## Artifact Roles
+
+```mermaid
+flowchart LR
+    V[01 Vocabulary] --> O[02 Target Ontology]
+    O --> D[03 Domain Diagrams]
+    O --> S[06 Spatial Extension]
+    S --> SD[07 Spatial Diagrams]
+    O --> SH[08 SHACL Shapes]
+    S --> SH
+    O --> SPEC[09 Specification]
+    S --> SPEC
+```
+
+## Core Domain Roles
+
+```mermaid
+classDiagram
+    class RecreationDomainEntity
+    class PhysicalRecreationAsset
+    class ManagedRecreationPlace
+    class RecreationArea
+    class RecreationFacility
+    class RecreationAmenity
+    class WaterAccessAsset
+    class AquaticUseArea
+    class LinearRecreationAsset
+
+    RecreationDomainEntity <|-- PhysicalRecreationAsset
+    PhysicalRecreationAsset <|-- ManagedRecreationPlace
+    PhysicalRecreationAsset <|-- WaterAccessAsset
+    PhysicalRecreationAsset <|-- LinearRecreationAsset
+    ManagedRecreationPlace <|-- RecreationArea
+    ManagedRecreationPlace <|-- RecreationFacility
+    ManagedRecreationPlace <|-- RecreationAmenity
+    ManagedRecreationPlace <|-- AquaticUseArea
+    WaterAccessAsset <|-- AquaticUseArea
+```
+
+## Facilities, Amenities, And Water Access
+
+```mermaid
+classDiagram
+    class RecreationFacility
+    class RecreationAmenity
+    class WaterAccessAsset
+    class Campground
+    class DayUseArea
+    class Marina
+    class SwimmingArea
+    class Trail
+    class BoatRamp
+    class FishingPier
+    class ParkingArea
+    class Restroom
+
+    RecreationFacility <|-- Campground
+    RecreationFacility <|-- DayUseArea
+    RecreationFacility <|-- Marina
+    RecreationFacility <|-- SwimmingArea
+    RecreationFacility <|-- Trail
+    RecreationAmenity <|-- BoatRamp
+    RecreationAmenity <|-- FishingPier
+    RecreationAmenity <|-- ParkingArea
+    RecreationAmenity <|-- Restroom
+    WaterAccessAsset <|-- Marina
+    WaterAccessAsset <|-- BoatRamp
+    WaterAccessAsset <|-- FishingPier
+    WaterAccessAsset <|-- SwimmingArea
+```

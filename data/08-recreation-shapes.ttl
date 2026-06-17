@@ -1,0 +1,105 @@
+@prefix recsh: <https://usace.mil/ontology/recreation/shapes/> .
+@prefix rec: <https://usace.mil/ontology/recreation/> .
+@prefix recs: <https://usace.mil/ontology/recreation/spatial/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+recsh: a owl:Ontology ;
+    rdfs:label "USACE Recreation SHACL Shapes"@en ;
+    dct:description "Target conformance shapes for the spatial-first recreation ontology."@en ;
+    owl:versionInfo "2.0-draft" ;
+    owl:imports rec: , recs: .
+
+recsh:ManagedRecreationPlaceShape a sh:NodeShape ;
+    sh:targetClass rec:ManagedRecreationPlace ;
+    sh:property [
+        sh:path rec:localIdentifier ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Managed recreation places should carry a local identifier for migration and source crosswalks."@en
+    ] ;
+    sh:property [
+        sh:path rec:facilityName ;
+        sh:minCount 1 ;
+        sh:severity sh:Info ;
+        sh:message "Managed recreation places should carry the operational name used by the source system."@en
+    ] .
+
+recsh:RecreationSpatialFeatureShape a sh:NodeShape ;
+    sh:targetClass recs:RecreationSpatialFeature ;
+    sh:property [
+        sh:path geo:hasGeometry ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "A recreation spatial feature must have at least one geometry."@en
+    ] ;
+    sh:property [
+        sh:path recs:usesSpatialPattern ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "A recreation spatial feature must declare its spatial modeling pattern."@en
+    ] ;
+    sh:property [
+        sh:path recs:sourceLayerName ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Spatial-first features should preserve the source layer or feature class name."@en
+    ] ;
+    sh:property [
+        sh:path recs:featureGrain ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Spatial-first features should explain what one row or feature represents."@en
+    ] .
+
+recsh:RepresentationFeatureShape a sh:NodeShape ;
+    sh:targetClass recs:RecreationFacilityFeature ;
+    sh:property [
+        sh:path recs:representsEntity ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "A facility feature representation must link to the recreation entity it represents."@en
+    ] .
+
+recsh:RecreationAreaFeatureShape a sh:NodeShape ;
+    sh:targetClass recs:RecreationAreaFeature ;
+    sh:property [
+        sh:path recs:representsEntity ;
+        sh:class rec:RecreationArea ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "A recreation area feature must represent a RecreationArea."@en
+    ] .
+
+recsh:BoatRampFeatureShape a sh:NodeShape ;
+    sh:targetClass recs:BoatRampFeature ;
+    sh:property [
+        sh:path recs:representsEntity ;
+        sh:class rec:BoatRamp ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "A boat ramp feature must represent a BoatRamp entity, not merely be skos:related to it."@en
+    ] .
+
+recsh:TrailAssociatedFeatureShape a sh:NodeShape ;
+    sh:targetClass recs:TrailAssociatedFeature ;
+    sh:property [
+        sh:path recs:associatedTrail ;
+        sh:class rec:Trail ;
+        sh:minCount 1 ;
+        sh:severity sh:Violation ;
+        sh:message "A trail-associated feature must link to the Trail entity it belongs with."@en
+    ] ;
+    sh:property [
+        sh:path recs:representsConcept ;
+        sh:class skos:Concept ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "Trail-associated features should preserve a source or standard concept that identifies the point feature type."@en
+    ] .

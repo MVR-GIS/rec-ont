@@ -71,6 +71,10 @@ recs:SwimmingAreaFeature
 recs:TrailFeature
     skos:exactMatch sd:RecreationTrail .
 
+recs:TrailAssociatedFeature
+    skos:closeMatch sd:RecreationTrailFeature ;
+    skos:editorialNote "SDSFIE RecreationTrailFeature is a point feature associated with a trail. Recreation models this with the platform-independent TrailAssociatedFeature class and preserves source or standard type concepts separately."@en .
+
 recs:ParkingAreaFeature
     skos:exactMatch sd:ParkingArea .
 
