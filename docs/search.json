@@ -410,13 +410,103 @@
     ]
   },
   {
+    "objectID": "101-rec-vocabulary.html",
+    "href": "101-rec-vocabulary.html",
+    "title": "7  Recreation Vocabulary Review",
+    "section": "",
+    "text": "7.1 How to use this page\nThis page is designed to support review of the controlled vocabulary that informs the recreation ontology.\nIt focuses on:\nRecommended review sequence:\nAs you review, consider:",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Recreation Vocabulary Review</span>"
+    ]
+  },
+  {
+    "objectID": "101-rec-vocabulary.html#how-to-use-this-page",
+    "href": "101-rec-vocabulary.html#how-to-use-this-page",
+    "title": "7  Recreation Vocabulary Review",
+    "section": "",
+    "text": "Start with the Vocabulary In Context diagram\nReview the Major Vocabulary Families\nUse the Interactive Vocabulary Explorer to inspect specific concepts\nConsult the Concept Inventory for a tabular audit view\n\n\n\nAre these items really best modeled as concepts rather than classes?\nAre broader/narrower relationships intuitive?\nAre any concepts too implementation-specific for a shared vocabulary?\nAre concept-to-ontology links clear and appropriate?",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Recreation Vocabulary Review</span>"
+    ]
+  },
+  {
+    "objectID": "101-rec-vocabulary.html#vocabulary-in-context",
+    "href": "101-rec-vocabulary.html#vocabulary-in-context",
+    "title": "7  Recreation Vocabulary Review",
+    "section": "7.2 Vocabulary In Context",
+    "text": "7.2 Vocabulary In Context\nThis diagram shows the role of the source vocabulary relative to the ontology and downstream review artifacts.\n\n\n\n\n\nflowchart LR\n    V[Source Vocabulary]\n    O[Target Ontology]\n    S[Spatial Extension]\n    C[Crosswalk / Alignment]\n    R[Review Pages]\n    I[Implementation Profiles]\n\n    V --&gt; O\n    V --&gt; S\n    V --&gt; C\n    O --&gt; R\n    S --&gt; R\n    C --&gt; R\n    V --&gt; I\n    O --&gt; I",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Recreation Vocabulary Review</span>"
+    ]
+  },
+  {
+    "objectID": "101-rec-vocabulary.html#major-vocabulary-families",
+    "href": "101-rec-vocabulary.html#major-vocabulary-families",
+    "title": "7  Recreation Vocabulary Review",
+    "section": "7.3 Major Vocabulary Families",
+    "text": "7.3 Major Vocabulary Families\nThese summary views are intentionally simplified for reviewer clarity.\n\n7.3.1 Area and classification concepts\n\n\n\n\n\nflowchart TD\n    A[Area / Classification Concepts]\n    A --&gt; RA[Recreation Area]\n    A --&gt; LC[Land Classification]\n    A --&gt; PB[Project Boundary]\n    A --&gt; WS[Water Surface Zone]\n\n\n\n\n\n\n\n\n7.3.2 Camp and facility-support concepts\n\n\n\n\n\nflowchart TD\n    C[Camp / Facility Concepts]\n    C --&gt; CG[Campground]\n    C --&gt; CS[Campsite]\n    C --&gt; DC[Development / Fee Class]\n\n\n\n\n\n\n\n\n7.3.3 Trail and access concepts\n\n\n\n\n\nflowchart TD\n    T[Trail Concepts]\n    T --&gt; TR[Trail]\n    T --&gt; TH[Trailhead]\n    T --&gt; TA[Trail Access / Associated Concepts]",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Recreation Vocabulary Review</span>"
+    ]
+  },
+  {
+    "objectID": "101-rec-vocabulary.html#interactive-vocabulary-explorer",
+    "href": "101-rec-vocabulary.html#interactive-vocabulary-explorer",
+    "title": "7  Recreation Vocabulary Review",
+    "section": "7.4 Interactive Vocabulary Explorer",
+    "text": "7.4 Interactive Vocabulary Explorer\nUse the selector to switch between review modes:\n\nFull Vocabulary Graph\nHierarchy Only\nScheme Membership Only\nOntology Linkages\n\n\nSelect graph view:\n\nFull Vocabulary Graph\nHierarchy Only\nScheme Membership Only\nOntology Linkages\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNo data available for this graph view.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Recreation Vocabulary Review</span>"
+    ]
+  },
+  {
+    "objectID": "101-rec-vocabulary.html#review-notes",
+    "href": "101-rec-vocabulary.html#review-notes",
+    "title": "7  Recreation Vocabulary Review",
+    "section": "7.5 Review Notes",
+    "text": "7.5 Review Notes\nInterpret the graph with the following distinctions in mind:\n\nConcept Scheme nodes represent organizing schemes or collections\nTop Concept nodes usually act as major entry points in the vocabulary\nGrouped concept nodes are heuristically clustered for reviewer readability\nOntology Link Target nodes are not vocabulary concepts; they are linked resources from the ontology or related model artifacts\n\nThis page is intentionally optimized for review clarity rather than full RDF completeness.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Recreation Vocabulary Review</span>"
+    ]
+  },
+  {
+    "objectID": "101-rec-vocabulary.html#concept-inventory",
+    "href": "101-rec-vocabulary.html#concept-inventory",
+    "title": "7  Recreation Vocabulary Review",
+    "section": "7.6 Concept Inventory",
+    "text": "7.6 Concept Inventory\nThis table provides a compact audit view of extracted vocabulary resources.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Recreation Vocabulary Review</span>"
+    ]
+  },
+  {
+    "objectID": "101-rec-vocabulary.html#implementation-notes",
+    "href": "101-rec-vocabulary.html#implementation-notes",
+    "title": "7  Recreation Vocabulary Review",
+    "section": "7.7 Implementation Notes",
+    "text": "7.7 Implementation Notes\nThis scaffold keeps the processing functions inside the .qmd for now so the page is immediately runnable.\nRecommended next refactor steps:\n\nMove RDF parsing helpers into R/io_ttl.R\nMove SKOS extraction into R/parse_skos.R\nMove graph-building functions into R/build_visnetwork.R\nReplace inline functions with sourced helpers or an internal package",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Recreation Vocabulary Review</span>"
+    ]
+  },
+  {
+    "objectID": "101-rec-vocabulary.html#assumptions-and-updates",
+    "href": "101-rec-vocabulary.html#assumptions-and-updates",
+    "title": "7  Recreation Vocabulary Review",
+    "section": "7.8 Assumptions and updates",
+    "text": "7.8 Assumptions and updates\nThis page assumes the collaborator-supplied vocabulary file is Turtle and primarily uses SKOS-style constructs.\nIf collaborators update the vocabulary regularly, the page should continue to work as long as the file remains RDF/Turtle and still exposes at least some of:\n\nskos:Concept\nskos:ConceptScheme\nskos:prefLabel\nskos:broader\nskos:inScheme\n\nIf your collaborator file uses different predicates or naming conventions, the constants section near the top is the main place to adapt it.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Recreation Vocabulary Review</span>"
+    ]
+  },
+  {
     "objectID": "rec-ontology.html",
     "href": "rec-ontology.html",
-    "title": "7  Recreation Ontology",
+    "title": "8  Recreation Ontology",
     "section": "",
     "text": "This interactive page visualizes the ontology structure in 02-recreation-ontology.ttl. It provides four separate views:\n\n\nSelect graph view:\n\nFull Graph\nHierarchy Only\nObject Properties Only\nDatatype Properties Only",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Recreation Ontology</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Recreation Ontology</span>"
     ]
   }
 ]

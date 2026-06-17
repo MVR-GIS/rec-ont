@@ -93,11 +93,10 @@ strip_literal_quotes <- function(x) {
 }
 
 get_local_name <- function(uri) {
-  ifelse(
-    is.na(uri) | uri == "",
-    uri,
-    sub("^.*[/#]", "", uri)
-  )
+  uri_chr <- as.character(uri)
+  out <- sub("^.*[/#]", "", uri_chr)
+  out[is.na(uri_chr) | uri_chr == ""] <- NA_character_
+  out
 }
 
 safe_first <- function(x) {
@@ -334,10 +333,10 @@ ontology_link_nodes <- linked_targets %>%
   left_join(target_labels, by = "id") %>%
   left_join(ontology_targets, by = "id") %>%
   mutate(
-    node_type = dplyr::coalesce(node_type, "LinkedResource"),
-    label = case_when(
-      !is.na(label_text) & nzchar(label_text) ~ label_text,
-      TRUE ~ get_local_name(id)
+    node_type = dplyr::coalesce(as.character(node_type), "LinkedResource"),
+    label = dplyr::coalesce(
+      na_if(as.character(label_text), ""),
+      get_local_name(id)
     ),
     group = case_when(
       node_type == "OntologyTarget" ~ "Ontology Link Target",
@@ -356,7 +355,7 @@ ontology_link_nodes <- linked_targets %>%
     title = as.character(title),
     group = as.character(group),
     node_type = as.character(node_type),
-    scheme = as.character(NA)
+    scheme = NA_character_
   ) %>%
   distinct(id, .keep_all = TRUE)
 
@@ -694,10 +693,6 @@ This table provides a compact audit view of extracted vocabulary resources.
 inventory <- vocab_nodes_raw %>%
   left_join(top_concept_ids %>% mutate(is_top_concept = TRUE), by = "id") %>%
   left_join(scheme_membership, by = "id") %>%
-  left_join(pref_labels, by = "id") %>%
-  left_join(rdfs_labels, by = "id") %>%
-  left_join(definitions, by = "id") %>%
-  left_join(notations, by = "id") %>%
   mutate(
     is_top_concept = replace_na(is_top_concept, FALSE),
     label = case_when(
@@ -710,15 +705,15 @@ inventory <- vocab_nodes_raw %>%
       ~ classify_group(..1, ..2, ..3, ..4)
     )
   ) %>%
-  select(
-    Label = label,
-    `Node Type` = node_type,
-    Group = group,
+  transmute(
+    Label = as.character(label),
+    `Node Type` = as.character(node_type),
+    Group = as.character(group),
     `Top Concept` = is_top_concept,
-    Scheme = scheme,
-    Notation = notation,
-    Definition = definition,
-    URI = id
+    Scheme = as.character(scheme),
+    Notation = as.character(notation),
+    Definition = as.character(definition),
+    URI = as.character(id)
   ) %>%
   arrange(Group, Label)
 
