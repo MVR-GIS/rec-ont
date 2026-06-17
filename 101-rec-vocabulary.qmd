@@ -321,12 +321,12 @@ vocab_nodes <- vocab_nodes_raw %>%
     )
   ) %>%
   transmute(
-    id = id,
-    label = display_label,
-    title = title,
-    group = group,
-    node_type = node_type,
-    scheme = scheme
+    id = as.character(id),
+    label = as.character(display_label),
+    title = as.character(title),
+    group = as.character(group),
+    node_type = as.character(node_type),
+    scheme = as.character(scheme)
   ) %>%
   distinct(id, .keep_all = TRUE)
 
@@ -334,9 +334,15 @@ ontology_link_nodes <- linked_targets %>%
   left_join(target_labels, by = "id") %>%
   left_join(ontology_targets, by = "id") %>%
   mutate(
-    node_type = coalesce(node_type, "LinkedResource"),
-    label = ifelse(!is.na(label_text) & nzchar(label_text), label_text, get_local_name(id)),
-    group = ifelse(node_type == "OntologyTarget", "Ontology Link Target", "External Concept"),
+    node_type = dplyr::coalesce(node_type, "LinkedResource"),
+    label = case_when(
+      !is.na(label_text) & nzchar(label_text) ~ label_text,
+      TRUE ~ get_local_name(id)
+    ),
+    group = case_when(
+      node_type == "OntologyTarget" ~ "Ontology Link Target",
+      TRUE ~ "External Concept"
+    ),
     title = paste0(
       "<b>", label, "</b>",
       "<br/>Type: ", node_type,
@@ -345,12 +351,12 @@ ontology_link_nodes <- linked_targets %>%
     )
   ) %>%
   transmute(
-    id = id,
-    label = label,
-    title = title,
-    group = group,
-    node_type = node_type,
-    scheme = NA_character_
+    id = as.character(id),
+    label = as.character(label),
+    title = as.character(title),
+    group = as.character(group),
+    node_type = as.character(node_type),
+    scheme = as.character(NA)
   ) %>%
   distinct(id, .keep_all = TRUE)
 
