@@ -1,6 +1,4 @@
----
-title: Recreation Spatial Diagrams
----
+# Recreation Spatial Diagrams
 
 These diagrams describe the active spatial extension in `06-recreation-spatial.ttl`. The spatial ontology models GIS-recordable feature representations; it does not replace recreation business entities, source vocabulary concepts, or geometry instances.
 
@@ -96,6 +94,8 @@ classDiagram
     class FuelDockFeature
     class SwimmingAreaFeature
     class TrailFeature
+    class TrailAssociatedFeature
+    class TrailheadFeature
     class ParkingAreaFeature
     class RestroomFeature
     class VisitorCenterFeature
@@ -115,6 +115,9 @@ classDiagram
     RecreationFacilityFeature <|-- DayUseAreaFeature
     RecreationFacilityFeature <|-- TrailFeature
     RecreationFacilityFeature <|-- VisitorCenterFeature
+
+    RecreationSpatialFeature <|-- TrailAssociatedFeature
+    TrailAssociatedFeature <|-- TrailheadFeature
 
     RecreationAmenityFeature <|-- CampsiteFeature
     RecreationAmenityFeature <|-- PicnicAreaFeature
@@ -138,6 +141,16 @@ flowchart LR
     DUF["DayUseAreaFeature<br/>sf:Polygon"] --> DU["rec:DayUseArea"]
     TF["TrailFeature<br/>sf:LineString"] --> TR["rec:Trail"]
     VCF["VisitorCenterFeature<br/>sf:Polygon"] --> VC["rec:VisitorCenter"]
+```
+
+## Trail Line And Associated Point Features
+
+```{mermaid}
+flowchart LR
+    TF["TrailFeature<br/>sf:LineString"] -->|recs:representsEntity| TR["rec:Trail"]
+    TAF["TrailAssociatedFeature<br/>sf:Point"] -->|recs:associatedTrail| TR
+    TAF -->|recs:representsConcept| TC["skos:Concept<br/>trail-associated type"]
+    THF["TrailheadFeature<br/>sf:Point"] -. subclass .-> TAF
 ```
 
 ## Amenity Representations
@@ -165,7 +178,7 @@ flowchart LR
 
 ## Source Concept And Boundary Records
 
-{mermaid}
+```{mermaid}
 flowchart LR
     LCF["LandClassificationAreaFeature<br/>sf:Polygon"] --> LC["skos:Concept<br/>land allocation or classification"]
     WZF["WaterSurfaceZoneFeature<br/>sf:Polygon"] --> WZ["skos:Concept<br/>water surface zoning"]
@@ -178,7 +191,7 @@ flowchart LR
 
 ## Physical Realm Context
 
-{mermaid}
+```{mermaid}
 flowchart LR
     Feature["recs:RecreationSpatialFeature"]
     Land["upr:LandRealm"]
@@ -197,7 +210,7 @@ flowchart LR
 
 ## Source Layer Metadata
 
-{mermaid}
+```{mermaid}
 flowchart LR
     Layer["source layer or feature class"]
     Row["source record"]
@@ -232,6 +245,8 @@ flowchart LR
 | `recs:FuelDockFeature` | `recs:WaterAccessFeature` | `geo:Geometry` | `rec:FuelDock` |
 | `recs:SwimmingAreaFeature` | `recs:WaterAccessFeature` | `sf:Polygon` | `rec:SwimmingArea` |
 | `recs:TrailFeature` | `recs:RecreationFacilityFeature` | `sf:LineString` | `rec:Trail` |
+| `recs:TrailAssociatedFeature` | `recs:RecreationSpatialFeature` | `sf:Point` | source-backed or standard `skos:Concept`; associated `rec:Trail` |
+| `recs:TrailheadFeature` | `recs:TrailAssociatedFeature` | `sf:Point` | trailhead or trail access concept; associated `rec:Trail` |
 | `recs:ParkingAreaFeature` | `recs:RecreationAmenityFeature` | `sf:Polygon` | `rec:ParkingArea` |
 | `recs:RestroomFeature` | `recs:RecreationAmenityFeature` | `sf:Point` | `rec:Restroom` |
 | `recs:VisitorCenterFeature` | `recs:RecreationFacilityFeature` | `sf:Polygon` | `rec:VisitorCenter` |
@@ -246,6 +261,8 @@ flowchart LR
 | `recs:representsEntity` | Object property | `recs:RecreationSpatialFeature` | `rec:RecreationDomainEntity` | Links a GIS representation to the managed recreation entity it represents. |
 | `recs:representsConcept` | Object property | `recs:RecreationSpatialFeature` | `skos:Concept` | Links a GIS representation to a source-backed classification, zoning, or boundary concept. |
 | `rec:hasSpatialRepresentation` | Object property | `rec:RecreationDomainEntity` | `recs:RecreationSpatialFeature` | Inverse of `recs:representsEntity`. |
+| `recs:associatedTrail` | Object property | `recs:TrailAssociatedFeature` | `rec:Trail` | Links a trail-associated point feature to the trail it belongs with without claiming that the point feature is the trail line representation. |
+| `rec:hasTrailAssociatedFeature` | Object property | `rec:Trail` | `recs:TrailAssociatedFeature` | Inverse of `recs:associatedTrail`. |
 | `recs:usesSpatialPattern` | Object property | `recs:RecreationSpatialFeature` | `owl:Thing` | Declares whether the feature is modeled as a representation or direct feature pattern. |
 | `recs:intersectsPhysicalRealm` | Object property | `recs:RecreationSpatialFeature` | `upr:PhysicalRealm` | Connects a spatial feature to land, water, or other physical realm context. |
 | `recs:sourceLayerName` | Datatype property | `recs:RecreationSpatialFeature` | `xsd:string` | Preserves the source layer or feature class name. |

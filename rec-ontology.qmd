@@ -1,32 +1,13 @@
 ---
-title: "Ontology Module Review"
-subtitle: "Ontology Structure and Property Relationships for USACE Recreation"
+format:
+  html:
+    page-layout: full
+    toc: false
 ---
 
-## Executive Summary
+# Recreation Ontology
 
-This interactive page visualizes the ontology structure in `02-recreation-ontology.ttl`.
-
-It provides four separate views:
-
-- **Full Graph**
-- **Hierarchy Only**
-- **Object Properties Only**
-- **Datatype Properties Only**
-
-### Display behavior
-
-- Edge labels are suppressed by default in all views to improve readability
-- Hover over edges to inspect relationship names
-- Hover over nodes to inspect labels, groups, and full URIs
-
-### How to use this page
-
-- Use the **view selector** to switch between graph modes
-- **Pan/Zoom** to navigate dense clusters
-- **Hover** over nodes and edges to inspect labels, URIs, and relationship types
-- **Click** a node to highlight immediate relationships
-- Use the **node selector** within each graph to jump to a resource
+This interactive page visualizes the ontology structure in `02-recreation-ontology.ttl`. It provides four separate views:
 
 ```{r setup, include=FALSE}
 library(rdflib)
@@ -375,6 +356,8 @@ make_network <- function(nodes, edges, height = "980px", show_edge_labels = FALS
 }
 ```
 
+
+::: {.column-screen-inset-right}
 ```{r render-graphs, echo=FALSE, results='asis'}
 full_graph <- make_network(
   full_nodes,
@@ -452,23 +435,4 @@ document.addEventListener('DOMContentLoaded', function() {
 browsable(tagList(view_controls, graph_panels, toggle_script))
 ```
 
-## Notes
-
-This page is designed specifically for `02-recreation-ontology.ttl`.
-
-### Graph views
-
-- **Full Graph** combines hierarchy, object-property, and datatype-property relationships
-- **Hierarchy Only** shows only `rdfs:subClassOf`
-- **Object Properties Only** shows `domain --property--> range`
-- **Datatype Properties Only** shows `domain --property--> datatype`
-
-### Node categories
-
-- ontology classes
-- superclasses
-- XSD datatypes
-- external SKOS concepts
-- external classes such as `owl:Thing`
-
-This design avoids cross-view leakage by rendering separate graph widgets for each mode.
+:::

@@ -1,8 +1,4 @@
----
-title: "USACE Recreation Ontology Review"
----
-
-# Welcome
+# Introduction
 
 This Quarto book is a review workspace for the **USACE Recreation Ontology** and its related artifacts. It is designed to help subject matter experts, GIS staff, and ontology reviewers inspect the model structure, visualize relationships, and compare the ontology against supporting spatial and crosswalk materials.
 

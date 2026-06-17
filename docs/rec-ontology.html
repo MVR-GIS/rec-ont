@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Recreation Ontology – USACE Recreation Ontology Review</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./12-recreation-sdsfie-crosswalk.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a522afb83bf8ae494942cf1b0ac9d4c3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="site_libs/vis-9.1.0/vis-network.min.css" rel="stylesheet">
+
+<script src="site_libs/vis-9.1.0/vis-network.min.js"></script>
+
+<script src="site_libs/visNetwork-binding-2.1.4/visNetwork.js"></script>
+
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rec-ontology.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Recreation Ontology</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">USACE Recreation Ontology Review</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ontology-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Ontology Overview</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-recreation-diagrams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Recreation Domain Diagrams</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-recreation-spatial-diagrams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Recreation Spatial Diagrams</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-recreation-modernization-decision-log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recreation Modernization Decision Log</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-recreation-sdsfie-crosswalk.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Recreation SDSFIE Crosswalk</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rec-ontology.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Recreation Ontology</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content page-columns page-full column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Recreation Ontology</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This interactive page visualizes the ontology structure in <code>02-recreation-ontology.ttl</code>. It provides four separate views:</p>
+<div class="column-screen-inset-right">
+<div style="margin-bottom: 1rem;">
+<label for="graph-view-select" style="font-weight: bold; margin-right: 0.5rem;">Select graph view:</label>
+<select id="graph-view-select" style="padding: 0.35rem; min-width: 260px;">
+<option value="full-graph">Full Graph</option>
+<option value="hierarchy-graph">Hierarchy Only</option>
+<option value="object-graph">Object Properties Only</option>
+<option value="datatype-graph">Datatype Properties Only</option>
+</select>
+</div>
+<div>
+<div id="full-graph" class="graph-panel">
+<div id="htmlwidget-4cc235e9713f24dc1727" style="width:100%;height:980px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4cc235e9713f24dc1727">{"x":{"nodes":{"id":["https://usace.mil/ontology/recreation/RecreationManagement","https://usace.mil/ontology/recreation/RVCampground","https://usace.mil/ontology/recreation/Reservation","https://usace.mil/ontology/recreation/FishingPier","https://usace.mil/ontology/recreation/SpecialUseFee","https://usace.mil/ontology/recreation/PicnicShelter","https://usace.mil/ontology/recreation/RecreationEnforcement","https://usace.mil/ontology/recreation/Campsite","https://usace.mil/ontology/recreation/VisitorAssistance","https://usace.mil/ontology/recreation/AquaticUseArea","https://usace.mil/ontology/recreation/VisitorService","https://usace.mil/ontology/recreation/RecreationAgreement","https://usace.mil/ontology/recreation/Playground","https://usace.mil/ontology/recreation/DayUseArea","https://usace.mil/ontology/recreation/HikingTrail","https://usace.mil/ontology/recreation/CampingFee","https://usace.mil/ontology/recreation/SwimmingArea","https://usace.mil/ontology/recreation/Marina","https://usace.mil/ontology/recreation/PumpOutStation","https://usace.mil/ontology/recreation/VisitorCenter","https://usace.mil/ontology/recreation/Concession","https://usace.mil/ontology/recreation/BikeTrail","https://usace.mil/ontology/recreation/RecreationActivity","https://usace.mil/ontology/recreation/Trail","https://usace.mil/ontology/recreation/ParkingArea","https://usace.mil/ontology/recreation/WaterSafety","https://usace.mil/ontology/recreation/RecreationFee","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","https://usace.mil/ontology/recreation/RecreationIncident","https://usace.mil/ontology/recreation/PicnicArea","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/Campground","https://usace.mil/ontology/recreation/FlushRestroom","https://usace.mil/ontology/recreation/GroupCampArea","https://usace.mil/ontology/recreation/BoatSlip","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/Restroom","https://usace.mil/ontology/recreation/EquestrianTrail","https://usace.mil/ontology/recreation/LinearRecreationAsset","https://usace.mil/ontology/recreation/RecreationArea","https://usace.mil/ontology/recreation/DayUseFee","https://usace.mil/ontology/recreation/BoatRamp","https://usace.mil/ontology/recreation/InterpretationProgram","https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/BoatLaunchFee","https://usace.mil/ontology/recreation/FuelDock","https://usace.mil/ontology/recreation/VaultToilet","https://usace.mil/ontology/recreation/RecreationDomainEntity","http://www.w3.org/2004/02/skos/core#Concept","http://www.w3.org/2002/07/owl#Thing","http://www.w3.org/2001/XMLSchema#integer","http://www.w3.org/2001/XMLSchema#string","http://www.w3.org/2001/XMLSchema#date","http://www.w3.org/2001/XMLSchema#decimal"],"label":["Recreation Management","RV Campground","Reservation","Fishing Pier","Special Use Fee","Picnic Shelter","Recreation Enforcement","Campsite","Visitor Assistance","Aquatic Use Area","Visitor Service","Recreation Agreement","Playground","Day Use Area","Hiking Trail","Camping Fee","Swimming Area","Marina","Pump Out Station","Visitor Center","Concession","Bike Trail","Recreation Activity","Trail","Parking Area","Water Safety","Recreation Fee","Physical Recreation Asset","Recreation Incident","Picnic Area","Recreation Facility","Recreation Amenity","Campground","Flush Restroom","Group Camp Area","Boat Slip","Managed Recreation Place","Water Access Asset","Restroom","Equestrian Trail","Linear Recreation Asset","Recreation Area","Day Use Fee","Boat Ramp","Interpretation Program","Recreation Program","Boat Launch Fee","Fuel Dock","Vault Toilet","Recreation Domain Entity","Concept","Thing","integer","string","date","decimal"],"title":["<b>Recreation Management<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RecreationManagement","<b>RV Campground<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RVCampground","<b>Reservation<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/Reservation","<b>Fishing Pier<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/FishingPier","<b>Special Use Fee<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/SpecialUseFee","<b>Picnic Shelter<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/PicnicShelter","<b>Recreation Enforcement<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RecreationEnforcement","<b>Campsite<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/Campsite","<b>Visitor Assistance<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/VisitorAssistance","<b>Aquatic Use Area<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/AquaticUseArea","<b>Visitor Service<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/VisitorService","<b>Recreation Agreement<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationAgreement","<b>Playground<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/Playground","<b>Day Use Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/DayUseArea","<b>Hiking Trail<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/HikingTrail","<b>Camping Fee<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/CampingFee","<b>Swimming Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/SwimmingArea","<b>Marina<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/Marina","<b>Pump Out Station<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/PumpOutStation","<b>Visitor Center<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/VisitorCenter","<b>Concession<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/Concession","<b>Bike Trail<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/BikeTrail","<b>Recreation Activity<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RecreationActivity","<b>Trail<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/Trail","<b>Parking Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/ParkingArea","<b>Water Safety<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/WaterSafety","<b>Recreation Fee<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationFee","<b>Physical Recreation Asset<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/PhysicalRecreationAsset","<b>Recreation Incident<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RecreationIncident","<b>Picnic Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/PicnicArea","<b>Recreation Facility<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationFacility","<b>Recreation Amenity<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationAmenity","<b>Campground<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/Campground","<b>Flush Restroom<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/FlushRestroom","<b>Group Camp Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/GroupCampArea","<b>Boat Slip<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/BoatSlip","<b>Managed Recreation Place<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/ManagedRecreationPlace","<b>Water Access Asset<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/WaterAccessAsset","<b>Restroom<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/Restroom","<b>Equestrian Trail<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/EquestrianTrail","<b>Linear Recreation Asset<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/LinearRecreationAsset","<b>Recreation Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RecreationArea","<b>Day Use Fee<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/DayUseFee","<b>Boat Ramp<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/BoatRamp","<b>Interpretation Program<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/InterpretationProgram","<b>Recreation Program<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationProgram","<b>Boat Launch Fee<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/BoatLaunchFee","<b>Fuel Dock<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/FuelDock","<b>Vault Toilet<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/VaultToilet","<b>Recreation Domain Entity<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationDomainEntity","<b>Concept<\/b><br/>Group: ExternalConcept<br/>URI: http://www.w3.org/2004/02/skos/core#Concept","<b>Thing<\/b><br/>Group: ExternalClass<br/>URI: http://www.w3.org/2002/07/owl#Thing","<b>integer<\/b><br/>Group: Datatype<br/>URI: http://www.w3.org/2001/XMLSchema#integer","<b>string<\/b><br/>Group: Datatype<br/>URI: http://www.w3.org/2001/XMLSchema#string","<b>date<\/b><br/>Group: Datatype<br/>URI: http://www.w3.org/2001/XMLSchema#date","<b>decimal<\/b><br/>Group: Datatype<br/>URI: http://www.w3.org/2001/XMLSchema#decimal"],"group":["Class","Class","Class","Class","Class","Class","Class","Class","Class","SuperClass","SuperClass","SuperClass","Class","Class","Class","Class","Class","Class","Class","Class","Class","Class","Class","SuperClass","Class","Class","SuperClass","SuperClass","Class","Class","SuperClass","SuperClass","SuperClass","Class","Class","Class","SuperClass","SuperClass","SuperClass","Class","SuperClass","Class","Class","Class","Class","SuperClass","Class","Class","Class","SuperClass","ExternalConcept","ExternalClass","Datatype","Datatype","Datatype","Datatype"]},"edges":{"from":["https://usace.mil/ontology/recreation/RecreationManagement","https://usace.mil/ontology/recreation/RVCampground","https://usace.mil/ontology/recreation/Reservation","https://usace.mil/ontology/recreation/FishingPier","https://usace.mil/ontology/recreation/FishingPier","https://usace.mil/ontology/recreation/SpecialUseFee","https://usace.mil/ontology/recreation/PicnicShelter","https://usace.mil/ontology/recreation/RecreationEnforcement","https://usace.mil/ontology/recreation/Campsite","https://usace.mil/ontology/recreation/VisitorAssistance","https://usace.mil/ontology/recreation/AquaticUseArea","https://usace.mil/ontology/recreation/AquaticUseArea","https://usace.mil/ontology/recreation/VisitorService","https://usace.mil/ontology/recreation/RecreationAgreement","https://usace.mil/ontology/recreation/Playground","https://usace.mil/ontology/recreation/DayUseArea","https://usace.mil/ontology/recreation/HikingTrail","https://usace.mil/ontology/recreation/CampingFee","https://usace.mil/ontology/recreation/SwimmingArea","https://usace.mil/ontology/recreation/SwimmingArea","https://usace.mil/ontology/recreation/Marina","https://usace.mil/ontology/recreation/Marina","https://usace.mil/ontology/recreation/PumpOutStation","https://usace.mil/ontology/recreation/PumpOutStation","https://usace.mil/ontology/recreation/VisitorCenter","https://usace.mil/ontology/recreation/Concession","https://usace.mil/ontology/recreation/BikeTrail","https://usace.mil/ontology/recreation/RecreationActivity","https://usace.mil/ontology/recreation/Trail","https://usace.mil/ontology/recreation/Trail","https://usace.mil/ontology/recreation/ParkingArea","https://usace.mil/ontology/recreation/WaterSafety","https://usace.mil/ontology/recreation/RecreationFee","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","https://usace.mil/ontology/recreation/RecreationIncident","https://usace.mil/ontology/recreation/PicnicArea","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/Campground","https://usace.mil/ontology/recreation/FlushRestroom","https://usace.mil/ontology/recreation/GroupCampArea","https://usace.mil/ontology/recreation/BoatSlip","https://usace.mil/ontology/recreation/BoatSlip","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/Restroom","https://usace.mil/ontology/recreation/EquestrianTrail","https://usace.mil/ontology/recreation/LinearRecreationAsset","https://usace.mil/ontology/recreation/RecreationArea","https://usace.mil/ontology/recreation/DayUseFee","https://usace.mil/ontology/recreation/BoatRamp","https://usace.mil/ontology/recreation/BoatRamp","https://usace.mil/ontology/recreation/InterpretationProgram","https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/BoatLaunchFee","https://usace.mil/ontology/recreation/FuelDock","https://usace.mil/ontology/recreation/FuelDock","https://usace.mil/ontology/recreation/VaultToilet","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/AquaticUseArea","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationArea","https://usace.mil/ontology/recreation/RecreationArea","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationArea","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/Marina","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/BoatRamp","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/Campground","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/Trail"],"to":["https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/Campground","https://usace.mil/ontology/recreation/VisitorService","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationFee","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/VisitorService","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/Trail","https://usace.mil/ontology/recreation/RecreationFee","https://usace.mil/ontology/recreation/AquaticUseArea","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/RecreationAgreement","https://usace.mil/ontology/recreation/Trail","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/LinearRecreationAsset","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/Restroom","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/Trail","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/RecreationFee","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationFee","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/Restroom","http://www.w3.org/2004/02/skos/core#Concept","https://usace.mil/ontology/recreation/RecreationArea","http://www.w3.org/2002/07/owl#Thing","http://www.w3.org/2004/02/skos/core#Concept","https://usace.mil/ontology/recreation/RecreationFacility","http://www.w3.org/2004/02/skos/core#Concept","http://www.w3.org/2004/02/skos/core#Concept","https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationActivity","https://usace.mil/ontology/recreation/RecreationFee","http://www.w3.org/2001/XMLSchema#integer","http://www.w3.org/2001/XMLSchema#string","http://www.w3.org/2001/XMLSchema#integer","http://www.w3.org/2001/XMLSchema#date","http://www.w3.org/2001/XMLSchema#integer","http://www.w3.org/2001/XMLSchema#string","http://www.w3.org/2001/XMLSchema#date","http://www.w3.org/2001/XMLSchema#decimal"],"label":["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""],"title":["rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","has source concept","facility of","operated by","has water surface zoning","amenity of","has land allocation","has land classification","managed under","has facility","has amenity","supports activity","charges fee","boat slips","local identifier","boat ramp lanes","operating season start","number of sites","facility name","operating season end","trail length miles"],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to"],"color":["#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#31A354","#31A354","#31A354","#31A354","#31A354","#31A354","#31A354","#31A354"],"dashes":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true],"width":[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","borderWidth":1,"shadow":false},"manipulation":{"enabled":false},"groups":{"Class":{"color":"#4A7A96","shape":"box","font":{"color":"white","size":14}},"SuperClass":{"color":"#1E4620","shape":"ellipse","font":{"color":"white","size":14}},"Datatype":{"color":"#6A3D9A","shape":"triangle","font":{"color":"white","size":13}},"ExternalConcept":{"color":"#8C6D31","shape":"star","font":{"color":"white","size":13}},"useDefaultGroups":true,"ExternalClass":{"color":"#7A7A7A","shape":"dot","font":{"color":"white","size":12}}},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.8}},"font":{"size":9,"align":"middle"},"smooth":false},"interaction":{"hover":true,"keyboard":true,"navigationButtons":true,"zoomSpeed":1},"physics":{"solver":"forceAtlas2Based","stabilization":{"iterations":350},"forceAtlas2Based":{"gravitationalConstant":-60,"centralGravity":0.008,"springLength":170,"springConstant":0.045}}},"groups":["Class","SuperClass","ExternalConcept","ExternalClass","Datatype"],"width":"100%","height":"980px","idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select a Resource to Inspect"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);","legend":{"width":0.2,"useGroups":false,"position":"left","ncol":1,"stepX":100,"stepY":100,"zoom":true,"edges":{"label":["subClassOf","object property","datatype property"],"color":["#2C7FB8","#D95F0E","#31A354"],"dashes":[false,true,true]},"edgesToDataframe":true,"nodes":{"label":["Class","Superclass","Datatype","External Concept","External Class"],"shape":["box","ellipse","triangle","star","dot"],"color":["#4A7A96","#1E4620","#6A3D9A","#8C6D31","#7A7A7A"]},"nodesToDataframe":true}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="hierarchy-graph" class="graph-panel" style="display:none;">
+<div id="htmlwidget-6a7d4152a12bc9309b16" style="width:100%;height:980px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6a7d4152a12bc9309b16">{"x":{"nodes":{"id":["https://usace.mil/ontology/recreation/RecreationManagement","https://usace.mil/ontology/recreation/RVCampground","https://usace.mil/ontology/recreation/Reservation","https://usace.mil/ontology/recreation/FishingPier","https://usace.mil/ontology/recreation/SpecialUseFee","https://usace.mil/ontology/recreation/PicnicShelter","https://usace.mil/ontology/recreation/RecreationEnforcement","https://usace.mil/ontology/recreation/Campsite","https://usace.mil/ontology/recreation/VisitorAssistance","https://usace.mil/ontology/recreation/AquaticUseArea","https://usace.mil/ontology/recreation/VisitorService","https://usace.mil/ontology/recreation/RecreationAgreement","https://usace.mil/ontology/recreation/Playground","https://usace.mil/ontology/recreation/DayUseArea","https://usace.mil/ontology/recreation/HikingTrail","https://usace.mil/ontology/recreation/CampingFee","https://usace.mil/ontology/recreation/SwimmingArea","https://usace.mil/ontology/recreation/Marina","https://usace.mil/ontology/recreation/PumpOutStation","https://usace.mil/ontology/recreation/VisitorCenter","https://usace.mil/ontology/recreation/Concession","https://usace.mil/ontology/recreation/BikeTrail","https://usace.mil/ontology/recreation/RecreationActivity","https://usace.mil/ontology/recreation/Trail","https://usace.mil/ontology/recreation/ParkingArea","https://usace.mil/ontology/recreation/WaterSafety","https://usace.mil/ontology/recreation/RecreationFee","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","https://usace.mil/ontology/recreation/RecreationIncident","https://usace.mil/ontology/recreation/PicnicArea","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/Campground","https://usace.mil/ontology/recreation/FlushRestroom","https://usace.mil/ontology/recreation/GroupCampArea","https://usace.mil/ontology/recreation/BoatSlip","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/Restroom","https://usace.mil/ontology/recreation/EquestrianTrail","https://usace.mil/ontology/recreation/LinearRecreationAsset","https://usace.mil/ontology/recreation/RecreationArea","https://usace.mil/ontology/recreation/DayUseFee","https://usace.mil/ontology/recreation/BoatRamp","https://usace.mil/ontology/recreation/InterpretationProgram","https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/BoatLaunchFee","https://usace.mil/ontology/recreation/FuelDock","https://usace.mil/ontology/recreation/VaultToilet","https://usace.mil/ontology/recreation/RecreationDomainEntity"],"label":["Recreation Management","RV Campground","Reservation","Fishing Pier","Special Use Fee","Picnic Shelter","Recreation Enforcement","Campsite","Visitor Assistance","Aquatic Use Area","Visitor Service","Recreation Agreement","Playground","Day Use Area","Hiking Trail","Camping Fee","Swimming Area","Marina","Pump Out Station","Visitor Center","Concession","Bike Trail","Recreation Activity","Trail","Parking Area","Water Safety","Recreation Fee","Physical Recreation Asset","Recreation Incident","Picnic Area","Recreation Facility","Recreation Amenity","Campground","Flush Restroom","Group Camp Area","Boat Slip","Managed Recreation Place","Water Access Asset","Restroom","Equestrian Trail","Linear Recreation Asset","Recreation Area","Day Use Fee","Boat Ramp","Interpretation Program","Recreation Program","Boat Launch Fee","Fuel Dock","Vault Toilet","Recreation Domain Entity"],"title":["<b>Recreation Management<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RecreationManagement","<b>RV Campground<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RVCampground","<b>Reservation<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/Reservation","<b>Fishing Pier<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/FishingPier","<b>Special Use Fee<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/SpecialUseFee","<b>Picnic Shelter<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/PicnicShelter","<b>Recreation Enforcement<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RecreationEnforcement","<b>Campsite<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/Campsite","<b>Visitor Assistance<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/VisitorAssistance","<b>Aquatic Use Area<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/AquaticUseArea","<b>Visitor Service<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/VisitorService","<b>Recreation Agreement<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationAgreement","<b>Playground<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/Playground","<b>Day Use Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/DayUseArea","<b>Hiking Trail<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/HikingTrail","<b>Camping Fee<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/CampingFee","<b>Swimming Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/SwimmingArea","<b>Marina<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/Marina","<b>Pump Out Station<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/PumpOutStation","<b>Visitor Center<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/VisitorCenter","<b>Concession<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/Concession","<b>Bike Trail<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/BikeTrail","<b>Recreation Activity<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RecreationActivity","<b>Trail<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/Trail","<b>Parking Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/ParkingArea","<b>Water Safety<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/WaterSafety","<b>Recreation Fee<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationFee","<b>Physical Recreation Asset<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/PhysicalRecreationAsset","<b>Recreation Incident<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RecreationIncident","<b>Picnic Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/PicnicArea","<b>Recreation Facility<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationFacility","<b>Recreation Amenity<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationAmenity","<b>Campground<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/Campground","<b>Flush Restroom<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/FlushRestroom","<b>Group Camp Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/GroupCampArea","<b>Boat Slip<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/BoatSlip","<b>Managed Recreation Place<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/ManagedRecreationPlace","<b>Water Access Asset<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/WaterAccessAsset","<b>Restroom<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/Restroom","<b>Equestrian Trail<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/EquestrianTrail","<b>Linear Recreation Asset<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/LinearRecreationAsset","<b>Recreation Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RecreationArea","<b>Day Use Fee<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/DayUseFee","<b>Boat Ramp<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/BoatRamp","<b>Interpretation Program<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/InterpretationProgram","<b>Recreation Program<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationProgram","<b>Boat Launch Fee<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/BoatLaunchFee","<b>Fuel Dock<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/FuelDock","<b>Vault Toilet<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/VaultToilet","<b>Recreation Domain Entity<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationDomainEntity"],"group":["Class","Class","Class","Class","Class","Class","Class","Class","Class","SuperClass","SuperClass","SuperClass","Class","Class","Class","Class","Class","Class","Class","Class","Class","Class","Class","SuperClass","Class","Class","SuperClass","SuperClass","Class","Class","SuperClass","SuperClass","SuperClass","Class","Class","Class","SuperClass","SuperClass","SuperClass","Class","SuperClass","Class","Class","Class","Class","SuperClass","Class","Class","Class","SuperClass"]},"edges":{"from":["https://usace.mil/ontology/recreation/RecreationManagement","https://usace.mil/ontology/recreation/RVCampground","https://usace.mil/ontology/recreation/Reservation","https://usace.mil/ontology/recreation/FishingPier","https://usace.mil/ontology/recreation/FishingPier","https://usace.mil/ontology/recreation/SpecialUseFee","https://usace.mil/ontology/recreation/PicnicShelter","https://usace.mil/ontology/recreation/RecreationEnforcement","https://usace.mil/ontology/recreation/Campsite","https://usace.mil/ontology/recreation/VisitorAssistance","https://usace.mil/ontology/recreation/AquaticUseArea","https://usace.mil/ontology/recreation/AquaticUseArea","https://usace.mil/ontology/recreation/VisitorService","https://usace.mil/ontology/recreation/RecreationAgreement","https://usace.mil/ontology/recreation/Playground","https://usace.mil/ontology/recreation/DayUseArea","https://usace.mil/ontology/recreation/HikingTrail","https://usace.mil/ontology/recreation/CampingFee","https://usace.mil/ontology/recreation/SwimmingArea","https://usace.mil/ontology/recreation/SwimmingArea","https://usace.mil/ontology/recreation/Marina","https://usace.mil/ontology/recreation/Marina","https://usace.mil/ontology/recreation/PumpOutStation","https://usace.mil/ontology/recreation/PumpOutStation","https://usace.mil/ontology/recreation/VisitorCenter","https://usace.mil/ontology/recreation/Concession","https://usace.mil/ontology/recreation/BikeTrail","https://usace.mil/ontology/recreation/RecreationActivity","https://usace.mil/ontology/recreation/Trail","https://usace.mil/ontology/recreation/Trail","https://usace.mil/ontology/recreation/ParkingArea","https://usace.mil/ontology/recreation/WaterSafety","https://usace.mil/ontology/recreation/RecreationFee","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","https://usace.mil/ontology/recreation/RecreationIncident","https://usace.mil/ontology/recreation/PicnicArea","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/Campground","https://usace.mil/ontology/recreation/FlushRestroom","https://usace.mil/ontology/recreation/GroupCampArea","https://usace.mil/ontology/recreation/BoatSlip","https://usace.mil/ontology/recreation/BoatSlip","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/Restroom","https://usace.mil/ontology/recreation/EquestrianTrail","https://usace.mil/ontology/recreation/LinearRecreationAsset","https://usace.mil/ontology/recreation/RecreationArea","https://usace.mil/ontology/recreation/DayUseFee","https://usace.mil/ontology/recreation/BoatRamp","https://usace.mil/ontology/recreation/BoatRamp","https://usace.mil/ontology/recreation/InterpretationProgram","https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/BoatLaunchFee","https://usace.mil/ontology/recreation/FuelDock","https://usace.mil/ontology/recreation/FuelDock","https://usace.mil/ontology/recreation/VaultToilet"],"to":["https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/Campground","https://usace.mil/ontology/recreation/VisitorService","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationFee","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/VisitorService","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/Trail","https://usace.mil/ontology/recreation/RecreationFee","https://usace.mil/ontology/recreation/AquaticUseArea","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/RecreationAgreement","https://usace.mil/ontology/recreation/Trail","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/LinearRecreationAsset","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/Restroom","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/Trail","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/RecreationFee","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationFee","https://usace.mil/ontology/recreation/WaterAccessAsset","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/Restroom"],"label":["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""],"title":["rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf","rdfs:subClassOf"],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to","to"],"color":["#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8","#2C7FB8"],"dashes":[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],"width":[2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","borderWidth":1,"shadow":false},"manipulation":{"enabled":false},"groups":{"Class":{"color":"#4A7A96","shape":"box","font":{"color":"white","size":14}},"SuperClass":{"color":"#1E4620","shape":"ellipse","font":{"color":"white","size":14}},"Datatype":{"color":"#6A3D9A","shape":"triangle","font":{"color":"white","size":13}},"ExternalConcept":{"color":"#8C6D31","shape":"star","font":{"color":"white","size":13}},"useDefaultGroups":true,"ExternalClass":{"color":"#7A7A7A","shape":"dot","font":{"color":"white","size":12}}},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.8}},"font":{"size":9,"align":"middle"},"smooth":false},"interaction":{"hover":true,"keyboard":true,"navigationButtons":true,"zoomSpeed":1},"physics":{"solver":"forceAtlas2Based","stabilization":{"iterations":350},"forceAtlas2Based":{"gravitationalConstant":-60,"centralGravity":0.008,"springLength":170,"springConstant":0.045}}},"groups":["Class","SuperClass"],"width":"100%","height":"980px","idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select a Resource to Inspect"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="object-graph" class="graph-panel" style="display:none;">
+<div id="htmlwidget-ddc854dcb5fca127a49d" style="width:100%;height:980px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ddc854dcb5fca127a49d">{"x":{"nodes":{"id":["https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/AquaticUseArea","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationArea","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","http://www.w3.org/2004/02/skos/core#Concept","http://www.w3.org/2002/07/owl#Thing","https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/RecreationActivity","https://usace.mil/ontology/recreation/RecreationFee"],"label":["Recreation Domain Entity","Recreation Facility","Managed Recreation Place","Aquatic Use Area","Recreation Amenity","Recreation Area","Physical Recreation Asset","Concept","Thing","Recreation Program","Recreation Activity","Recreation Fee"],"title":["<b>Recreation Domain Entity<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationDomainEntity","<b>Recreation Facility<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationFacility","<b>Managed Recreation Place<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/ManagedRecreationPlace","<b>Aquatic Use Area<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/AquaticUseArea","<b>Recreation Amenity<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationAmenity","<b>Recreation Area<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RecreationArea","<b>Physical Recreation Asset<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/PhysicalRecreationAsset","<b>Concept<\/b><br/>Group: ExternalConcept<br/>URI: http://www.w3.org/2004/02/skos/core#Concept","<b>Thing<\/b><br/>Group: ExternalClass<br/>URI: http://www.w3.org/2002/07/owl#Thing","<b>Recreation Program<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationProgram","<b>Recreation Activity<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/RecreationActivity","<b>Recreation Fee<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationFee"],"group":["SuperClass","SuperClass","SuperClass","SuperClass","SuperClass","Class","SuperClass","ExternalConcept","ExternalClass","SuperClass","Class","SuperClass"]},"edges":{"from":["https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/AquaticUseArea","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationArea","https://usace.mil/ontology/recreation/RecreationArea","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/RecreationArea","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/PhysicalRecreationAsset","https://usace.mil/ontology/recreation/ManagedRecreationPlace"],"to":["http://www.w3.org/2004/02/skos/core#Concept","https://usace.mil/ontology/recreation/RecreationArea","http://www.w3.org/2002/07/owl#Thing","http://www.w3.org/2004/02/skos/core#Concept","https://usace.mil/ontology/recreation/RecreationFacility","http://www.w3.org/2004/02/skos/core#Concept","http://www.w3.org/2004/02/skos/core#Concept","https://usace.mil/ontology/recreation/RecreationProgram","https://usace.mil/ontology/recreation/RecreationFacility","https://usace.mil/ontology/recreation/RecreationAmenity","https://usace.mil/ontology/recreation/RecreationActivity","https://usace.mil/ontology/recreation/RecreationFee"],"label":["","","","","","","","","","","",""],"title":["has source concept","facility of","operated by","has water surface zoning","amenity of","has land allocation","has land classification","managed under","has facility","has amenity","supports activity","charges fee"],"arrows":["to","to","to","to","to","to","to","to","to","to","to","to"],"color":["#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E","#D95F0E"],"dashes":[true,true,true,true,true,true,true,true,true,true,true,true],"width":[1,1,1,1,1,1,1,1,1,1,1,1]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","borderWidth":1,"shadow":false},"manipulation":{"enabled":false},"groups":{"Class":{"color":"#4A7A96","shape":"box","font":{"color":"white","size":14}},"SuperClass":{"color":"#1E4620","shape":"ellipse","font":{"color":"white","size":14}},"Datatype":{"color":"#6A3D9A","shape":"triangle","font":{"color":"white","size":13}},"ExternalConcept":{"color":"#8C6D31","shape":"star","font":{"color":"white","size":13}},"useDefaultGroups":true,"ExternalClass":{"color":"#7A7A7A","shape":"dot","font":{"color":"white","size":12}}},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.8}},"font":{"size":9,"align":"middle"},"smooth":false},"interaction":{"hover":true,"keyboard":true,"navigationButtons":true,"zoomSpeed":1},"physics":{"solver":"forceAtlas2Based","stabilization":{"iterations":350},"forceAtlas2Based":{"gravitationalConstant":-60,"centralGravity":0.008,"springLength":170,"springConstant":0.045}}},"groups":["SuperClass","Class","ExternalConcept","ExternalClass"],"width":"100%","height":"980px","idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select a Resource to Inspect"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="datatype-graph" class="graph-panel" style="display:none;">
+<div id="htmlwidget-713a6216874dd434cf1d" style="width:100%;height:980px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-713a6216874dd434cf1d">{"x":{"nodes":{"id":["https://usace.mil/ontology/recreation/Marina","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/BoatRamp","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/Campground","https://usace.mil/ontology/recreation/Trail","http://www.w3.org/2001/XMLSchema#integer","http://www.w3.org/2001/XMLSchema#string","http://www.w3.org/2001/XMLSchema#date","http://www.w3.org/2001/XMLSchema#decimal"],"label":["Marina","Recreation Domain Entity","Boat Ramp","Managed Recreation Place","Campground","Trail","integer","string","date","decimal"],"title":["<b>Marina<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/Marina","<b>Recreation Domain Entity<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/RecreationDomainEntity","<b>Boat Ramp<\/b><br/>Group: Class<br/>URI: https://usace.mil/ontology/recreation/BoatRamp","<b>Managed Recreation Place<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/ManagedRecreationPlace","<b>Campground<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/Campground","<b>Trail<\/b><br/>Group: SuperClass<br/>URI: https://usace.mil/ontology/recreation/Trail","<b>integer<\/b><br/>Group: Datatype<br/>URI: http://www.w3.org/2001/XMLSchema#integer","<b>string<\/b><br/>Group: Datatype<br/>URI: http://www.w3.org/2001/XMLSchema#string","<b>date<\/b><br/>Group: Datatype<br/>URI: http://www.w3.org/2001/XMLSchema#date","<b>decimal<\/b><br/>Group: Datatype<br/>URI: http://www.w3.org/2001/XMLSchema#decimal"],"group":["Class","SuperClass","Class","SuperClass","SuperClass","SuperClass","Datatype","Datatype","Datatype","Datatype"]},"edges":{"from":["https://usace.mil/ontology/recreation/Marina","https://usace.mil/ontology/recreation/RecreationDomainEntity","https://usace.mil/ontology/recreation/BoatRamp","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/Campground","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/ManagedRecreationPlace","https://usace.mil/ontology/recreation/Trail"],"to":["http://www.w3.org/2001/XMLSchema#integer","http://www.w3.org/2001/XMLSchema#string","http://www.w3.org/2001/XMLSchema#integer","http://www.w3.org/2001/XMLSchema#date","http://www.w3.org/2001/XMLSchema#integer","http://www.w3.org/2001/XMLSchema#string","http://www.w3.org/2001/XMLSchema#date","http://www.w3.org/2001/XMLSchema#decimal"],"label":["","","","","","","",""],"title":["boat slips","local identifier","boat ramp lanes","operating season start","number of sites","facility name","operating season end","trail length miles"],"arrows":["to","to","to","to","to","to","to","to"],"color":["#31A354","#31A354","#31A354","#31A354","#31A354","#31A354","#31A354","#31A354"],"dashes":[true,true,true,true,true,true,true,true],"width":[1,1,1,1,1,1,1,1]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","borderWidth":1,"shadow":false},"manipulation":{"enabled":false},"groups":{"Class":{"color":"#4A7A96","shape":"box","font":{"color":"white","size":14}},"SuperClass":{"color":"#1E4620","shape":"ellipse","font":{"color":"white","size":14}},"Datatype":{"color":"#6A3D9A","shape":"triangle","font":{"color":"white","size":13}},"ExternalConcept":{"color":"#8C6D31","shape":"star","font":{"color":"white","size":13}},"useDefaultGroups":true,"ExternalClass":{"color":"#7A7A7A","shape":"dot","font":{"color":"white","size":12}}},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":0.8}},"font":{"size":9,"align":"middle"},"smooth":false},"interaction":{"hover":true,"keyboard":true,"navigationButtons":true,"zoomSpeed":1},"physics":{"solver":"forceAtlas2Based","stabilization":{"iterations":350},"forceAtlas2Based":{"gravitationalConstant":-60,"centralGravity":0.008,"springLength":170,"springConstant":0.045}}},"groups":["Class","SuperClass","Datatype"],"width":"100%","height":"980px","idselection":{"enabled":true,"style":"width: 150px; height: 26px","useLabels":true,"main":"Select a Resource to Inspect"},"byselection":{"enabled":false,"style":"width: 150px; height: 26px","multiple":false,"hideColor":"rgba(200,200,200,0.5)","highlight":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","highlight":{"enabled":true,"hoverNearest":true,"degree":1,"algorithm":"all","hideColor":"rgba(200,200,200,0.5)","labelOnly":true},"collapse":{"enabled":false,"fit":false,"resetHighlight":true,"clusterOptions":null,"keepCoord":true,"labelSuffix":"(cluster)"},"tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var select = document.getElementById('graph-view-select');
+  var panels = document.querySelectorAll('.graph-panel');
+
+  function showPanel(panelId) {
+    panels.forEach(function(panel) {
+      panel.style.display = (panel.id === panelId) ? 'block' : 'none';
+    });
+  }
+
+  if (select) {
+    select.addEventListener('change', function() {
+      showPanel(this.value);
+    });
+  }
+
+  showPanel('full-graph');
+});
+</script>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="./12-recreation-sdsfie-crosswalk.html" class="pagination-link" aria-label="Recreation SDSFIE Crosswalk">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Recreation SDSFIE Crosswalk</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

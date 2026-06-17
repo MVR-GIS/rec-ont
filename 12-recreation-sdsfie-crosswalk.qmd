@@ -1,91 +1,88 @@
----
-title: Recreation SDSFIE Crosswalk
----
+# Recreation SDSFIE Crosswalk
 
 **Status:** v2 review draft
-**Date:** 2026-06-01
+**Date:** 2026-06-17
 **Sources:** Recreation v2 artifacts; SDSFIE 5.0 Gold Draft vocabulary, ontology, and enumerations
 
 ## Purpose
 
-This crosswalk records where SDSFIE terminology can be mapped cleanly to the recreation ontology without making SDSFIE's feature model govern the recreation conceptual model.
+This is the operator-facing crosswalk for teams that start with a SDSFIE geospatial database and need to map records into the recreation ontology.
 
-The recreation model keeps these boundaries:
+Use the tables below as: "If you have this SDSFIE class or coded value, use this recreation ontology term."
 
-- `rec:*` classes are business/domain concepts.
-- `recs:*Feature` classes are GIS representation classes.
-- `recv:*` concepts preserve recreation source vocabulary.
-- `sd:*` and `sde:*` terms are SDSFIE alignment anchors.
+The companion file `12-recreation-sdsfie-crosswalk.ttl` remains the machine-readable assertion layer. It still records the formal SKOS predicates from recreation terms to SDSFIE anchors.
 
-## Mapping Semantics
+## Scope Boundary
 
-Predicates are written from the recreation term to the SDSFIE anchor.
+The recreation ontology is derived first from formal USACE guidance, especially `EP 1130-2-550`. SDSFIE alignment is secondary.
 
-| Predicate | Meaning in this crosswalk |
+That means this crosswalk is meant to help with mapping from existing SDSFIE data into the current recreation ontology. It is not a rule that every SDSFIE recreation family must become a USACE recreation class.
+
+## How To Use This Crosswalk
+
+1. Start with the most specific SDSFIE class or coded value available in the source database.
+2. Prefer the listed `recs:*Feature` class for the spatial record.
+3. When an optional `rec:*` concept is listed, use it to type what the feature represents.
+4. If the row says `Review`, do not auto-map it. Keep the source term visible and resolve it in an implementation profile or data-cleanup pass.
+
+## Match Labels
+
+| Label | Meaning for the team |
 | --- | --- |
-| `skos:exactMatch` | The recreation term and SDSFIE anchor can be treated as equivalent for the mapped feature concept. |
-| `skos:closeMatch` | The concepts are operationally close, but differ by model grain, feature/entity boundary, or implementation convention. |
-| `skos:broadMatch` | The SDSFIE anchor is broader than the recreation term. |
-| `skos:narrowMatch` | The SDSFIE anchor is narrower than the recreation term. |
-| `skos:relatedMatch` | The terms are relevant to one another but should not be treated as a hierarchy or equivalence. |
-| No mapping | No class-level SDSFIE anchor is clear enough to assert by default. |
+| `Default` | Use this recreation term unless the source record clearly says otherwise. |
+| `Conditional` | Use this term only when the source semantics match the note in the row. |
+| `Review` | No single safe default target exists in the current ontology. |
 
-## Spatial Feature Crosswalk
+## Direct SDSFIE Feature-Class Mappings
 
-| Recreation term | Recreation meaning | SDSFIE anchor | Mapping | Notes |
+| If your SDSFIE source is | Use this recreation spatial class | Optional recreation concept | Match | Notes |
 | --- | --- | --- | --- | --- |
-| `recs:RecreationAreaFeature` | GIS representation of `rec:RecreationArea` | `sd:RecreationBoundary` | `skos:closeMatch` | SDSFIE's boundary represents the overall recreation area. Recreation keeps the managed area entity separate from its boundary feature. |
-| `recs:RecreationFacilityFeature` | Generic facility representation | `sd:RecreationFeature` | `skos:broadMatch` | SDSFIE `RecreationFeature` is a general storage class for recreation objects and assets. |
-| `recs:RecreationAmenityFeature` | Generic amenity representation | `sd:RecreationFeature` | `skos:broadMatch` | Amenity is a clearer recreation role than the flat SDSFIE feature bucket. |
-| `recs:CampgroundFeature` | Campground spatial representation | `sd:Campground` | `skos:exactMatch` | SDSFIE also allows the `campground` recreation feature type value when using the generic feature class. |
-| `recs:CampsiteFeature` | Individual campsite representation | `sd:Campsite` | `skos:exactMatch` | SDSFIE campsite use values can be implementation attributes, not recreation OWL subclasses by default. |
-| `recs:DayUseAreaFeature` | Managed day-use area representation | `sd:RecreationFeature` | `skos:broadMatch` | SDSFIE has no clean day-use-area class-level anchor. |
-| `recs:PicnicAreaFeature` | Picnic area representation | `sde:RecreationFeatureUseType_picnicSite` | `skos:closeMatch` | SDSFIE models this as a recreation feature type value rather than a standalone class. |
-| `recs:MarinaFeature` | Managed boating facility representation | `sd:Marina` | `skos:closeMatch` | SDSFIE marina is a harbor facility. Recreation marina is a managed recreation facility and water access asset. |
-| `recs:WaterAccessFeature` | Generic water access representation | `sd:RecreationFeature` | `skos:relatedMatch` | Water access is a recreation facet that can cut across several SDSFIE classes and values. |
-| `recs:BoatRampFeature` | Recreational boat launch representation | `sde:RecreationFeatureUseType_boatRamp` | `skos:closeMatch` | Do not map recreational boat ramps to `sd:BoatRamp`; SDSFIE scopes that feature class to non-recreational ramps. |
-| `recs:FishingPierFeature` | Fishing platform or pier representation | `sd:FishingFeature` | `skos:broadMatch` | SDSFIE fishing feature is broader than a fishing pier. |
-| `recs:FishingPierFeature` | Fishing platform or pier representation | `sd:DockOrWharf` | `skos:relatedMatch` | Useful when the source feature is also managed as dock or wharf infrastructure. |
-| `recs:FuelDockFeature` | Marine fuel service asset representation | `sd:DockOrWharf` | `skos:broadMatch` | SDSFIE has the generic water-land interface structure; fuel service is the narrower recreation asset role. |
-| `recs:SwimmingAreaFeature` | Designated swimming area representation | `sde:RecreationFeatureUseType_swimmingDesignatedBeach` | `skos:closeMatch` | Close when the source feature is a designated beach. |
-| `recs:SwimmingAreaFeature` | Designated swimming area representation | `sde:RecreationFeatureUseType_waterActivitySite` | `skos:broadMatch` | Use for broader water activity site implementations. |
-| `recs:TrailFeature` | Managed recreation route representation | `sd:RecreationTrail` | `skos:exactMatch` | Trail use values remain attributes or source concepts unless separate classes are justified. |
-| `recs:ParkingAreaFeature` | Recreation parking area representation | `sd:ParkingArea` | `skos:exactMatch` | SDSFIE explicitly separates parking area mapping from pavement management segmentation. |
-| `recs:RestroomFeature` | Restroom representation | `sde:RecreationFeatureUseType_restroom` | `skos:closeMatch` | SDSFIE restroom value is flush-oriented. Vault toilets map separately. |
-| `recs:VisitorCenterFeature` | Visitor information and interpretation facility representation | `sde:RecreationFeatureUseType_museumOrVisitorCenter` | `skos:closeMatch` | SDSFIE combines museums and visitor centers under one feature type value. |
-| `recs:LandClassificationAreaFeature` | Source-backed land classification area | `sd:LandUse` | `skos:relatedMatch` | SDSFIE land use is related, but not identical to USACE recreation land allocation or classification concepts. |
-| `recs:WaterSurfaceZoneFeature` | Source-backed water surface zone | `sd:RestrictedArea` | `skos:relatedMatch` | Applies only when the zone restricts access or activity. Other water-surface zones require source-specific mapping. |
-| `recs:ProjectBoundaryFeature` | Project boundary representation | No default mapping | No mapping | A project boundary is not automatically a SDSFIE recreation boundary. Map to `sd:RecreationBoundary` only when the source explicitly represents a recreation area boundary. |
+| `sd:Campground` | `recs:CampgroundFeature` |  | `Default` | Direct campground-to-campground mapping. |
+| `sd:Campsite` | `recs:CampsiteFeature` |  | `Default` | Direct campsite-to-campsite mapping. |
+| `sd:RecreationTrail` | `recs:TrailFeature` | `rec:Trail` or a narrower trail concept | `Default` | Use the trail line class. Do not confuse this with point-based trail-associated features. |
+| `sd:RecreationTrailFeature` | `recs:TrailAssociatedFeature` |  | `Default` | Use for point features associated with a trail. |
+| `sd:ParkingArea` | `recs:ParkingAreaFeature` |  | `Default` | Direct parking-area mapping. |
+| `sd:Marina` | `recs:MarinaFeature` |  | `Conditional` | Use when the source record is functioning as a recreation marina, not just a general harbor facility. |
+| `sd:RecreationBoundary` | `recs:RecreationAreaFeature` | `rec:RecreationArea` | `Conditional` | Use when the SDSFIE feature is the boundary of a recreation area. Do not use this as the default for `recs:ProjectBoundaryFeature`. |
+| `sd:Playground` | `recs:RecreationAmenityFeature` | `rec:Playground` | `Conditional` | The ontology keeps playground primarily as an amenity concept rather than a dedicated spatial subclass. |
 
-## Domain Terms Without Current Spatial Feature Classes
+## SDSFIE Recreation Feature Type Mappings
 
-These recreation domain classes have useful SDSFIE anchors, but the active spatial extension does not currently define separate `recs:*Feature` classes for each one.
+Use these rows when the source record is stored as a generic SDSFIE recreation feature and the coded value carries the real meaning.
 
-| Recreation term | SDSFIE anchor | Mapping | Notes |
-| --- | --- | --- | --- |
-| `rec:PicnicShelter` | `sde:RecreationFeatureUseType_picnicShelter` | `skos:closeMatch` | SDSFIE models picnic shelter as a recreation feature type value. |
-| `rec:Playground` | `sd:Playground` | `skos:closeMatch` | The SDSFIE class is spatial/entity oriented; recreation keeps playground as an amenity domain class. |
-| `rec:BoatSlip` | `sd:DockOrWharf` | `skos:relatedMatch` | A slip is a managed mooring location, not necessarily the dock or wharf structure itself. |
-| `rec:PumpOutStation` | `sd:DockOrWharf` | `skos:relatedMatch` | Related when the station is located on dock infrastructure; no default equivalence. |
-| `rec:Restroom` | `sde:RecreationFeatureUseType_restroom`; `sde:RecreationFeatureUseType_vaultToilet` | `skos:narrowMatch` | SDSFIE separates narrower restroom feature type values below the broader recreation restroom domain class. |
-| `rec:FlushRestroom` | `sde:RecreationFeatureUseType_restroom` | `skos:exactMatch` | SDSFIE restroom definition is flush-water oriented. |
-| `rec:VaultToilet` | `sde:RecreationFeatureUseType_vaultToilet` | `skos:exactMatch` | SDSFIE has a specific vault toilet recreation feature type value. |
-| `rec:Trail` | `sde:RecreationTrailUseType_hike`; `sde:RecreationTrailUseType_bike`; `sde:RecreationTrailUseType_equestrianOrPack` | `skos:narrowMatch` | SDSFIE trail use values are narrower than the general managed trail class. |
-| `rec:HikingTrail` | `sde:RecreationTrailUseType_hike` | `skos:closeMatch` | SDSFIE trail use value can type a `recs:TrailFeature` implementation. |
-| `rec:BikeTrail` | `sde:RecreationTrailUseType_bike` | `skos:closeMatch` | SDSFIE trail use value can type a `recs:TrailFeature` implementation. |
-| `rec:EquestrianTrail` | `sde:RecreationTrailUseType_equestrianOrPack` | `skos:closeMatch` | SDSFIE combines equestrian and pack trail use. |
+| If your SDSFIE source is | Use this recreation spatial class | Optional recreation concept | Match | Notes |
+| --- | --- | --- | --- | --- |
+| `sd:RecreationFeature` + `sde:RecreationFeatureUseType_boatRamp` | `recs:BoatRampFeature` |  | `Default` | This is the correct recreational boat-ramp path. Do not remap these to `sd:BoatRamp`. |
+| `sd:RecreationFeature` + `sde:RecreationFeatureUseType_picnicSite` | `recs:PicnicAreaFeature` |  | `Default` | SDSFIE stores picnic-site meaning in the coded value rather than a standalone class. |
+| `sd:RecreationFeature` + `sde:RecreationFeatureUseType_restroom` | `recs:RestroomFeature` | `rec:FlushRestroom` | `Default` | SDSFIE restroom is flush-water oriented in this crosswalk. |
+| `sd:RecreationFeature` + `sde:RecreationFeatureUseType_vaultToilet` | `recs:RestroomFeature` | `rec:VaultToilet` | `Default` | Use the restroom feature class and type the represented concept as vault toilet. |
+| `sd:RecreationFeature` + `sde:RecreationFeatureUseType_museumOrVisitorCenter` | `recs:VisitorCenterFeature` |  | `Conditional` | Use when the source record is functioning as a visitor center. If the source is really a museum, review first. |
+| `sd:RecreationFeature` + `sde:RecreationFeatureUseType_swimmingDesignatedBeach` | `recs:SwimmingAreaFeature` |  | `Conditional` | Good fit when the source is a designated swimming beach or area. |
+| `sd:RecreationFeature` + `sde:RecreationFeatureUseType_waterActivitySite` | `recs:SwimmingAreaFeature` |  | `Conditional` | Use only when the source is specifically a swimming area. Otherwise review. |
+| `sd:RecreationFeature` + `sde:RecreationFeatureUseType_picnicShelter` | `recs:RecreationAmenityFeature` | `rec:PicnicShelter` | `Conditional` | The current ontology has the picnic shelter concept, but not a dedicated picnic-shelter spatial subclass. |
 
-## SDSFIE Anchors To Use Carefully
+## SDSFIE Trail Use Value Mappings
 
-| SDSFIE term | Crosswalk decision |
-| --- | --- |
-| `sd:BoatRamp` | Do not use as the recreational boat ramp match. SDSFIE scopes the class to non-recreational boat ramps and directs recreational ramps to `sd:RecreationFeature` with the boat ramp type value. |
-| `sd:RecreationFeature` | Use as a broad anchor for generic recreation assets, not as a replacement for `rec:RecreationFacility`, `rec:RecreationAmenity`, or `rec:WaterAccessAsset`. |
-| `sd:RecreationBoundary` | Use for overall recreation area boundaries, not for every recreation use area or project boundary. |
-| `sd:DockOrWharf` | Use for dock/wharf infrastructure. Do not collapse boat slips, fuel docks, pump-out stations, and fishing piers into this class unless the source feature grain supports that interpretation. |
-| `sd:LandUse` | Related to recreation land classification, but not equivalent to USACE source classification vocabularies. |
-| `sd:RestrictedArea` | Related to water-surface zones only when the zone restricts access or activity. |
+Use these rows when the source feature is `sd:RecreationTrail` and the trail-use value further narrows the represented concept.
+
+| If your SDSFIE source is | Use this recreation spatial class | Optional recreation concept | Match | Notes |
+| --- | --- | --- | --- | --- |
+| `sd:RecreationTrail` + `sde:RecreationTrailUseType_hike` | `recs:TrailFeature` | `rec:HikingTrail` | `Conditional` | Keep the spatial class as trail feature and carry the hiking semantics in the represented concept. |
+| `sd:RecreationTrail` + `sde:RecreationTrailUseType_bike` | `recs:TrailFeature` | `rec:BikeTrail` | `Conditional` | Keep the spatial class as trail feature and carry the bike semantics in the represented concept. |
+| `sd:RecreationTrail` + `sde:RecreationTrailUseType_equestrianOrPack` | `recs:TrailFeature` | `rec:EquestrianTrail` | `Conditional` | SDSFIE combines equestrian and pack use under one value. |
+
+## SDSFIE Sources That Need Review Instead Of Auto-Mapping
+
+| SDSFIE source | Why it needs review | Current recreation guidance |
+| --- | --- | --- |
+| `sd:RecreationFeature` with no useful type value | Too generic to choose among facility, amenity, water-access, or area patterns. | Review the source semantics before choosing `recs:RecreationFacilityFeature`, `recs:RecreationAmenityFeature`, `recs:WaterAccessFeature`, or another class. |
+| `sd:BoatRamp` | SDSFIE scopes this class to non-recreational ramps. | For recreational ramps, use `sd:RecreationFeature` with `sde:RecreationFeatureUseType_boatRamp`, then map to `recs:BoatRampFeature`. |
+| `sd:FishingFeature` | Broader than the current fishing-pier concept. | Map to `recs:FishingPierFeature` only when the source record is specifically a fishing pier or platform. |
+| `sd:DockOrWharf` | Can represent several different recreation meanings. | Review against `recs:FuelDockFeature`, `recs:FishingPierFeature`, `rec:BoatSlip`, or `rec:PumpOutStation` based on source semantics. |
+| `sd:LandUse` | Related, but not equivalent, to USACE recreation land classification. | Use only as reviewed support for `recs:LandClassificationAreaFeature`. |
+| `sd:RestrictedArea` | Only some water-surface zones are actually restrictive zones. | Use only as reviewed support for `recs:WaterSurfaceZoneFeature`. |
+| `sd:GolfCourseFeature`, `sd:HuntingFeature`, and similar SDSFIE recreation families outside current USACE formal-guidance scope | These are part of broader SDSFIE recreation coverage, but not default USACE recreation ontology targets. | Do not add or auto-map these into the current USACE recreation ontology without separate formal-guidance support and review. |
 
 ## Implementation Rule
 
-Use SDSFIE mappings as crosswalk assertions and migration aids. Do not make SDSFIE classes superclasses of recreation classes unless an implementation profile explicitly requires that inheritance.
+Use this markdown as the quick operator lookup. Use `12-recreation-sdsfie-crosswalk.ttl` when you need the formal reviewed SKOS assertions behind it.

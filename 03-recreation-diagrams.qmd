@@ -2,7 +2,7 @@
 
 ## Artifact Roles
 
-```mermaid
+```{mermaid}
 flowchart LR
     V[01 Vocabulary] --> O[02 Target Ontology]
     O --> D[03 Domain Diagrams]
@@ -16,7 +16,7 @@ flowchart LR
 
 ## Core Domain Roles
 
-```mermaid
+```{mermaid}
 classDiagram
     class RecreationDomainEntity
     class PhysicalRecreationAsset
@@ -41,7 +41,7 @@ classDiagram
 
 ## Facilities, Amenities, And Water Access
 
-```mermaid
+```{mermaid}
 classDiagram
     class RecreationFacility
     class RecreationAmenity

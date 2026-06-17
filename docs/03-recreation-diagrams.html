@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Introduction – USACE Recreation Ontology Review</title>
+<title>3&nbsp; Recreation Domain Diagrams – USACE Recreation Ontology Review</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ontology-overview.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./07-recreation-spatial-diagrams.html" rel="next">
+<link href="./ontology-overview.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -72,6 +72,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -85,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-recreation-diagrams.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Recreation Domain Diagrams</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -113,37 +116,43 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">USACE Recreation Ontology Review</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ontology-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Ontology Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Ontology Overview</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rec-vis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ontology Module Review</span></span></a>
+  <a href="./03-recreation-diagrams.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Recreation Domain Diagrams</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-recreation-spatial-diagrams.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recreation Spatial Diagrams</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Recreation Spatial Diagrams</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-recreation-modernization-decision-log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recreation Modernization Decision Log</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12-recreation-sdsfie-crosswalk.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Recreation SDSFIE Crosswalk</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rec-ontology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Recreation Ontology</span></span></a>
   </div>
 </li>
     </ul>
@@ -156,18 +165,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#review-objective" id="toc-review-objective" class="nav-link active" data-scroll-target="#review-objective"><span class="header-section-number">2.1</span> Review objective</a></li>
-  <li><a href="#what-is-being-reviewed" id="toc-what-is-being-reviewed" class="nav-link" data-scroll-target="#what-is-being-reviewed"><span class="header-section-number">2.2</span> What is being reviewed</a></li>
-  <li><a href="#review-perspective" id="toc-review-perspective" class="nav-link" data-scroll-target="#review-perspective"><span class="header-section-number">2.3</span> Review perspective</a></li>
-  <li><a href="#what-to-look-for" id="toc-what-to-look-for" class="nav-link" data-scroll-target="#what-to-look-for"><span class="header-section-number">2.4</span> What to look for</a>
-  <ul class="collapse">
-  <li><a href="#class-model" id="toc-class-model" class="nav-link" data-scroll-target="#class-model"><span class="header-section-number">2.4.1</span> Class model</a></li>
-  <li><a href="#object-properties" id="toc-object-properties" class="nav-link" data-scroll-target="#object-properties"><span class="header-section-number">2.4.2</span> Object properties</a></li>
-  <li><a href="#datatype-properties" id="toc-datatype-properties" class="nav-link" data-scroll-target="#datatype-properties"><span class="header-section-number">2.4.3</span> Datatype properties</a></li>
-  <li><a href="#integration-readiness" id="toc-integration-readiness" class="nav-link" data-scroll-target="#integration-readiness"><span class="header-section-number">2.4.4</span> Integration readiness</a></li>
-  </ul></li>
-  <li><a href="#site-organization" id="toc-site-organization" class="nav-link" data-scroll-target="#site-organization"><span class="header-section-number">2.5</span> Site organization</a></li>
-  <li><a href="#expected-use" id="toc-expected-use" class="nav-link" data-scroll-target="#expected-use"><span class="header-section-number">2.6</span> Expected use</a></li>
+  <li><a href="#artifact-roles" id="toc-artifact-roles" class="nav-link active" data-scroll-target="#artifact-roles"><span class="header-section-number">3.1</span> Artifact Roles</a></li>
+  <li><a href="#core-domain-roles" id="toc-core-domain-roles" class="nav-link" data-scroll-target="#core-domain-roles"><span class="header-section-number">3.2</span> Core Domain Roles</a></li>
+  <li><a href="#facilities-amenities-and-water-access" id="toc-facilities-amenities-and-water-access" class="nav-link" data-scroll-target="#facilities-amenities-and-water-access"><span class="header-section-number">3.3</span> Facilities, Amenities, And Water Access</a></li>
   </ul>
 </nav>
     </div>
@@ -176,7 +176,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Recreation Domain Diagrams</span></h1>
 </div>
 
 
@@ -193,88 +193,103 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="review-objective" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="review-objective"><span class="header-section-number">2.1</span> Review objective</h2>
-<p>This book presents the current draft of the <strong>USACE Recreation Ontology</strong> in a format that is easier to review than raw Turtle files alone. The goal is to support discussion of structure, naming, hierarchy, and relationship design before the ontology is finalized or expanded.</p>
+<section id="artifact-roles" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="artifact-roles"><span class="header-section-number">3.1</span> Artifact Roles</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    V[01 Vocabulary] --&gt; O[02 Target Ontology]
+    O --&gt; D[03 Domain Diagrams]
+    O --&gt; S[06 Spatial Extension]
+    S --&gt; SD[07 Spatial Diagrams]
+    O --&gt; SH[08 SHACL Shapes]
+    S --&gt; SH
+    O --&gt; SPEC[09 Specification]
+    S --&gt; SPEC
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </section>
-<section id="what-is-being-reviewed" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="what-is-being-reviewed"><span class="header-section-number">2.2</span> What is being reviewed</h2>
-<p>The review focuses primarily on the ontology content in:</p>
-<ul>
-<li><code>data/02-recreation-ontology.ttl</code></li>
-</ul>
-<p>This ontology defines:</p>
-<ul>
-<li>core recreation domain classes</li>
-<li>class hierarchies</li>
-<li>object properties connecting domain entities</li>
-<li>datatype properties describing operational attributes</li>
-</ul>
-<p>Additional files in this repository provide vocabulary, spatial context, and crosswalk material that support interpretation of the ontology.</p>
+<section id="core-domain-roles" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="core-domain-roles"><span class="header-section-number">3.2</span> Core Domain Roles</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">classDiagram
+    class RecreationDomainEntity
+    class PhysicalRecreationAsset
+    class ManagedRecreationPlace
+    class RecreationArea
+    class RecreationFacility
+    class RecreationAmenity
+    class WaterAccessAsset
+    class AquaticUseArea
+    class LinearRecreationAsset
+
+    RecreationDomainEntity &lt;|-- PhysicalRecreationAsset
+    PhysicalRecreationAsset &lt;|-- ManagedRecreationPlace
+    PhysicalRecreationAsset &lt;|-- WaterAccessAsset
+    PhysicalRecreationAsset &lt;|-- LinearRecreationAsset
+    ManagedRecreationPlace &lt;|-- RecreationArea
+    ManagedRecreationPlace &lt;|-- RecreationFacility
+    ManagedRecreationPlace &lt;|-- RecreationAmenity
+    ManagedRecreationPlace &lt;|-- AquaticUseArea
+    WaterAccessAsset &lt;|-- AquaticUseArea
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </section>
-<section id="review-perspective" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="review-perspective"><span class="header-section-number">2.3</span> Review perspective</h2>
-<p>This site is intended for a mixed audience, including:</p>
-<ul>
-<li>ontology reviewers</li>
-<li>GIS practitioners</li>
-<li>program/domain subject matter experts</li>
-<li>stakeholders validating terminology and structure</li>
-</ul>
-<p>Because of that, the materials are organized to support both:</p>
-<ul>
-<li><strong>conceptual review</strong>, such as whether a class belongs in the model</li>
-<li><strong>implementation review</strong>, such as whether relationships and data properties are structured appropriately</li>
-</ul>
-</section>
-<section id="what-to-look-for" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="what-to-look-for"><span class="header-section-number">2.4</span> What to look for</h2>
-<p>As you move through the book, consider the following:</p>
-<section id="class-model" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="class-model"><span class="header-section-number">2.4.1</span> Class model</h3>
-<ul>
-<li>Are the major classes appropriate for the recreation domain?</li>
-<li>Are subclass relationships correct and understandable?</li>
-<li>Are any classes missing, redundant, or overly broad?</li>
-</ul>
-</section>
-<section id="object-properties" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="object-properties"><span class="header-section-number">2.4.2</span> Object properties</h3>
-<ul>
-<li>Do relationships connect the correct domain and range classes?</li>
-<li>Are any relationship names unclear or inconsistent?</li>
-<li>Are inverse-style relationships necessary and well named?</li>
-</ul>
-</section>
-<section id="datatype-properties" class="level3" data-number="2.4.3">
-<h3 data-number="2.4.3" class="anchored" data-anchor-id="datatype-properties"><span class="header-section-number">2.4.3</span> Datatype properties</h3>
-<ul>
-<li>Do the datatype properties reflect realistic operational attributes?</li>
-<li>Are domains and ranges appropriately assigned?</li>
-<li>Should any datatype properties instead be modeled differently?</li>
-</ul>
-</section>
-<section id="integration-readiness" class="level3" data-number="2.4.4">
-<h3 data-number="2.4.4" class="anchored" data-anchor-id="integration-readiness"><span class="header-section-number">2.4.4</span> Integration readiness</h3>
-<ul>
-<li>Does the model appear suitable for alignment with GIS, SDSFIE, and source vocabularies?</li>
-<li>Are external concepts and references used in a clear and manageable way?</li>
-</ul>
-</section>
-</section>
-<section id="site-organization" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="site-organization"><span class="header-section-number">2.5</span> Site organization</h2>
-<p>This book is organized into the following sections:</p>
-<ul>
-<li><strong>Ontology Overview</strong> — conceptual summary of the ontology structure</li>
-<li><strong>Ontology Visualization</strong> — interactive graph views of class and property relationships</li>
-<li><strong>Spatial Diagrams</strong> — supporting spatial context</li>
-<li><strong>SDSFIE Crosswalk</strong> — comparison artifact for review and traceability</li>
-</ul>
-</section>
-<section id="expected-use" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="expected-use"><span class="header-section-number">2.6</span> Expected use</h2>
-<p>This site is meant to support iterative review. It should be easy to update as ontology files and supporting materials evolve.</p>
+<section id="facilities-amenities-and-water-access" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="facilities-amenities-and-water-access"><span class="header-section-number">3.3</span> Facilities, Amenities, And Water Access</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">classDiagram
+    class RecreationFacility
+    class RecreationAmenity
+    class WaterAccessAsset
+    class Campground
+    class DayUseArea
+    class Marina
+    class SwimmingArea
+    class Trail
+    class BoatRamp
+    class FishingPier
+    class ParkingArea
+    class Restroom
+
+    RecreationFacility &lt;|-- Campground
+    RecreationFacility &lt;|-- DayUseArea
+    RecreationFacility &lt;|-- Marina
+    RecreationFacility &lt;|-- SwimmingArea
+    RecreationFacility &lt;|-- Trail
+    RecreationAmenity &lt;|-- BoatRamp
+    RecreationAmenity &lt;|-- FishingPier
+    RecreationAmenity &lt;|-- ParkingArea
+    RecreationAmenity &lt;|-- Restroom
+    WaterAccessAsset &lt;|-- Marina
+    WaterAccessAsset &lt;|-- BoatRamp
+    WaterAccessAsset &lt;|-- FishingPier
+    WaterAccessAsset &lt;|-- SwimmingArea
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -682,13 +697,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="USACE Recreation Ontology Review">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">USACE Recreation Ontology Review</span></span>
+      <a href="./ontology-overview.html" class="pagination-link" aria-label="Ontology Overview">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Ontology Overview</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ontology-overview.html" class="pagination-link" aria-label="Ontology Overview">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Ontology Overview</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./07-recreation-spatial-diagrams.html" class="pagination-link" aria-label="Recreation Spatial Diagrams">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Recreation Spatial Diagrams</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

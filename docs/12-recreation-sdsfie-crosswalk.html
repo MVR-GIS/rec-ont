@@ -33,7 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./07-recreation-spatial-diagrams.html" rel="prev">
+<link href="./rec-ontology.html" rel="next">
+<link href="./10-recreation-modernization-decision-log.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -112,37 +113,43 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">USACE Recreation Ontology Review</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ontology-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Ontology Overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Ontology Overview</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rec-vis.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ontology Module Review</span></span></a>
+  <a href="./03-recreation-diagrams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Recreation Domain Diagrams</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07-recreation-spatial-diagrams.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recreation Spatial Diagrams</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Recreation Spatial Diagrams</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-recreation-modernization-decision-log.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recreation Modernization Decision Log</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12-recreation-sdsfie-crosswalk.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Recreation SDSFIE Crosswalk</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rec-ontology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Recreation Ontology</span></span></a>
   </div>
 </li>
     </ul>
@@ -156,11 +163,14 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose"><span class="header-section-number">6.1</span> Purpose</a></li>
-  <li><a href="#mapping-semantics" id="toc-mapping-semantics" class="nav-link" data-scroll-target="#mapping-semantics"><span class="header-section-number">6.2</span> Mapping Semantics</a></li>
-  <li><a href="#spatial-feature-crosswalk" id="toc-spatial-feature-crosswalk" class="nav-link" data-scroll-target="#spatial-feature-crosswalk"><span class="header-section-number">6.3</span> Spatial Feature Crosswalk</a></li>
-  <li><a href="#domain-terms-without-current-spatial-feature-classes" id="toc-domain-terms-without-current-spatial-feature-classes" class="nav-link" data-scroll-target="#domain-terms-without-current-spatial-feature-classes"><span class="header-section-number">6.4</span> Domain Terms Without Current Spatial Feature Classes</a></li>
-  <li><a href="#sdsfie-anchors-to-use-carefully" id="toc-sdsfie-anchors-to-use-carefully" class="nav-link" data-scroll-target="#sdsfie-anchors-to-use-carefully"><span class="header-section-number">6.5</span> SDSFIE Anchors To Use Carefully</a></li>
-  <li><a href="#implementation-rule" id="toc-implementation-rule" class="nav-link" data-scroll-target="#implementation-rule"><span class="header-section-number">6.6</span> Implementation Rule</a></li>
+  <li><a href="#scope-boundary" id="toc-scope-boundary" class="nav-link" data-scroll-target="#scope-boundary"><span class="header-section-number">6.2</span> Scope Boundary</a></li>
+  <li><a href="#how-to-use-this-crosswalk" id="toc-how-to-use-this-crosswalk" class="nav-link" data-scroll-target="#how-to-use-this-crosswalk"><span class="header-section-number">6.3</span> How To Use This Crosswalk</a></li>
+  <li><a href="#match-labels" id="toc-match-labels" class="nav-link" data-scroll-target="#match-labels"><span class="header-section-number">6.4</span> Match Labels</a></li>
+  <li><a href="#direct-sdsfie-feature-class-mappings" id="toc-direct-sdsfie-feature-class-mappings" class="nav-link" data-scroll-target="#direct-sdsfie-feature-class-mappings"><span class="header-section-number">6.5</span> Direct SDSFIE Feature-Class Mappings</a></li>
+  <li><a href="#sdsfie-recreation-feature-type-mappings" id="toc-sdsfie-recreation-feature-type-mappings" class="nav-link" data-scroll-target="#sdsfie-recreation-feature-type-mappings"><span class="header-section-number">6.6</span> SDSFIE Recreation Feature Type Mappings</a></li>
+  <li><a href="#sdsfie-trail-use-value-mappings" id="toc-sdsfie-trail-use-value-mappings" class="nav-link" data-scroll-target="#sdsfie-trail-use-value-mappings"><span class="header-section-number">6.7</span> SDSFIE Trail Use Value Mappings</a></li>
+  <li><a href="#sdsfie-sources-that-need-review-instead-of-auto-mapping" id="toc-sdsfie-sources-that-need-review-instead-of-auto-mapping" class="nav-link" data-scroll-target="#sdsfie-sources-that-need-review-instead-of-auto-mapping"><span class="header-section-number">6.8</span> SDSFIE Sources That Need Review Instead Of Auto-Mapping</a></li>
+  <li><a href="#implementation-rule" id="toc-implementation-rule" class="nav-link" data-scroll-target="#implementation-rule"><span class="header-section-number">6.9</span> Implementation Rule</a></li>
   </ul>
 </nav>
     </div>
@@ -186,21 +196,29 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Status:</strong> v2 review draft <strong>Date:</strong> 2026-06-01 <strong>Sources:</strong> Recreation v2 artifacts; SDSFIE 5.0 Gold Draft vocabulary, ontology, and enumerations</p>
+<p><strong>Status:</strong> v2 review draft <strong>Date:</strong> 2026-06-17 <strong>Sources:</strong> Recreation v2 artifacts; SDSFIE 5.0 Gold Draft vocabulary, ontology, and enumerations</p>
 <section id="purpose" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="purpose"><span class="header-section-number">6.1</span> Purpose</h2>
-<p>This crosswalk records where SDSFIE terminology can be mapped cleanly to the recreation ontology without making SDSFIE’s feature model govern the recreation conceptual model.</p>
-<p>The recreation model keeps these boundaries:</p>
-<ul>
-<li><code>rec:*</code> classes are business/domain concepts.</li>
-<li><code>recs:*Feature</code> classes are GIS representation classes.</li>
-<li><code>recv:*</code> concepts preserve recreation source vocabulary.</li>
-<li><code>sd:*</code> and <code>sde:*</code> terms are SDSFIE alignment anchors.</li>
-</ul>
+<p>This is the operator-facing crosswalk for teams that start with a SDSFIE geospatial database and need to map records into the recreation ontology.</p>
+<p>Use the tables below as: “If you have this SDSFIE class or coded value, use this recreation ontology term.”</p>
+<p>The companion file <code>12-recreation-sdsfie-crosswalk.ttl</code> remains the machine-readable assertion layer. It still records the formal SKOS predicates from recreation terms to SDSFIE anchors.</p>
 </section>
-<section id="mapping-semantics" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="mapping-semantics"><span class="header-section-number">6.2</span> Mapping Semantics</h2>
-<p>Predicates are written from the recreation term to the SDSFIE anchor.</p>
+<section id="scope-boundary" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="scope-boundary"><span class="header-section-number">6.2</span> Scope Boundary</h2>
+<p>The recreation ontology is derived first from formal USACE guidance, especially <code>EP 1130-2-550</code>. SDSFIE alignment is secondary.</p>
+<p>That means this crosswalk is meant to help with mapping from existing SDSFIE data into the current recreation ontology. It is not a rule that every SDSFIE recreation family must become a USACE recreation class.</p>
+</section>
+<section id="how-to-use-this-crosswalk" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="how-to-use-this-crosswalk"><span class="header-section-number">6.3</span> How To Use This Crosswalk</h2>
+<ol type="1">
+<li>Start with the most specific SDSFIE class or coded value available in the source database.</li>
+<li>Prefer the listed <code>recs:*Feature</code> class for the spatial record.</li>
+<li>When an optional <code>rec:*</code> concept is listed, use it to type what the feature represents.</li>
+<li>If the row says <code>Review</code>, do not auto-map it. Keep the source term visible and resolve it in an implementation profile or data-cleanup pass.</li>
+</ol>
+</section>
+<section id="match-labels" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="match-labels"><span class="header-section-number">6.4</span> Match Labels</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -208,40 +226,28 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th>Predicate</th>
-<th>Meaning in this crosswalk</th>
+<th>Label</th>
+<th>Meaning for the team</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>skos:exactMatch</code></td>
-<td>The recreation term and SDSFIE anchor can be treated as equivalent for the mapped feature concept.</td>
+<td><code>Default</code></td>
+<td>Use this recreation term unless the source record clearly says otherwise.</td>
 </tr>
 <tr class="even">
-<td><code>skos:closeMatch</code></td>
-<td>The concepts are operationally close, but differ by model grain, feature/entity boundary, or implementation convention.</td>
+<td><code>Conditional</code></td>
+<td>Use this term only when the source semantics match the note in the row.</td>
 </tr>
 <tr class="odd">
-<td><code>skos:broadMatch</code></td>
-<td>The SDSFIE anchor is broader than the recreation term.</td>
-</tr>
-<tr class="even">
-<td><code>skos:narrowMatch</code></td>
-<td>The SDSFIE anchor is narrower than the recreation term.</td>
-</tr>
-<tr class="odd">
-<td><code>skos:relatedMatch</code></td>
-<td>The terms are relevant to one another but should not be treated as a hierarchy or equivalence.</td>
-</tr>
-<tr class="even">
-<td>No mapping</td>
-<td>No class-level SDSFIE anchor is clear enough to assert by default.</td>
+<td><code>Review</code></td>
+<td>No single safe default target exists in the current ontology.</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="spatial-feature-crosswalk" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="spatial-feature-crosswalk"><span class="header-section-number">6.3</span> Spatial Feature Crosswalk</h2>
+<section id="direct-sdsfie-feature-class-mappings" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="direct-sdsfie-feature-class-mappings"><span class="header-section-number">6.5</span> Direct SDSFIE Feature-Class Mappings</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -252,303 +258,255 @@ ul.task-list li input[type="checkbox"] {
 </colgroup>
 <thead>
 <tr class="header">
-<th>Recreation term</th>
-<th>Recreation meaning</th>
-<th>SDSFIE anchor</th>
-<th>Mapping</th>
+<th>If your SDSFIE source is</th>
+<th>Use this recreation spatial class</th>
+<th>Optional recreation concept</th>
+<th>Match</th>
 <th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>recs:RecreationAreaFeature</code></td>
-<td>GIS representation of <code>rec:RecreationArea</code></td>
-<td><code>sd:RecreationBoundary</code></td>
-<td><code>skos:closeMatch</code></td>
-<td>SDSFIE’s boundary represents the overall recreation area. Recreation keeps the managed area entity separate from its boundary feature.</td>
-</tr>
-<tr class="even">
-<td><code>recs:RecreationFacilityFeature</code></td>
-<td>Generic facility representation</td>
-<td><code>sd:RecreationFeature</code></td>
-<td><code>skos:broadMatch</code></td>
-<td>SDSFIE <code>RecreationFeature</code> is a general storage class for recreation objects and assets.</td>
-</tr>
-<tr class="odd">
-<td><code>recs:RecreationAmenityFeature</code></td>
-<td>Generic amenity representation</td>
-<td><code>sd:RecreationFeature</code></td>
-<td><code>skos:broadMatch</code></td>
-<td>Amenity is a clearer recreation role than the flat SDSFIE feature bucket.</td>
-</tr>
-<tr class="even">
-<td><code>recs:CampgroundFeature</code></td>
-<td>Campground spatial representation</td>
 <td><code>sd:Campground</code></td>
-<td><code>skos:exactMatch</code></td>
-<td>SDSFIE also allows the <code>campground</code> recreation feature type value when using the generic feature class.</td>
+<td><code>recs:CampgroundFeature</code></td>
+<td></td>
+<td><code>Default</code></td>
+<td>Direct campground-to-campground mapping.</td>
 </tr>
-<tr class="odd">
-<td><code>recs:CampsiteFeature</code></td>
-<td>Individual campsite representation</td>
+<tr class="even">
 <td><code>sd:Campsite</code></td>
-<td><code>skos:exactMatch</code></td>
-<td>SDSFIE campsite use values can be implementation attributes, not recreation OWL subclasses by default.</td>
-</tr>
-<tr class="even">
-<td><code>recs:DayUseAreaFeature</code></td>
-<td>Managed day-use area representation</td>
-<td><code>sd:RecreationFeature</code></td>
-<td><code>skos:broadMatch</code></td>
-<td>SDSFIE has no clean day-use-area class-level anchor.</td>
+<td><code>recs:CampsiteFeature</code></td>
+<td></td>
+<td><code>Default</code></td>
+<td>Direct campsite-to-campsite mapping.</td>
 </tr>
 <tr class="odd">
-<td><code>recs:PicnicAreaFeature</code></td>
-<td>Picnic area representation</td>
-<td><code>sde:RecreationFeatureUseType_picnicSite</code></td>
-<td><code>skos:closeMatch</code></td>
-<td>SDSFIE models this as a recreation feature type value rather than a standalone class.</td>
-</tr>
-<tr class="even">
-<td><code>recs:MarinaFeature</code></td>
-<td>Managed boating facility representation</td>
-<td><code>sd:Marina</code></td>
-<td><code>skos:closeMatch</code></td>
-<td>SDSFIE marina is a harbor facility. Recreation marina is a managed recreation facility and water access asset.</td>
-</tr>
-<tr class="odd">
-<td><code>recs:WaterAccessFeature</code></td>
-<td>Generic water access representation</td>
-<td><code>sd:RecreationFeature</code></td>
-<td><code>skos:relatedMatch</code></td>
-<td>Water access is a recreation facet that can cut across several SDSFIE classes and values.</td>
-</tr>
-<tr class="even">
-<td><code>recs:BoatRampFeature</code></td>
-<td>Recreational boat launch representation</td>
-<td><code>sde:RecreationFeatureUseType_boatRamp</code></td>
-<td><code>skos:closeMatch</code></td>
-<td>Do not map recreational boat ramps to <code>sd:BoatRamp</code>; SDSFIE scopes that feature class to non-recreational ramps.</td>
-</tr>
-<tr class="odd">
-<td><code>recs:FishingPierFeature</code></td>
-<td>Fishing platform or pier representation</td>
-<td><code>sd:FishingFeature</code></td>
-<td><code>skos:broadMatch</code></td>
-<td>SDSFIE fishing feature is broader than a fishing pier.</td>
-</tr>
-<tr class="even">
-<td><code>recs:FishingPierFeature</code></td>
-<td>Fishing platform or pier representation</td>
-<td><code>sd:DockOrWharf</code></td>
-<td><code>skos:relatedMatch</code></td>
-<td>Useful when the source feature is also managed as dock or wharf infrastructure.</td>
-</tr>
-<tr class="odd">
-<td><code>recs:FuelDockFeature</code></td>
-<td>Marine fuel service asset representation</td>
-<td><code>sd:DockOrWharf</code></td>
-<td><code>skos:broadMatch</code></td>
-<td>SDSFIE has the generic water-land interface structure; fuel service is the narrower recreation asset role.</td>
-</tr>
-<tr class="even">
-<td><code>recs:SwimmingAreaFeature</code></td>
-<td>Designated swimming area representation</td>
-<td><code>sde:RecreationFeatureUseType_swimmingDesignatedBeach</code></td>
-<td><code>skos:closeMatch</code></td>
-<td>Close when the source feature is a designated beach.</td>
-</tr>
-<tr class="odd">
-<td><code>recs:SwimmingAreaFeature</code></td>
-<td>Designated swimming area representation</td>
-<td><code>sde:RecreationFeatureUseType_waterActivitySite</code></td>
-<td><code>skos:broadMatch</code></td>
-<td>Use for broader water activity site implementations.</td>
-</tr>
-<tr class="even">
-<td><code>recs:TrailFeature</code></td>
-<td>Managed recreation route representation</td>
 <td><code>sd:RecreationTrail</code></td>
-<td><code>skos:exactMatch</code></td>
-<td>Trail use values remain attributes or source concepts unless separate classes are justified.</td>
+<td><code>recs:TrailFeature</code></td>
+<td><code>rec:Trail</code> or a narrower trail concept</td>
+<td><code>Default</code></td>
+<td>Use the trail line class. Do not confuse this with point-based trail-associated features.</td>
+</tr>
+<tr class="even">
+<td><code>sd:RecreationTrailFeature</code></td>
+<td><code>recs:TrailAssociatedFeature</code></td>
+<td></td>
+<td><code>Default</code></td>
+<td>Use for point features associated with a trail.</td>
 </tr>
 <tr class="odd">
-<td><code>recs:ParkingAreaFeature</code></td>
-<td>Recreation parking area representation</td>
 <td><code>sd:ParkingArea</code></td>
-<td><code>skos:exactMatch</code></td>
-<td>SDSFIE explicitly separates parking area mapping from pavement management segmentation.</td>
+<td><code>recs:ParkingAreaFeature</code></td>
+<td></td>
+<td><code>Default</code></td>
+<td>Direct parking-area mapping.</td>
 </tr>
 <tr class="even">
-<td><code>recs:RestroomFeature</code></td>
-<td>Restroom representation</td>
-<td><code>sde:RecreationFeatureUseType_restroom</code></td>
-<td><code>skos:closeMatch</code></td>
-<td>SDSFIE restroom value is flush-oriented. Vault toilets map separately.</td>
+<td><code>sd:Marina</code></td>
+<td><code>recs:MarinaFeature</code></td>
+<td></td>
+<td><code>Conditional</code></td>
+<td>Use when the source record is functioning as a recreation marina, not just a general harbor facility.</td>
 </tr>
 <tr class="odd">
-<td><code>recs:VisitorCenterFeature</code></td>
-<td>Visitor information and interpretation facility representation</td>
-<td><code>sde:RecreationFeatureUseType_museumOrVisitorCenter</code></td>
-<td><code>skos:closeMatch</code></td>
-<td>SDSFIE combines museums and visitor centers under one feature type value.</td>
+<td><code>sd:RecreationBoundary</code></td>
+<td><code>recs:RecreationAreaFeature</code></td>
+<td><code>rec:RecreationArea</code></td>
+<td><code>Conditional</code></td>
+<td>Use when the SDSFIE feature is the boundary of a recreation area. Do not use this as the default for <code>recs:ProjectBoundaryFeature</code>.</td>
 </tr>
 <tr class="even">
-<td><code>recs:LandClassificationAreaFeature</code></td>
-<td>Source-backed land classification area</td>
-<td><code>sd:LandUse</code></td>
-<td><code>skos:relatedMatch</code></td>
-<td>SDSFIE land use is related, but not identical to USACE recreation land allocation or classification concepts.</td>
-</tr>
-<tr class="odd">
-<td><code>recs:WaterSurfaceZoneFeature</code></td>
-<td>Source-backed water surface zone</td>
-<td><code>sd:RestrictedArea</code></td>
-<td><code>skos:relatedMatch</code></td>
-<td>Applies only when the zone restricts access or activity. Other water-surface zones require source-specific mapping.</td>
-</tr>
-<tr class="even">
-<td><code>recs:ProjectBoundaryFeature</code></td>
-<td>Project boundary representation</td>
-<td>No default mapping</td>
-<td>No mapping</td>
-<td>A project boundary is not automatically a SDSFIE recreation boundary. Map to <code>sd:RecreationBoundary</code> only when the source explicitly represents a recreation area boundary.</td>
+<td><code>sd:Playground</code></td>
+<td><code>recs:RecreationAmenityFeature</code></td>
+<td><code>rec:Playground</code></td>
+<td><code>Conditional</code></td>
+<td>The ontology keeps playground primarily as an amenity concept rather than a dedicated spatial subclass.</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="domain-terms-without-current-spatial-feature-classes" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="domain-terms-without-current-spatial-feature-classes"><span class="header-section-number">6.4</span> Domain Terms Without Current Spatial Feature Classes</h2>
-<p>These recreation domain classes have useful SDSFIE anchors, but the active spatial extension does not currently define separate <code>recs:*Feature</code> classes for each one.</p>
+<section id="sdsfie-recreation-feature-type-mappings" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="sdsfie-recreation-feature-type-mappings"><span class="header-section-number">6.6</span> SDSFIE Recreation Feature Type Mappings</h2>
+<p>Use these rows when the source record is stored as a generic SDSFIE recreation feature and the coded value carries the real meaning.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Recreation term</th>
-<th>SDSFIE anchor</th>
-<th>Mapping</th>
+<th>If your SDSFIE source is</th>
+<th>Use this recreation spatial class</th>
+<th>Optional recreation concept</th>
+<th>Match</th>
 <th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>rec:PicnicShelter</code></td>
-<td><code>sde:RecreationFeatureUseType_picnicShelter</code></td>
-<td><code>skos:closeMatch</code></td>
-<td>SDSFIE models picnic shelter as a recreation feature type value.</td>
+<td><code>sd:RecreationFeature</code> + <code>sde:RecreationFeatureUseType_boatRamp</code></td>
+<td><code>recs:BoatRampFeature</code></td>
+<td></td>
+<td><code>Default</code></td>
+<td>This is the correct recreational boat-ramp path. Do not remap these to <code>sd:BoatRamp</code>.</td>
 </tr>
 <tr class="even">
-<td><code>rec:Playground</code></td>
-<td><code>sd:Playground</code></td>
-<td><code>skos:closeMatch</code></td>
-<td>The SDSFIE class is spatial/entity oriented; recreation keeps playground as an amenity domain class.</td>
+<td><code>sd:RecreationFeature</code> + <code>sde:RecreationFeatureUseType_picnicSite</code></td>
+<td><code>recs:PicnicAreaFeature</code></td>
+<td></td>
+<td><code>Default</code></td>
+<td>SDSFIE stores picnic-site meaning in the coded value rather than a standalone class.</td>
 </tr>
 <tr class="odd">
-<td><code>rec:BoatSlip</code></td>
-<td><code>sd:DockOrWharf</code></td>
-<td><code>skos:relatedMatch</code></td>
-<td>A slip is a managed mooring location, not necessarily the dock or wharf structure itself.</td>
-</tr>
-<tr class="even">
-<td><code>rec:PumpOutStation</code></td>
-<td><code>sd:DockOrWharf</code></td>
-<td><code>skos:relatedMatch</code></td>
-<td>Related when the station is located on dock infrastructure; no default equivalence.</td>
-</tr>
-<tr class="odd">
-<td><code>rec:Restroom</code></td>
-<td><code>sde:RecreationFeatureUseType_restroom</code>; <code>sde:RecreationFeatureUseType_vaultToilet</code></td>
-<td><code>skos:narrowMatch</code></td>
-<td>SDSFIE separates narrower restroom feature type values below the broader recreation restroom domain class.</td>
-</tr>
-<tr class="even">
+<td><code>sd:RecreationFeature</code> + <code>sde:RecreationFeatureUseType_restroom</code></td>
+<td><code>recs:RestroomFeature</code></td>
 <td><code>rec:FlushRestroom</code></td>
-<td><code>sde:RecreationFeatureUseType_restroom</code></td>
-<td><code>skos:exactMatch</code></td>
-<td>SDSFIE restroom definition is flush-water oriented.</td>
+<td><code>Default</code></td>
+<td>SDSFIE restroom is flush-water oriented in this crosswalk.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
+<td><code>sd:RecreationFeature</code> + <code>sde:RecreationFeatureUseType_vaultToilet</code></td>
+<td><code>recs:RestroomFeature</code></td>
 <td><code>rec:VaultToilet</code></td>
-<td><code>sde:RecreationFeatureUseType_vaultToilet</code></td>
-<td><code>skos:exactMatch</code></td>
-<td>SDSFIE has a specific vault toilet recreation feature type value.</td>
-</tr>
-<tr class="even">
-<td><code>rec:Trail</code></td>
-<td><code>sde:RecreationTrailUseType_hike</code>; <code>sde:RecreationTrailUseType_bike</code>; <code>sde:RecreationTrailUseType_equestrianOrPack</code></td>
-<td><code>skos:narrowMatch</code></td>
-<td>SDSFIE trail use values are narrower than the general managed trail class.</td>
+<td><code>Default</code></td>
+<td>Use the restroom feature class and type the represented concept as vault toilet.</td>
 </tr>
 <tr class="odd">
-<td><code>rec:HikingTrail</code></td>
-<td><code>sde:RecreationTrailUseType_hike</code></td>
-<td><code>skos:closeMatch</code></td>
-<td>SDSFIE trail use value can type a <code>recs:TrailFeature</code> implementation.</td>
+<td><code>sd:RecreationFeature</code> + <code>sde:RecreationFeatureUseType_museumOrVisitorCenter</code></td>
+<td><code>recs:VisitorCenterFeature</code></td>
+<td></td>
+<td><code>Conditional</code></td>
+<td>Use when the source record is functioning as a visitor center. If the source is really a museum, review first.</td>
 </tr>
 <tr class="even">
-<td><code>rec:BikeTrail</code></td>
-<td><code>sde:RecreationTrailUseType_bike</code></td>
-<td><code>skos:closeMatch</code></td>
-<td>SDSFIE trail use value can type a <code>recs:TrailFeature</code> implementation.</td>
+<td><code>sd:RecreationFeature</code> + <code>sde:RecreationFeatureUseType_swimmingDesignatedBeach</code></td>
+<td><code>recs:SwimmingAreaFeature</code></td>
+<td></td>
+<td><code>Conditional</code></td>
+<td>Good fit when the source is a designated swimming beach or area.</td>
 </tr>
 <tr class="odd">
-<td><code>rec:EquestrianTrail</code></td>
-<td><code>sde:RecreationTrailUseType_equestrianOrPack</code></td>
-<td><code>skos:closeMatch</code></td>
-<td>SDSFIE combines equestrian and pack trail use.</td>
+<td><code>sd:RecreationFeature</code> + <code>sde:RecreationFeatureUseType_waterActivitySite</code></td>
+<td><code>recs:SwimmingAreaFeature</code></td>
+<td></td>
+<td><code>Conditional</code></td>
+<td>Use only when the source is specifically a swimming area. Otherwise review.</td>
+</tr>
+<tr class="even">
+<td><code>sd:RecreationFeature</code> + <code>sde:RecreationFeatureUseType_picnicShelter</code></td>
+<td><code>recs:RecreationAmenityFeature</code></td>
+<td><code>rec:PicnicShelter</code></td>
+<td><code>Conditional</code></td>
+<td>The current ontology has the picnic shelter concept, but not a dedicated picnic-shelter spatial subclass.</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="sdsfie-anchors-to-use-carefully" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="sdsfie-anchors-to-use-carefully"><span class="header-section-number">6.5</span> SDSFIE Anchors To Use Carefully</h2>
+<section id="sdsfie-trail-use-value-mappings" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="sdsfie-trail-use-value-mappings"><span class="header-section-number">6.7</span> SDSFIE Trail Use Value Mappings</h2>
+<p>Use these rows when the source feature is <code>sd:RecreationTrail</code> and the trail-use value further narrows the represented concept.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>SDSFIE term</th>
-<th>Crosswalk decision</th>
+<th>If your SDSFIE source is</th>
+<th>Use this recreation spatial class</th>
+<th>Optional recreation concept</th>
+<th>Match</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>sd:BoatRamp</code></td>
-<td>Do not use as the recreational boat ramp match. SDSFIE scopes the class to non-recreational boat ramps and directs recreational ramps to <code>sd:RecreationFeature</code> with the boat ramp type value.</td>
+<td><code>sd:RecreationTrail</code> + <code>sde:RecreationTrailUseType_hike</code></td>
+<td><code>recs:TrailFeature</code></td>
+<td><code>rec:HikingTrail</code></td>
+<td><code>Conditional</code></td>
+<td>Keep the spatial class as trail feature and carry the hiking semantics in the represented concept.</td>
 </tr>
 <tr class="even">
-<td><code>sd:RecreationFeature</code></td>
-<td>Use as a broad anchor for generic recreation assets, not as a replacement for <code>rec:RecreationFacility</code>, <code>rec:RecreationAmenity</code>, or <code>rec:WaterAccessAsset</code>.</td>
+<td><code>sd:RecreationTrail</code> + <code>sde:RecreationTrailUseType_bike</code></td>
+<td><code>recs:TrailFeature</code></td>
+<td><code>rec:BikeTrail</code></td>
+<td><code>Conditional</code></td>
+<td>Keep the spatial class as trail feature and carry the bike semantics in the represented concept.</td>
 </tr>
 <tr class="odd">
-<td><code>sd:RecreationBoundary</code></td>
-<td>Use for overall recreation area boundaries, not for every recreation use area or project boundary.</td>
-</tr>
-<tr class="even">
-<td><code>sd:DockOrWharf</code></td>
-<td>Use for dock/wharf infrastructure. Do not collapse boat slips, fuel docks, pump-out stations, and fishing piers into this class unless the source feature grain supports that interpretation.</td>
-</tr>
-<tr class="odd">
-<td><code>sd:LandUse</code></td>
-<td>Related to recreation land classification, but not equivalent to USACE source classification vocabularies.</td>
-</tr>
-<tr class="even">
-<td><code>sd:RestrictedArea</code></td>
-<td>Related to water-surface zones only when the zone restricts access or activity.</td>
+<td><code>sd:RecreationTrail</code> + <code>sde:RecreationTrailUseType_equestrianOrPack</code></td>
+<td><code>recs:TrailFeature</code></td>
+<td><code>rec:EquestrianTrail</code></td>
+<td><code>Conditional</code></td>
+<td>SDSFIE combines equestrian and pack use under one value.</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="implementation-rule" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="implementation-rule"><span class="header-section-number">6.6</span> Implementation Rule</h2>
-<p>Use SDSFIE mappings as crosswalk assertions and migration aids. Do not make SDSFIE classes superclasses of recreation classes unless an implementation profile explicitly requires that inheritance.</p>
+<section id="sdsfie-sources-that-need-review-instead-of-auto-mapping" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="sdsfie-sources-that-need-review-instead-of-auto-mapping"><span class="header-section-number">6.8</span> SDSFIE Sources That Need Review Instead Of Auto-Mapping</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>SDSFIE source</th>
+<th>Why it needs review</th>
+<th>Current recreation guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>sd:RecreationFeature</code> with no useful type value</td>
+<td>Too generic to choose among facility, amenity, water-access, or area patterns.</td>
+<td>Review the source semantics before choosing <code>recs:RecreationFacilityFeature</code>, <code>recs:RecreationAmenityFeature</code>, <code>recs:WaterAccessFeature</code>, or another class.</td>
+</tr>
+<tr class="even">
+<td><code>sd:BoatRamp</code></td>
+<td>SDSFIE scopes this class to non-recreational ramps.</td>
+<td>For recreational ramps, use <code>sd:RecreationFeature</code> with <code>sde:RecreationFeatureUseType_boatRamp</code>, then map to <code>recs:BoatRampFeature</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>sd:FishingFeature</code></td>
+<td>Broader than the current fishing-pier concept.</td>
+<td>Map to <code>recs:FishingPierFeature</code> only when the source record is specifically a fishing pier or platform.</td>
+</tr>
+<tr class="even">
+<td><code>sd:DockOrWharf</code></td>
+<td>Can represent several different recreation meanings.</td>
+<td>Review against <code>recs:FuelDockFeature</code>, <code>recs:FishingPierFeature</code>, <code>rec:BoatSlip</code>, or <code>rec:PumpOutStation</code> based on source semantics.</td>
+</tr>
+<tr class="odd">
+<td><code>sd:LandUse</code></td>
+<td>Related, but not equivalent, to USACE recreation land classification.</td>
+<td>Use only as reviewed support for <code>recs:LandClassificationAreaFeature</code>.</td>
+</tr>
+<tr class="even">
+<td><code>sd:RestrictedArea</code></td>
+<td>Only some water-surface zones are actually restrictive zones.</td>
+<td>Use only as reviewed support for <code>recs:WaterSurfaceZoneFeature</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>sd:GolfCourseFeature</code>, <code>sd:HuntingFeature</code>, and similar SDSFIE recreation families outside current USACE formal-guidance scope</td>
+<td>These are part of broader SDSFIE recreation coverage, but not default USACE recreation ontology targets.</td>
+<td>Do not add or auto-map these into the current USACE recreation ontology without separate formal-guidance support and review.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="implementation-rule" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="implementation-rule"><span class="header-section-number">6.9</span> Implementation Rule</h2>
+<p>Use this markdown as the quick operator lookup. Use <code>12-recreation-sdsfie-crosswalk.ttl</code> when you need the formal reviewed SKOS assertions behind it.</p>
 
 
 </section>
@@ -956,11 +914,14 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./07-recreation-spatial-diagrams.html" class="pagination-link" aria-label="Recreation Spatial Diagrams">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recreation Spatial Diagrams</span></span>
+      <a href="./10-recreation-modernization-decision-log.html" class="pagination-link" aria-label="Recreation Modernization Decision Log">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recreation Modernization Decision Log</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./rec-ontology.html" class="pagination-link" aria-label="Recreation Ontology">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Recreation Ontology</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
