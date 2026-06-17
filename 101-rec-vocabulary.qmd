@@ -703,6 +703,42 @@ inventory <- vocab_nodes_raw %>%
     group = pmap_chr(
       list(label, id, node_type, is_top_concept),
       ~ classify_group(..1, ..2, ..3, ..4)
+    ),
+    uri_full = as.character(id),
+    uri_short = get_local_name(id),
+    definition_full = dplyr::coalesce(as.character(definition), ""),
+    definition_preview = dplyr::case_when(
+      !nzchar(definition_full) ~ "",
+      nchar(definition_full) <= 90 ~ definition_full,
+      TRUE ~ paste0(substr(definition_full, 1, 90), "…")
+    )
+  ) %>%
+  mutate(
+    uri_html = sprintf(
+      '<span title="%s">%s</span>',
+      htmltools::htmlEscape(uri_full),
+      htmltools::htmlEscape(uri_short)
+    ),
+    definition_button = ifelse(
+      nzchar(definition_full),
+      sprintf(
+        paste0(
+          '<button class="btn btn-sm btn-outline-secondary vocab-def-btn" ',
+          'data-label="%s" ',
+          'data-uri="%s" ',
+          'data-group="%s" ',
+          'data-scheme="%s" ',
+          'data-definition="%s">',
+          'View',
+          '</button>'
+        ),
+        htmltools::htmlEscape(label),
+        htmltools::htmlEscape(uri_full),
+        htmltools::htmlEscape(as.character(group)),
+        htmltools::htmlEscape(as.character(scheme)),
+        htmltools::htmlEscape(definition_full)
+      ),
+      ""
     )
   ) %>%
   transmute(
@@ -712,19 +748,188 @@ inventory <- vocab_nodes_raw %>%
     `Top Concept` = is_top_concept,
     Scheme = as.character(scheme),
     Notation = as.character(notation),
-    Definition = as.character(definition),
-    URI = as.character(id)
+    URI = uri_html,
+    Preview = as.character(definition_preview),
+    Definition = definition_button
   ) %>%
   arrange(Group, Label)
 
-datatable(
+dt <- datatable(
   inventory,
   rownames = FALSE,
+  escape = FALSE,
   filter = "top",
   options = list(
     pageLength = 15,
     scrollX = TRUE,
-    autoWidth = TRUE
+    scrollY = "500px",
+    autoWidth = FALSE,
+    dom = "tip",
+    columnDefs = list(
+      list(width = '180px', targets = 0),
+      list(width = '120px', targets = 1),
+      list(width = '150px', targets = 2),
+      list(width = '70px', targets = 3),
+      list(width = '140px', targets = 4),
+      list(width = '100px', targets = 5),
+      list(width = '160px', targets = 6),
+      list(width = '320px', targets = 7),
+      list(width = '90px', targets = 8)
+    )
+  ),
+  class = "compact stripe hover"
+) %>%
+  formatStyle(
+    columns = c("Label", "Node Type", "Group", "Top Concept", "Scheme", "Notation"),
+    `white-space` = "nowrap",
+    `font-size` = "0.9em",
+    `vertical-align` = "top"
+  ) %>%
+  formatStyle(
+    columns = c("URI", "Preview"),
+    `white-space` = "normal",
+    `font-size` = "0.9em",
+    `line-height` = "1.2em",
+    `vertical-align` = "top"
+  ) %>%
+  formatStyle(
+    columns = "Definition",
+    `white-space` = "nowrap",
+    `vertical-align` = "top"
+  )
+
+modal_dependencies <- htmltools::tagList(
+  tags$style(HTML("
+    .vocab-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 9998;
+      display: none;
+    }
+    .vocab-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(800px, 92vw);
+      max-height: 85vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+      z-index: 9999;
+      display: none;
+      padding: 1rem 1.25rem 1.25rem 1.25rem;
+    }
+    .vocab-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .vocab-modal-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    .vocab-modal-close {
+      border: none;
+      background: transparent;
+      font-size: 1.4rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .vocab-modal dl {
+      margin: 0;
+    }
+    .vocab-modal dt {
+      font-weight: 600;
+      margin-top: 0.75rem;
+    }
+    .vocab-modal dd {
+      margin-left: 0;
+      margin-bottom: 0.5rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+  ")),
+  tags$div(class = "vocab-modal-backdrop", id = "vocab-modal-backdrop"),
+  tags$div(
+    class = "vocab-modal",
+    id = "vocab-modal",
+    tags$div(
+      class = "vocab-modal-header",
+      tags$h3(class = "vocab-modal-title", id = "vocab-modal-label", "Definition"),
+      tags$button(type = "button", class = "vocab-modal-close", id = "vocab-modal-close", HTML("&times;"))
+    ),
+    tags$dl(
+      tags$dt("URI"),
+      tags$dd(id = "vocab-modal-uri"),
+      tags$dt("Group"),
+      tags$dd(id = "vocab-modal-group"),
+      tags$dt("Scheme"),
+      tags$dd(id = "vocab-modal-scheme"),
+      tags$dt("Definition"),
+      tags$dd(id = "vocab-modal-definition")
+    )
+  ),
+  tags$script(HTML("
+    document.addEventListener('DOMContentLoaded', function () {
+      const modal = document.getElementById('vocab-modal');
+      const backdrop = document.getElementById('vocab-modal-backdrop');
+      const closeBtn = document.getElementById('vocab-modal-close');
+
+      const labelEl = document.getElementById('vocab-modal-label');
+      const uriEl = document.getElementById('vocab-modal-uri');
+      const groupEl = document.getElementById('vocab-modal-group');
+      const schemeEl = document.getElementById('vocab-modal-scheme');
+      const definitionEl = document.getElementById('vocab-modal-definition');
+
+      function openModal(data) {
+        labelEl.textContent = data.label || 'Definition';
+        uriEl.textContent = data.uri || '';
+        groupEl.textContent = data.group || '';
+        schemeEl.textContent = data.scheme || '';
+        definitionEl.textContent = data.definition || '';
+        modal.style.display = 'block';
+        backdrop.style.display = 'block';
+      }
+
+      function closeModal() {
+        modal.style.display = 'none';
+        backdrop.style.display = 'none';
+      }
+
+      document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.vocab-def-btn');
+        if (btn) {
+          openModal({
+            label: btn.getAttribute('data-label'),
+            uri: btn.getAttribute('data-uri'),
+            group: btn.getAttribute('data-group'),
+            scheme: btn.getAttribute('data-scheme'),
+            definition: btn.getAttribute('data-definition')
+          });
+        }
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+      backdrop.addEventListener('click', closeModal);
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+      });
+    });
+  "))
+)
+
+htmltools::browsable(
+  htmltools::tagList(
+    dt,
+    modal_dependencies
   )
 )
 ```
