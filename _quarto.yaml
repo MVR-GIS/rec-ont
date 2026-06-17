@@ -22,7 +22,6 @@ format:
   html:
     theme: cosmo
     toc: true
-    embed-resources: true
 
 execute:
   warning: false
