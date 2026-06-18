@@ -66,12 +66,12 @@ group_colors <- c(
 )
 
 priority_group_patterns <- tribble(
-  ~group, ~pattern,
-  "Area Classification", "area|allocation|classification|project boundary|boundary",
-  "Camp Classification", "camp|campsite|campground|fee class|development class",
-  "Trail Concepts", "trail|trailhead|trail access|hiking|bike|equestrian",
-  "Water Concepts", "marina|boat|dock|pier|swimming|water access|aquatic",
-  "Land / Water Classification", "land use|restricted area|water surface|zoning|realm"
+  ~group                        , ~pattern                                                   ,
+  "Area Classification"         , "area|allocation|classification|project boundary|boundary" ,
+  "Camp Classification"         , "camp|campsite|campground|fee class|development class"     ,
+  "Trail Concepts"              , "trail|trailhead|trail access|hiking|bike|equestrian"      ,
+  "Water Concepts"              , "marina|boat|dock|pier|swimming|water access|aquatic"      ,
+  "Land / Water Classification" , "land use|restricted area|water surface|zoning|realm"
 )
 ```
 
@@ -100,7 +100,9 @@ get_local_name <- function(uri) {
 }
 
 safe_first <- function(x) {
-  if (length(x) == 0) return(NA_character_)
+  if (length(x) == 0) {
+    return(NA_character_)
+  }
   x[[1]]
 }
 
@@ -126,9 +128,9 @@ triple_match <- stringr::str_match(
 )
 
 triples <- data.frame(
-  subject   = triple_match[, 2],
+  subject = triple_match[, 2],
   predicate = triple_match[, 3],
-  object    = triple_match[, 4],
+  object = triple_match[, 4],
   stringsAsFactors = FALSE
 ) %>%
   filter(!is.na(subject), !is.na(predicate), !is.na(object)) %>%
@@ -140,27 +142,27 @@ triples <- data.frame(
 ```
 
 ```{r vocab-constants, include=FALSE}
-rdf_type              <- "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-rdfs_label            <- "http://www.w3.org/2000/01/rdf-schema#label"
-rdfs_comment          <- "http://www.w3.org/2000/01/rdf-schema#comment"
+rdf_type <- "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
+rdfs_label <- "http://www.w3.org/2000/01/rdf-schema#label"
+rdfs_comment <- "http://www.w3.org/2000/01/rdf-schema#comment"
 
-skos_concept          <- "http://www.w3.org/2004/02/skos/core#Concept"
-skos_concept_scheme   <- "http://www.w3.org/2004/02/skos/core#ConceptScheme"
-skos_pref_label       <- "http://www.w3.org/2004/02/skos/core#prefLabel"
-skos_alt_label        <- "http://www.w3.org/2004/02/skos/core#altLabel"
-skos_definition       <- "http://www.w3.org/2004/02/skos/core#definition"
-skos_broader          <- "http://www.w3.org/2004/02/skos/core#broader"
-skos_narrower         <- "http://www.w3.org/2004/02/skos/core#narrower"
-skos_related          <- "http://www.w3.org/2004/02/skos/core#related"
-skos_in_scheme        <- "http://www.w3.org/2004/02/skos/core#inScheme"
-skos_top_concept_of   <- "http://www.w3.org/2004/02/skos/core#topConceptOf"
-skos_has_top_concept  <- "http://www.w3.org/2004/02/skos/core#hasTopConcept"
-skos_notation         <- "http://www.w3.org/2004/02/skos/core#notation"
+skos_concept <- "http://www.w3.org/2004/02/skos/core#Concept"
+skos_concept_scheme <- "http://www.w3.org/2004/02/skos/core#ConceptScheme"
+skos_pref_label <- "http://www.w3.org/2004/02/skos/core#prefLabel"
+skos_alt_label <- "http://www.w3.org/2004/02/skos/core#altLabel"
+skos_definition <- "http://www.w3.org/2004/02/skos/core#definition"
+skos_broader <- "http://www.w3.org/2004/02/skos/core#broader"
+skos_narrower <- "http://www.w3.org/2004/02/skos/core#narrower"
+skos_related <- "http://www.w3.org/2004/02/skos/core#related"
+skos_in_scheme <- "http://www.w3.org/2004/02/skos/core#inScheme"
+skos_top_concept_of <- "http://www.w3.org/2004/02/skos/core#topConceptOf"
+skos_has_top_concept <- "http://www.w3.org/2004/02/skos/core#hasTopConcept"
+skos_notation <- "http://www.w3.org/2004/02/skos/core#notation"
 
-owl_class             <- "http://www.w3.org/2002/07/owl#Class"
-rdfs_class            <- "http://www.w3.org/2000/01/rdf-schema#Class"
+owl_class <- "http://www.w3.org/2002/07/owl#Class"
+rdfs_class <- "http://www.w3.org/2000/01/rdf-schema#Class"
 
-xsd_ns  <- "http://www.w3.org/2001/XMLSchema#"
+xsd_ns <- "http://www.w3.org/2001/XMLSchema#"
 skos_ns <- "http://www.w3.org/2004/02/skos/core#"
 ```
 
@@ -206,27 +208,57 @@ ontology_targets <- triples %>%
 
 broader_edges <- triples %>%
   filter(predicate == skos_broader) %>%
-  transmute(from = subject, to = object, relation = "broader", edge_type = "Hierarchy")
+  transmute(
+    from = subject,
+    to = object,
+    relation = "broader",
+    edge_type = "Hierarchy"
+  )
 
 narrower_edges <- triples %>%
   filter(predicate == skos_narrower) %>%
-  transmute(from = subject, to = object, relation = "narrower", edge_type = "Hierarchy")
+  transmute(
+    from = subject,
+    to = object,
+    relation = "narrower",
+    edge_type = "Hierarchy"
+  )
 
 related_edges <- triples %>%
   filter(predicate == skos_related) %>%
-  transmute(from = subject, to = object, relation = "related", edge_type = "Related")
+  transmute(
+    from = subject,
+    to = object,
+    relation = "related",
+    edge_type = "Related"
+  )
 
 in_scheme_edges <- triples %>%
   filter(predicate == skos_in_scheme) %>%
-  transmute(from = subject, to = object, relation = "inScheme", edge_type = "Scheme")
+  transmute(
+    from = subject,
+    to = object,
+    relation = "inScheme",
+    edge_type = "Scheme"
+  )
 
 top_concept_edges <- triples %>%
   filter(predicate == skos_top_concept_of) %>%
-  transmute(from = subject, to = object, relation = "topConceptOf", edge_type = "Scheme")
+  transmute(
+    from = subject,
+    to = object,
+    relation = "topConceptOf",
+    edge_type = "Scheme"
+  )
 
 has_top_concept_edges <- triples %>%
   filter(predicate == skos_has_top_concept) %>%
-  transmute(from = subject, to = object, relation = "hasTopConcept", edge_type = "Scheme")
+  transmute(
+    from = subject,
+    to = object,
+    relation = "hasTopConcept",
+    edge_type = "Scheme"
+  )
 ```
 
 ```{r vocab-link-extract, include=FALSE}
@@ -234,9 +266,19 @@ concept_ids <- concepts$id
 scheme_ids <- concept_schemes$id
 
 all_skos_predicates <- c(
-  skos_pref_label, skos_alt_label, skos_definition, skos_broader, skos_narrower,
-  skos_related, skos_in_scheme, skos_top_concept_of, skos_has_top_concept,
-  skos_notation, rdf_type, rdfs_label, rdfs_comment
+  skos_pref_label,
+  skos_alt_label,
+  skos_definition,
+  skos_broader,
+  skos_narrower,
+  skos_related,
+  skos_in_scheme,
+  skos_top_concept_of,
+  skos_has_top_concept,
+  skos_notation,
+  rdf_type,
+  rdfs_label,
+  rdfs_comment
 )
 
 concept_link_edges <- triples %>%
@@ -254,8 +296,10 @@ linked_targets <- concept_link_edges %>%
   distinct(to) %>%
   transmute(id = to)
 
-target_labels <- bind_rows(pref_labels %>% rename(label_text = pref_label),
-                           rdfs_labels %>% rename(label_text = rdfs_label_text)) %>%
+target_labels <- bind_rows(
+  pref_labels %>% rename(label_text = pref_label),
+  rdfs_labels %>% rename(label_text = rdfs_label_text)
+) %>%
   distinct(id, .keep_all = TRUE)
 ```
 
@@ -289,8 +333,12 @@ scheme_membership <- bind_rows(
 classify_group <- function(label, uri, node_type, is_top_concept = FALSE) {
   lower_text <- tolower(paste(label, get_local_name(uri)))
 
-  if (node_type == "ConceptScheme") return("Concept Scheme")
-  if (is_top_concept) return("Top Concept")
+  if (node_type == "ConceptScheme") {
+    return("Concept Scheme")
+  }
+  if (is_top_concept) {
+    return("Top Concept")
+  }
 
   for (i in seq_len(nrow(priority_group_patterns))) {
     if (str_detect(lower_text, priority_group_patterns$pattern[[i]])) {
@@ -311,12 +359,25 @@ vocab_nodes <- vocab_nodes_raw %>%
       ~ classify_group(..1, ..2, ..3, ..4)
     ),
     title = paste0(
-      "<b>", display_label, "</b>",
-      "<br/>Type: ", node_type,
-      "<br/>Group: ", group,
-      ifelse(!is.na(notation) & nzchar(notation), paste0("<br/>Notation: ", notation), ""),
-      ifelse(!is.na(definition) & nzchar(definition), paste0("<br/>Definition: ", definition), ""),
-      "<br/>URI: ", id
+      "<b>",
+      display_label,
+      "</b>",
+      "<br/>Type: ",
+      node_type,
+      "<br/>Group: ",
+      group,
+      ifelse(
+        !is.na(notation) & nzchar(notation),
+        paste0("<br/>Notation: ", notation),
+        ""
+      ),
+      ifelse(
+        !is.na(definition) & nzchar(definition),
+        paste0("<br/>Definition: ", definition),
+        ""
+      ),
+      "<br/>URI: ",
+      id
     )
   ) %>%
   transmute(
@@ -343,10 +404,15 @@ ontology_link_nodes <- linked_targets %>%
       TRUE ~ "External Concept"
     ),
     title = paste0(
-      "<b>", label, "</b>",
-      "<br/>Type: ", node_type,
-      "<br/>Group: ", group,
-      "<br/>URI: ", id
+      "<b>",
+      label,
+      "</b>",
+      "<br/>Type: ",
+      node_type,
+      "<br/>Group: ",
+      group,
+      "<br/>URI: ",
+      id
     )
   ) %>%
   transmute(
@@ -386,7 +452,9 @@ all_edges_raw <- bind_rows(
   distinct()
 
 style_edges <- function(edge_df) {
-  if (nrow(edge_df) == 0) return(edge_df)
+  if (nrow(edge_df) == 0) {
+    return(edge_df)
+  }
 
   edge_df %>%
     mutate(
@@ -405,7 +473,11 @@ style_edges <- function(edge_df) {
       ),
       arrows = ifelse(edge_type == "Related", "", "to"),
       title = relation,
-      font = replicate(dplyr::n(), list(size = 10, align = "middle"), simplify = FALSE)
+      font = replicate(
+        dplyr::n(),
+        list(size = 10, align = "middle"),
+        simplify = FALSE
+      )
     ) %>%
     transmute(
       from = from,
@@ -429,7 +501,9 @@ full_edges <- style_edges(all_edges_raw)
 
 ```{r graph-builders, include=FALSE}
 subset_nodes_for_edges <- function(nodes, edges) {
-  if (nrow(edges) == 0) return(nodes[0, , drop = FALSE])
+  if (nrow(edges) == 0) {
+    return(nodes[0, , drop = FALSE])
+  }
   node_ids <- unique(c(edges$from, edges$to))
   nodes %>% filter(id %in% node_ids)
 }
@@ -439,7 +513,13 @@ scheme_nodes <- subset_nodes_for_edges(all_nodes, scheme_edges)
 link_nodes <- subset_nodes_for_edges(all_nodes, link_edges)
 full_nodes <- subset_nodes_for_edges(all_nodes, full_edges)
 
-make_network <- function(nodes, edges, height = "920px", show_edge_labels = FALSE, show_legend = TRUE) {
+make_network <- function(
+  nodes,
+  edges,
+  height = "920px",
+  show_edge_labels = FALSE,
+  show_legend = TRUE
+) {
   if (nrow(nodes) == 0 || nrow(edges) == 0) {
     return(tags$div("No data available for this graph view."))
   }
@@ -450,26 +530,66 @@ make_network <- function(nodes, edges, height = "920px", show_edge_labels = FALS
   }
 
   net <- visNetwork(nodes, edges_to_render, width = "100%", height = height) %>%
-    visGroups(groupname = "Concept Scheme", color = group_colors[["Concept Scheme"]], shape = "database",
-              font = list(color = "white", size = 14)) %>%
-    visGroups(groupname = "Top Concept", color = group_colors[["Top Concept"]], shape = "hexagon",
-              font = list(color = "white", size = 14)) %>%
-    visGroups(groupname = "Area Classification", color = group_colors[["Area Classification"]], shape = "star",
-              font = list(color = "white", size = 13)) %>%
-    visGroups(groupname = "Camp Classification", color = group_colors[["Camp Classification"]], shape = "star",
-              font = list(color = "white", size = 13)) %>%
-    visGroups(groupname = "Trail Concepts", color = group_colors[["Trail Concepts"]], shape = "diamond",
-              font = list(color = "white", size = 13)) %>%
-    visGroups(groupname = "Water Concepts", color = group_colors[["Water Concepts"]], shape = "diamond",
-              font = list(color = "white", size = 13)) %>%
-    visGroups(groupname = "Land / Water Classification", color = group_colors[["Land / Water Classification"]], shape = "diamond",
-              font = list(color = "white", size = 13)) %>%
-    visGroups(groupname = "Ontology Link Target", color = group_colors[["Ontology Link Target"]], shape = "box",
-              font = list(color = "white", size = 13)) %>%
-    visGroups(groupname = "External Concept", color = group_colors[["External Concept"]], shape = "dot",
-              font = list(color = "white", size = 12)) %>%
-    visGroups(groupname = "Other Concepts", color = group_colors[["Other Concepts"]], shape = "dot",
-              font = list(color = "white", size = 12)) %>%
+    visGroups(
+      groupname = "Concept Scheme",
+      color = group_colors[["Concept Scheme"]],
+      shape = "database",
+      font = list(color = "white", size = 14)
+    ) %>%
+    visGroups(
+      groupname = "Top Concept",
+      color = group_colors[["Top Concept"]],
+      shape = "hexagon",
+      font = list(color = "white", size = 14)
+    ) %>%
+    visGroups(
+      groupname = "Area Classification",
+      color = group_colors[["Area Classification"]],
+      shape = "star",
+      font = list(color = "white", size = 13)
+    ) %>%
+    visGroups(
+      groupname = "Camp Classification",
+      color = group_colors[["Camp Classification"]],
+      shape = "star",
+      font = list(color = "white", size = 13)
+    ) %>%
+    visGroups(
+      groupname = "Trail Concepts",
+      color = group_colors[["Trail Concepts"]],
+      shape = "diamond",
+      font = list(color = "white", size = 13)
+    ) %>%
+    visGroups(
+      groupname = "Water Concepts",
+      color = group_colors[["Water Concepts"]],
+      shape = "diamond",
+      font = list(color = "white", size = 13)
+    ) %>%
+    visGroups(
+      groupname = "Land / Water Classification",
+      color = group_colors[["Land / Water Classification"]],
+      shape = "diamond",
+      font = list(color = "white", size = 13)
+    ) %>%
+    visGroups(
+      groupname = "Ontology Link Target",
+      color = group_colors[["Ontology Link Target"]],
+      shape = "box",
+      font = list(color = "white", size = 13)
+    ) %>%
+    visGroups(
+      groupname = "External Concept",
+      color = group_colors[["External Concept"]],
+      shape = "dot",
+      font = list(color = "white", size = 12)
+    ) %>%
+    visGroups(
+      groupname = "Other Concepts",
+      color = group_colors[["Other Concepts"]],
+      shape = "dot",
+      font = list(color = "white", size = 12)
+    ) %>%
     visEdges(
       smooth = FALSE,
       arrows = list(to = list(enabled = TRUE, scaleFactor = 0.8))
@@ -477,7 +597,10 @@ make_network <- function(nodes, edges, height = "920px", show_edge_labels = FALS
     visNodes(borderWidth = 1, shadow = FALSE) %>%
     visOptions(
       highlightNearest = list(enabled = TRUE, degree = 1, hover = TRUE),
-      nodesIdSelection = list(enabled = TRUE, main = "Select a Concept or Resource")
+      nodesIdSelection = list(
+        enabled = TRUE,
+        main = "Select a Concept or Resource"
+      )
     ) %>%
     visPhysics(
       solver = "forceAtlas2Based",
@@ -500,11 +623,27 @@ make_network <- function(nodes, edges, height = "920px", show_edge_labels = FALS
       visLegend(
         addNodes = data.frame(
           label = c(
-            "Concept Scheme", "Top Concept", "Area Classification",
-            "Camp Classification", "Trail Concepts", "Water Concepts",
-            "Land / Water Classification", "Ontology Link Target", "Other Concepts"
+            "Concept Scheme",
+            "Top Concept",
+            "Area Classification",
+            "Camp Classification",
+            "Trail Concepts",
+            "Water Concepts",
+            "Land / Water Classification",
+            "Ontology Link Target",
+            "Other Concepts"
           ),
-          shape = c("database", "hexagon", "star", "star", "diamond", "diamond", "diamond", "box", "dot"),
+          shape = c(
+            "database",
+            "hexagon",
+            "star",
+            "star",
+            "diamond",
+            "diamond",
+            "diamond",
+            "box",
+            "dot"
+          ),
           color = unname(c(
             group_colors[["Concept Scheme"]],
             group_colors[["Top Concept"]],
@@ -518,7 +657,12 @@ make_network <- function(nodes, edges, height = "920px", show_edge_labels = FALS
           ))
         ),
         addEdges = data.frame(
-          label = c("Hierarchy", "Scheme membership", "Related", "Ontology link"),
+          label = c(
+            "Hierarchy",
+            "Scheme membership",
+            "Related",
+            "Ontology link"
+          ),
           color = c("#2C7FB8", "#8C6D31", "#756BB1", "#D95F0E"),
           dashes = c(FALSE, FALSE, TRUE, TRUE)
         ),
@@ -632,7 +776,11 @@ link_graph <- make_network(
 
 view_controls <- tags$div(
   style = "margin-bottom: 1rem;",
-  tags$label(`for` = "vocab-view-select", style = "font-weight: bold; margin-right: 0.5rem;", "Select graph view:"),
+  tags$label(
+    `for` = "vocab-view-select",
+    style = "font-weight: bold; margin-right: 0.5rem;",
+    "Select graph view:"
+  ),
   tags$select(
     id = "vocab-view-select",
     style = "padding: 0.35rem; min-width: 280px;",
@@ -645,12 +793,28 @@ view_controls <- tags$div(
 
 graph_panels <- tags$div(
   tags$div(id = "full-vocab-graph", class = "vocab-graph-panel", full_graph),
-  tags$div(id = "hierarchy-vocab-graph", class = "vocab-graph-panel", style = "display:none;", hierarchy_graph),
-  tags$div(id = "scheme-vocab-graph", class = "vocab-graph-panel", style = "display:none;", scheme_graph),
-  tags$div(id = "link-vocab-graph", class = "vocab-graph-panel", style = "display:none;", link_graph)
+  tags$div(
+    id = "hierarchy-vocab-graph",
+    class = "vocab-graph-panel",
+    style = "display:none;",
+    hierarchy_graph
+  ),
+  tags$div(
+    id = "scheme-vocab-graph",
+    class = "vocab-graph-panel",
+    style = "display:none;",
+    scheme_graph
+  ),
+  tags$div(
+    id = "link-vocab-graph",
+    class = "vocab-graph-panel",
+    style = "display:none;",
+    link_graph
+  )
 )
 
-toggle_script <- tags$script(HTML("
+toggle_script <- tags$script(HTML(
+  "
 document.addEventListener('DOMContentLoaded', function() {
   var select = document.getElementById('vocab-view-select');
   var panels = document.querySelectorAll('.vocab-graph-panel');
@@ -669,7 +833,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   showPanel('full-vocab-graph');
 });
-"))
+"
+))
 
 browsable(tagList(view_controls, graph_panels, toggle_script))
 ```
@@ -705,20 +870,11 @@ inventory <- vocab_nodes_raw %>%
       ~ classify_group(..1, ..2, ..3, ..4)
     ),
     uri_full = as.character(id),
-    uri_short = get_local_name(id),
-    definition_full = dplyr::coalesce(as.character(definition), ""),
-    definition_preview = dplyr::case_when(
-      !nzchar(definition_full) ~ "",
-      nchar(definition_full) <= 90 ~ definition_full,
-      TRUE ~ paste0(substr(definition_full, 1, 90), "…")
-    )
+    scheme_full = as.character(scheme),
+    scheme_short = get_local_name(scheme),
+    definition_full = dplyr::coalesce(as.character(definition), "")
   ) %>%
   mutate(
-    uri_html = sprintf(
-      '<span title="%s">%s</span>',
-      htmltools::htmlEscape(uri_full),
-      htmltools::htmlEscape(uri_short)
-    ),
     definition_button = ifelse(
       nzchar(definition_full),
       sprintf(
@@ -727,6 +883,7 @@ inventory <- vocab_nodes_raw %>%
           'data-label="%s" ',
           'data-uri="%s" ',
           'data-group="%s" ',
+          'data-nodetype="%s" ',
           'data-scheme="%s" ',
           'data-definition="%s">',
           'View',
@@ -735,7 +892,8 @@ inventory <- vocab_nodes_raw %>%
         htmltools::htmlEscape(label),
         htmltools::htmlEscape(uri_full),
         htmltools::htmlEscape(as.character(group)),
-        htmltools::htmlEscape(as.character(scheme)),
+        htmltools::htmlEscape(as.character(node_type)),
+        htmltools::htmlEscape(dplyr::coalesce(scheme_full, "")),
         htmltools::htmlEscape(definition_full)
       ),
       ""
@@ -745,12 +903,12 @@ inventory <- vocab_nodes_raw %>%
     Label = as.character(label),
     `Node Type` = as.character(node_type),
     Group = as.character(group),
+    Scheme = as.character(scheme_short),
     `Top Concept` = is_top_concept,
-    Scheme = as.character(scheme),
-    Notation = as.character(notation),
-    URI = uri_html,
-    Preview = as.character(definition_preview),
-    Definition = definition_button
+    Definition = definition_button,
+    `URI Full` = as.character(uri_full),
+    `Definition Full` = as.character(definition_full),
+    `Scheme Full` = as.character(scheme_full)
   ) %>%
   arrange(Group, Label)
 
@@ -758,38 +916,132 @@ dt <- datatable(
   inventory,
   rownames = FALSE,
   escape = FALSE,
-  filter = "top",
+  filter = "none",
+  container = htmltools::withTags(
+    table(
+      class = "display compact stripe hover",
+      thead(
+        tr(
+          th("Label"),
+          th("Node Type"),
+          th("Group"),
+          th("Scheme"),
+          th("Top Concept"),
+          th("Definition"),
+          th("URI Full"),
+          th("Definition Full"),
+          th("Scheme Full")
+        ),
+        tr(
+          th(),
+          th(),
+          th(),
+          th(),
+          th(),
+          th(),
+          th(),
+          th(),
+          th()
+        )
+      )
+    )
+  ),
   options = list(
     pageLength = 15,
-    scrollX = TRUE,
-    scrollY = "500px",
     autoWidth = FALSE,
     dom = "tip",
+    scrollX = FALSE,
+    orderCellsTop = TRUE,
     columnDefs = list(
-      list(width = '180px', targets = 0),
-      list(width = '120px', targets = 1),
-      list(width = '150px', targets = 2),
-      list(width = '70px', targets = 3),
-      list(width = '140px', targets = 4),
-      list(width = '100px', targets = 5),
-      list(width = '160px', targets = 6),
-      list(width = '320px', targets = 7),
-      list(width = '90px', targets = 8)
+      list(width = '30%', targets = 0), # Label
+      list(width = '12%', targets = 1), # Node Type
+      list(width = '16%', targets = 2), # Group
+      list(width = '18%', targets = 3), # Scheme
+      list(width = '10%', targets = 4), # Top Concept
+      list(width = '8%', targets = 5), # Definition button
+      list(visible = FALSE, targets = c(6, 7, 8))
+    ),
+    initComplete = JS(
+      "function () {",
+      "  var api = this.api();",
+      "  var header = $(api.table().header());",
+      "  var filterRow = header.find('tr').eq(1);",
+      "  var dropdownCols = [0,1,2,3,4];",
+      "  var selects = {};",
+      "",
+      "  function htmlToText(x) {",
+      "    return $('<div>').html(x == null ? '' : x).text().trim();",
+      "  }",
+      "",
+      "  dropdownCols.forEach(function(colIdx) {",
+      "    var cell = filterRow.find('th').eq(colIdx);",
+      "    cell.empty();",
+      "    var sel = $('<select style=\"width:100%;\"><option value=\"\">All</option></select>');",
+      "    cell.append(sel);",
+      "    selects[colIdx] = sel;",
+      "",
+      "    sel.on('change', function() {",
+      "      var raw = $(this).val();",
+      "      var val = $.fn.dataTable.util.escapeRegex(raw);",
+      "      api.column(colIdx).search(val ? '^' + val + '$' : '', true, false);",
+      "      api.draw();",
+      "    });",
+      "  });",
+      "",
+      "  // No filter control for Definition button column",
+      "  filterRow.find('th').eq(5).empty();",
+      "",
+      "  function updateSelectOptions() {",
+      "    dropdownCols.forEach(function(colIdx) {",
+      "      var sel = selects[colIdx];",
+      "      var currentVal = sel.val();",
+      "",
+      "      // Top Concept: always show both boolean options",
+      "      if (colIdx === 4) {",
+      "        sel.empty()",
+      "          .append('<option value=\"\">All</option>')",
+      "          .append('<option value=\"true\">true</option>')",
+      "          .append('<option value=\"false\">false</option>');",
+      "",
+      "        if (currentVal === 'true' || currentVal === 'false') {",
+      "          sel.val(currentVal);",
+      "        } else {",
+      "          sel.val('');",
+      "        }",
+      "        return;",
+      "      }",
+      "",
+      "      var vals = {};",
+      "      api.column(colIdx, {search: 'applied'}).data().toArray().forEach(function(d) {",
+      "        var txt = htmlToText(d);",
+      "        if (txt) vals[txt] = true;",
+      "      });",
+      "",
+      "      var sorted = Object.keys(vals).sort(function(a,b){ return a.localeCompare(b); });",
+      "      sel.empty().append('<option value=\"\">All</option>');",
+      "      sorted.forEach(function(v) {",
+      "        sel.append($('<option></option>').attr('value', v).text(v));",
+      "      });",
+      "",
+      "      if (currentVal && sorted.indexOf(currentVal) !== -1) {",
+      "        sel.val(currentVal);",
+      "      } else {",
+      "        sel.val('');",
+      "      }",
+      "    });",
+      "  }",
+      "",
+      "  updateSelectOptions();",
+      "  api.on('draw', function() { updateSelectOptions(); });",
+      "}"
     )
   ),
   class = "compact stripe hover"
 ) %>%
   formatStyle(
-    columns = c("Label", "Node Type", "Group", "Top Concept", "Scheme", "Notation"),
+    columns = c("Label", "Node Type", "Group", "Scheme", "Top Concept"),
     `white-space` = "nowrap",
     `font-size` = "0.9em",
-    `vertical-align` = "top"
-  ) %>%
-  formatStyle(
-    columns = c("URI", "Preview"),
-    `white-space` = "normal",
-    `font-size` = "0.9em",
-    `line-height` = "1.2em",
     `vertical-align` = "top"
   ) %>%
   formatStyle(
@@ -799,7 +1051,8 @@ dt <- datatable(
   )
 
 modal_dependencies <- htmltools::tagList(
-  tags$style(HTML("
+  tags$style(HTML(
+    "
     .vocab-modal-backdrop {
       position: fixed;
       inset: 0;
@@ -812,7 +1065,7 @@ modal_dependencies <- htmltools::tagList(
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: min(800px, 92vw);
+      width: min(820px, 92vw);
       max-height: 85vh;
       overflow-y: auto;
       background: white;
@@ -843,47 +1096,56 @@ modal_dependencies <- htmltools::tagList(
       line-height: 1;
       cursor: pointer;
     }
-    .vocab-modal dl {
-      margin: 0;
-    }
-    .vocab-modal dt {
-      font-weight: 600;
-      margin-top: 0.75rem;
-    }
+    .vocab-modal dl { margin: 0; }
+    .vocab-modal dt { font-weight: 600; margin-top: 0.75rem; }
     .vocab-modal dd {
       margin-left: 0;
       margin-bottom: 0.5rem;
       white-space: pre-wrap;
       word-break: break-word;
     }
-  ")),
+  "
+  )),
   tags$div(class = "vocab-modal-backdrop", id = "vocab-modal-backdrop"),
   tags$div(
     class = "vocab-modal",
     id = "vocab-modal",
     tags$div(
       class = "vocab-modal-header",
-      tags$h3(class = "vocab-modal-title", id = "vocab-modal-label", "Definition"),
-      tags$button(type = "button", class = "vocab-modal-close", id = "vocab-modal-close", HTML("&times;"))
+      tags$h3(
+        class = "vocab-modal-title",
+        id = "vocab-modal-label",
+        "Definition"
+      ),
+      tags$button(
+        type = "button",
+        class = "vocab-modal-close",
+        id = "vocab-modal-close",
+        HTML("&times;")
+      )
     ),
     tags$dl(
-      tags$dt("URI"),
-      tags$dd(id = "vocab-modal-uri"),
+      tags$dt("Node Type"),
+      tags$dd(id = "vocab-modal-nodetype"),
       tags$dt("Group"),
       tags$dd(id = "vocab-modal-group"),
       tags$dt("Scheme"),
       tags$dd(id = "vocab-modal-scheme"),
+      tags$dt("URI"),
+      tags$dd(id = "vocab-modal-uri"),
       tags$dt("Definition"),
       tags$dd(id = "vocab-modal-definition")
     )
   ),
-  tags$script(HTML("
+  tags$script(HTML(
+    "
     document.addEventListener('DOMContentLoaded', function () {
       const modal = document.getElementById('vocab-modal');
       const backdrop = document.getElementById('vocab-modal-backdrop');
       const closeBtn = document.getElementById('vocab-modal-close');
 
       const labelEl = document.getElementById('vocab-modal-label');
+      const nodetypeEl = document.getElementById('vocab-modal-nodetype');
       const uriEl = document.getElementById('vocab-modal-uri');
       const groupEl = document.getElementById('vocab-modal-group');
       const schemeEl = document.getElementById('vocab-modal-scheme');
@@ -891,6 +1153,7 @@ modal_dependencies <- htmltools::tagList(
 
       function openModal(data) {
         labelEl.textContent = data.label || 'Definition';
+        nodetypeEl.textContent = data.nodetype || '';
         uriEl.textContent = data.uri || '';
         groupEl.textContent = data.group || '';
         schemeEl.textContent = data.scheme || '';
@@ -909,6 +1172,7 @@ modal_dependencies <- htmltools::tagList(
         if (btn) {
           openModal({
             label: btn.getAttribute('data-label'),
+            nodetype: btn.getAttribute('data-nodetype'),
             uri: btn.getAttribute('data-uri'),
             group: btn.getAttribute('data-group'),
             scheme: btn.getAttribute('data-scheme'),
@@ -923,7 +1187,8 @@ modal_dependencies <- htmltools::tagList(
         if (e.key === 'Escape') closeModal();
       });
     });
-  "))
+  "
+  ))
 )
 
 htmltools::browsable(
